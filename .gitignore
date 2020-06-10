@@ -4,6 +4,9 @@ dist/
 build/
 public/
 newman/
+venv
+.idea
+.terraform
 
 .#*
 
