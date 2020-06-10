@@ -1,98 +1,132 @@
-doc = `
-API Management Postman Test Runner
-Usage:
-  test-runner.js <username> <password> <apigee_environment> <base_url> <apikey> <token_app_url>
-  test-runner.js -h | --help
-  -h --help  Show this text.
-`
-
 const fs = require('fs')
-const docopt = require('docopt').docopt
 const puppeteer = require('puppeteer')
 
-function nhsIdLogin(username, password, apigee_environment, base_url, apikey, login_url, writeGlobals, writeEnvVariables) {
-  (async () => {
-    console.log('Oauth journey on ' + login_url)
+async function writeEnvAndGlobals() {
+  const apigeeEnv = process.env.APIGEE_ENVIRONMENT;
+  const serviceBasePath = process.env.SERVICE_BASE_PATH;
+  const baseUrl = `https://${apigeeEnv}.api.service.nhs.uk/${serviceBasePath}`
 
-    const browser = await puppeteer.launch({
-      executablePath: process.env.CHROME_BIN || null,
-      args: ['--no-sandbox', '--headless', '--disable-gpu']
-    });
+  const apikey = process.env.API_KEY;
 
-    const page = await browser.newPage()
-    await page.goto(login_url, { waitUntil: 'networkidle2' })
-    await page.click('#start')
-    await page.waitForSelector('#idToken1')
-    await page.type('#idToken1', username)
-    await page.type('#idToken2', password)
-    await page.click('#loginButton_0')
-    await page.waitForNavigation()
+  const nhsUsername = process.env.NHS_ID_USERNAME;
+  const nhsPassword = process.env.NHS_ID_PASSWORD;
+  const loginUrl = process.env.IDP_URL; // url which we use username and password to get the token
 
-    let credentialsJSON = await page.$eval('body > div > div > pre', e => e.innerText)
-    let credentials = credentialsJSON.replace(/'/g, '"')
-    let credentialsObject = JSON.parse(credentials)
-
-    await browser.close();
-
-    writeGlobals(credentialsObject.access_token, apikey)
-    writeEnvVariables(base_url, apigee_environment)
-  })()
+  await writePostmanGlobals(loginUrl, nhsUsername, nhsPassword, apikey);
+  await writePostmanEnvironment(baseUrl, apigeeEnv);
 }
 
-function writeGlobals(token, apikey) {
+async function getToken(loginUrl, nhsUsername, nhsPassword) {
+  const browser = await puppeteer.launch({
+    executablePath: process.env.CHROME_BIN || null,
+    args: ['--no-sandbox', '--headless', '--disable-gpu']
+  });
+
+  const gotoLogin = async () => {
+    const page = await browser.newPage();
+    await page.goto(loginUrl, { waitUntil: 'networkidle2', timeout: 10000 });
+    await page.waitForSelector('#start', { timeout: 10000 });
+    await page.click("#start");
+    await page.waitForSelector('#idToken1', { timeout: 10000 });
+    return page;
+  }
+
+  console.log('Oauth journey on ' + loginUrl);
+
+  const page = await retry(async () => { return await gotoLogin(browser, loginUrl); }, 3);
+  await page.type('#idToken1', nhsUsername);
+  await page.type('#idToken2', nhsPassword);
+  await page.click('#loginButton_0');
+  await page.waitForNavigation();
+
+  let credJson = await page.$eval('body > div > div > pre', e => e.innerText);
+  let credentials = JSON.parse(credJson.replace(/'/g, '"'));
+
+  await browser.close();
+
+  return credentials.access_token;
+}
+
+async function writePostmanGlobals(loginUrl, nhsUsername, nhsPassword, apikey) {
   fs.copyFileSync("e2e/local.globals.json", "e2e/deploy.globals.json");
-
   let globals = JSON.parse(fs.readFileSync("e2e/deploy.globals.json"));
-
-  const tokenGlobal = {
-    "key": "token",
-    "value": token,
-    "enabled": true
-  };
-
-  const apikeyGlobal = {
-    "key": "apikey",
-    "value": apikey,
-    "enabled": true
-  };
 
   for(let i = 0; i < globals.values.length; i++) {
     if (globals.values[i].key === "token") {
-      globals.values[i] = tokenGlobal;
+      if (!loginUrl || !nhsPassword || !nhsUsername) {
+        console.log("Your global file has 'token' key but, one/more of NHS_ID_USERNAME or NHS_ID_PASSWORD or IDP_URL environment variables are not provided")
+        continue;
+      }
+      const token = await getToken(loginUrl, nhsUsername, nhsPassword);
+
+      globals.values[i] = {
+        "key": "token",
+        "value": token,
+        "enabled": true
+      };
     }
+
     if (globals.values[i].key === "apikey") {
-      globals.values[i] = apikeyGlobal;
+      if (!apikey) {
+        console.log("Your global file has 'apikey' key but, API_KEY environment variable is not provided.")
+        continue;
+      }
+
+      globals.values[i] = {
+        "key": "apikey",
+        "value": apikey,
+        "enabled": true
+      };
     }
   }
 
   fs.writeFileSync('e2e/deploy.globals.json', JSON.stringify(globals));
 }
 
-function writeEnvVariables(base_url, apigee_environment){
+async function writePostmanEnvironment(base_url, apigee_environment){
   let envVariables = JSON.parse(fs.readFileSync(`e2e/environments/${apigee_environment}.postman.json`));
   const baseUrl = {
     "key": "base_url",
     "value": base_url,
     "enabled": true
   };
-  if (envVariables.values[0].key === "base_url") {
-    envVariables.values[0] = baseUrl;
+
+  for (let i = 0; i < envVariables.values.length; i++) {
+    if (envVariables.values[i].key === "base_url") {
+      envVariables.values[i] = baseUrl;
+      break;
+    }
   }
+
   fs.writeFileSync(`e2e/environments/deploy.${apigee_environment}.postman.json`, JSON.stringify(envVariables));
 }
 
-function main(args) {
-  nhsIdLogin(
-    args['<username>'],
-    args['<password>'],
-    args['<apigee_environment>'],
-    args['<base_url>'],
-    args['<apikey>'],
-    args['<token_app_url>'],
-    writeGlobals,
-    writeEnvVariables,
-  )
+async function retry(func, times) {
+  let result;
+  let success = false;
+  let error;
+
+  for (let i = 0; i < times; i++) {
+    try {
+      result = await func();
+      success = true;
+      break;
+    } catch (e) {
+      error = e;
+      console.error(e);
+    }
+    setTimeout(function(){ console.log("Waiting"); }, 2000 * i);
+  }
+
+  if (!success) {
+    throw error;
+  }
+
+  return result;
 }
 
-args = docopt(doc)
-main(args)
+async function main() {
+  await writeEnvAndGlobals();
+}
+
+main()

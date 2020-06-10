@@ -5,13 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run global && npm run test",
-    "global": "node_modules/.bin/node e2e/globals.js $NHS_ID_USERNAME $NHS_ID_PASSWORD $APIGEE_ENVIRONMENT $BASE_URL $API_KEY $IDP_URL",
+    "global": "node_modules/.bin/node e2e/globals.js",
     "test": "node_modules/.bin/newman run e2e/ambulance-sandbox.json -e e2e/environments/deploy.$APIGEE_ENVIRONMENT.postman.json --globals e2e/deploy.globals.json --reporters junit"
   },
   "author": "",
   "license": "(MIT OR OGL)",
   "dependencies": {
-    "docopt": "^0.6.2",
     "newman": "^5.0.0",
     "node": "^13.12.0",
     "puppeteer": "^2.1.1"
