@@ -1,10 +1,10 @@
 {
 	"id": "f6516e5f-26bb-45d5-a4a5-ad6e17416db5",
-	"name": "{{ENVIRONMENT}}",
+	"name": "local",
 	"values": [
 		{
 			"key": "base_url",
-			"value": "{{API_TEST_URL}}",
+			"value": "localhost:9000",
 			"enabled": true
 		}
 	],

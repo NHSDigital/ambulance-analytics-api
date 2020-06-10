@@ -3,8 +3,8 @@
 # owned by NHS Digital (https://digital.nhs.uk/)
 openapi: "3.0.0"
 info:
-  version: "{VERSION}"
-  title: Template API
+  version: "0.0.1"
+  title: Ambulance API
   description: |
     ## Overview
     TODO
@@ -77,6 +77,48 @@ servers:
   - url: 'https://emea-demo8-test.apigee.net/TODO sandbox endpoint'
     description: Sandbox service.
 tags:
-  - name: #TODO declare tags
+  - name: Ambulance Api
 paths:
-#TODO add endpoints
+  /hello:
+    get:
+      summary: Say hello world.
+      operationId: getHello
+      description: |
+        Get a "Hello world!" response from an open-access endpoint.
+
+        Use this API alongside our [open-access REST API tutorial](https://digital.nhs.uk/developer/api-tutorials#open-access-rest-api-tutorial) to learn how to connect to our APIs.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Hello world!"
+              example:
+                message: "Hello world!"
+      tags:
+        - hello
+
+components:
+
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: apikey
+      in: header
+
+    oAuth2AuthCode:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://sandbox.api.service.nhs.uk/oauth2/authorize
+          tokenUrl: https://sandbox.api.service.nhs.uk/oauth2/token
+          scopes: {}
+
+  schemas:
+    Greeting:
+      $ref: components/schemas/Greeting.yaml

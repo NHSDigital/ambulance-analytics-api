@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "93014b09-d3e3-43f4-baaa-fb67dc0582bf",
+		"name": "Ambulance API Sandbox",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Ambulance - Open access",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b13943bb-aa04-42cc-b4a4-7b37c4cd4f4c",
+						"exec": [
+							"pm.environment.set(\"expected_greeting\", \"Hello World!\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5334edd4-c25d-4142-85b7-ecd364136d73",
+						"exec": [
+							"pm.test(\"Returns status code 200 OK\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/hello",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"hello"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9b912abd-b812-4491-8906-3ae17f58c368",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "4bf0138d-84cd-4de8-9e42-bc6cc90ff5c4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "704012c1-0f35-467b-b92c-8a3fe6470fe2",
+			"key": "api_key",
+			"value": "xlNAz98DIP3I7xQDR7BnOdG9tGxKyBll",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
