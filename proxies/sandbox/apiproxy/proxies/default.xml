@@ -1,6 +1,15 @@
 <ProxyEndpoint name="default">
     <PreFlow/>
   <Flows>
+    <Flow name="Flow.AuthApiKey">
+      <Request>
+        <Step>
+          <Name>VerifyApiKey.Header</Name>
+        </Step>
+      </Request>
+      <Response/>
+      <Condition>(proxy.pathsuffix MatchesPath "/data/*") and (request.verb = "GET")</Condition>
+    </Flow>
     <Flow name="OptionsPreFlight">
       <Request/>
       <Response>
