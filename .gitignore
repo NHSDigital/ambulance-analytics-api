@@ -4,8 +4,13 @@ dist/
 build/
 public/
 newman/
+venv
+.idea
+.terraform
 
 .#*
 
 __pycache__/
 .envrc
+
+**/.DS_Store

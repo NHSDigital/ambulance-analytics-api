@@ -1,0 +1,19 @@
+{
+  "id": "f936d3f4-2f37-4f56-82b1-f3d1f7505404",
+  "values": [
+    {
+      "key": "token",
+      "value": "dummy_token",
+      "enabled": true
+    },
+    {
+      "key": "apikey",
+      "value": "dummy_application_restricted_apikey",
+      "enabled": true
+    }
+  ],
+  "name": "Tests globals values",
+  "_postman_variable_scope": "globals",
+  "_postman_exported_at": "2020-04-29T13:25:57.505Z",
+  "_postman_exported_using": "Postman/7.22.1"
+}
