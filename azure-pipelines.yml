@@ -87,4 +87,4 @@ jobs:
         displayName: Build Release Package
 
       - publish: dist/
-        artifact: ambulance-data-api-$(SPEC_VERSION)+$(Build.BuildNumber)
+        artifact: ambulance-data-$(SPEC_VERSION)+$(Build.BuildNumber)
