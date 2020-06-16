@@ -17,8 +17,8 @@ module "ambulance-data" {
   name               = "ambulance-data"
   path               = "ambulance-data"
   apigee_environment = var.apigee_environment
-  proxy_type         = (var.force_sandbox || length(regexall("sandbox", var.apigee_environment)) > 0) ? "sandbox" : "live"
+  proxy_type         = "sandbox"
   namespace          = var.namespace
-  make_api_product   = !(length(regexall("sandbox", var.apigee_environment)) > 0)
+  make_api_product   = length(var.namespace) == 0
   api_product_display_name = length(var.namespace) > 0 ? "ambulance-data${var.namespace}" : "Ambulance Data Api"
 }
