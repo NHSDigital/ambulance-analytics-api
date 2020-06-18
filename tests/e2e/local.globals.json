@@ -2,11 +2,6 @@
   "id": "f936d3f4-2f37-4f56-82b1-f3d1f7505404",
   "values": [
     {
-      "key": "token",
-      "value": "dummy_token",
-      "enabled": true
-    },
-    {
       "key": "apikey",
       "value": "dummy_application_restricted_apikey",
       "enabled": true
