@@ -8,7 +8,6 @@
         </Step>
       </Request>
       <Response/>
-      <Condition>(proxy.pathsuffix MatchesPath "/data/*") and (request.verb = "GET")</Condition>
     </Flow>
     <Flow name="OptionsPreFlight">
       <Request/>
