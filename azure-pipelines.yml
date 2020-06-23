@@ -108,3 +108,21 @@ jobs:
 
       - publish: dist/
         artifact: ambulance-data-$(SPEC_VERSION)+$(Build.BuildNumber)
+
+      - template: az/build-prereqs.yml@utils
+
+      - template: az/create-build-env-vars.yml@utils
+        parameters:
+          out_dir: 'dist'
+          service_name: 'sync-wrap'
+  
+      - template: az/become-build-user.yml@utils
+        parameters:
+          env_vars_dir: 'dist'
+  
+      - template: az/build-and-push-ecs-proxies.yml@utils
+        parameters:
+          env_vars_dir: 'dist'
+  
+      - publish: dist/
+        artifact: sync-wrap-$(Build.BuildNumber)  
