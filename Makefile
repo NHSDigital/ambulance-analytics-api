@@ -17,7 +17,7 @@ test:
 
 lint:
 	npm run lint
-	cd sandbox && npm run lint && cd ..
+	cd docker/ambulance-data-sandbox && npm run lint && cd ..
 	poetry run flake8 **/*.py
 	find . -name '*.sh' | grep -v node_modules | xargs shellcheck
 
@@ -56,7 +56,7 @@ format:
 	poetry run black **/*.py
 
 sandbox: update-examples
-	cd sandbox && npm run start
+	cd docker/ambulance-data-sandbox && npm run start
 
 build-proxy:
 	scripts/build_proxy.sh
