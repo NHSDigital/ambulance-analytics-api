@@ -2,7 +2,7 @@ const Hapi = require('@hapi/hapi')
 const Path = require('path')
 const Inert = require('inert')
 const process = require('process')
-const routes = require('../routes')
+const routes = require('./routes')
 
 const init = async () => {
   const server = Hapi.server({
