@@ -7,8 +7,8 @@ Intended for "sandbox" functionality, and is the target endpoint for the hosted 
 ## Developing
 
 ```
-npm install
-npm run serve
+make build
+make run
 ```
 
  * Use the examples from the OAS (`components/examples/`) sym-linking them into the app.
