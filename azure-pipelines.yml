@@ -76,7 +76,7 @@ jobs:
       - task: Cache@2
         displayName: "Cache Sandbox NPM Dependencies"
         inputs:
-            key: '"$(Agent.OS)" | "node-sandbox" | docker/ambulnace-data-sandbox/package-lock.json'
+            key: '"$(Agent.OS)" | "node-sandbox" | docker/ambulance-data-sandbox/package-lock.json'
             path: "docker/ambulance-data-sandbox/node_modules"
             restoreKeys: |
                 "$(Agent.OS)" | "node-sandbox" | docker/ambulance-data-sandbox/package-lock.json
