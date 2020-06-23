@@ -120,9 +120,6 @@ jobs:
         parameters:
           env_vars_dir: 'dist'
 
-      - bash: "cat ~/.aws/config"
-        displayName: cat aws config
-
       - template: az/build-and-push-ecs-proxies.yml@utils
         parameters:
           env_vars_dir: 'dist'

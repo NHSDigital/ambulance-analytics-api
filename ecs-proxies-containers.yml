@@ -1,5 +1,5 @@
 docker_containers:
 
     - name: ambulance-data
-      dockerfile: "docker/ambulance-data/Dockerfile"
-      path: "docker/ambulance-data"
+      dockerfile: "docker/ambulance-data-sandbox/Dockerfile"
+      path: "docker/ambulance-data-sandbox"
