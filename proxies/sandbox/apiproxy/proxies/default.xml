@@ -20,7 +20,7 @@
     </Flow>
   </Flows>
   <HTTPProxyConnection>
-    <BasePath>{{ SERVICE_BASE_PATH }}</BasePath>
+    <BasePath>/foo</BasePath>
     <VirtualHost>secure</VirtualHost>
   </HTTPProxyConnection>
   <RouteRule name="NoRoute">
