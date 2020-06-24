@@ -11,6 +11,3 @@ build:
 
 run:
 	docker run -p 9000:9000 ambulance-data-api-sandbox:latest
-
-#kill:
-	#docker kill $$(docker ps --filter "ancestor=ambulance-data-api-sandbox" --format "{{.Names}})
