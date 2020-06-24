@@ -3,6 +3,6 @@
     <SSLInfo>
       <Enabled>true</Enabled>
     </SSLInfo>
-    <URL>https://.foo-internal-dev.apis.ptl.apim.uk</URL>
+    <URL>https://{{ APIM_PROXY_HOSTNAME }}</URL>
   </HTTPTargetConnection>
 </TargetEndpoint>
