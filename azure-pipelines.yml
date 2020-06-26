@@ -106,8 +106,8 @@ jobs:
       - bash: "make release"
         displayName: Build Release Package
 
-      - publish: dist/
-        artifact: ambulance-data-$(SPEC_VERSION)+$(Build.BuildNumber)
+      - bash: "cp ecs-proxies-deploy.yml dist/ecs-deploy-all.yml"
+        displayName: Copy ECS deployment config
 
       - template: az/build-prereqs.yml@utils
 
