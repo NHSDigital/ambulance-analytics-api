@@ -12,3 +12,4 @@ cp -Rv proxies/sandbox/apiproxy build/proxies/sandbox
 cp -Rv proxies/live/apiproxy build/proxies/live
 mkdir -p build/proxies/sandbox/apiproxy/resources/hosted
 rsync -av --copy-links --exclude="node_modules" --filter=':- .gitignore' docker/ambulance-data-sandbox/ build/proxies/sandbox/apiproxy/resources/hosted
+
