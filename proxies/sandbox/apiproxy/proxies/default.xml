@@ -20,14 +20,20 @@
       </Response>
       <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null</Condition>
     </Flow>
-    <Flow name="Flow.AuthApiKey">
-      <Request>
-        <Step>
-          <Name>VerifyApiKey.Header</Name>
-        </Step>
-      </Request>
-      <Response/>
-    </Flow>
+    <Flow>
+        <Condition>(proxy.pathsuffix MatchesPath "/hello")</Condition>
+        <Request>
+            <Step>
+                <Name>Decode-JWT</Name>
+            </Step>
+            <Step>
+                <Name>VerifyApiKey.Header</Name>
+            </Step>
+            <Step>
+                <Name>Verify-JWT</Name>
+            </Step>
+        </Request>
+        </Flow>
   </Flows>
   <HTTPProxyConnection>
     <BasePath>{{ SERVICE_BASE_PATH }}</BasePath>
