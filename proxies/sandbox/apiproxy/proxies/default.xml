@@ -21,16 +21,16 @@
       <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null</Condition>
     </Flow>
     <Flow>
-        <Condition>(proxy.pathsuffix MatchesPath "/hello")</Condition>
+        <Condition>(proxy.pathsuffix MatchesPath "/token")</Condition>
         <Request>
             <Step>
                 <Name>Decode-JWT</Name>
             </Step>
             <Step>
-                <Name>VerifyApiKey.Header</Name>
+                <Name>Verify-JWT</Name>
             </Step>
             <Step>
-                <Name>Verify-JWT</Name>
+                <Name>Generate-Access-token</Name>
             </Step>
         </Request>
         </Flow>

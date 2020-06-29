@@ -1,4 +1,4 @@
 #!/bin/sh
 make lint
 make validate
-cd docker/ambulance-data-sandbox && npm  lint
+cd docker/ambulance-data-sandbox && npm run lint
