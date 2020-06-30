@@ -2,8 +2,9 @@
 <VerifyJWT async="false" continueOnError="false" enabled="true" name="Verify-JWT">
     <DisplayName>Verify JWT</DisplayName>
     <Algorithm>RS256</Algorithm>
+    <Source>request.header.token</Source>
     <PublicKey>
-        <Value>{
+        <JWKS>{
     "keys": [
         {
         "alg": "RS256",
@@ -14,6 +15,7 @@
         "kid": "1"
         }
     ]
-}</Value>
+}</JWKS>
     </PublicKey>
 </VerifyJWT>
+<!---->

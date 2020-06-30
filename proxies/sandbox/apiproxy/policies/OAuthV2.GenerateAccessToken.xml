@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OAuthV2 name="Generate-Access-Token">
+    <!-- This policy generates an OAuth 2.0 access token using the client_credentials grant type -->
+    <Operation>GenerateAccessToken</Operation>
+    <!-- This is in millseconds, so expire in an hour -->
+    <ExpiresIn>3600000</ExpiresIn>
+    <SupportedGrantTypes>
+        <GrantType>client_credentials</GrantType>
+    </SupportedGrantTypes>
+    <GrantType>request.header.grant_type</GrantType>
+    <GenerateResponse enabled="true"/>
+</OAuthV2>
