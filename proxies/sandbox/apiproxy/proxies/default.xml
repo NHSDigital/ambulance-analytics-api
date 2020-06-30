@@ -1,5 +1,5 @@
 <ProxyEndpoint name="default">
-    <PreFlow/>
+  <PreFlow/>
   <Flows>
     <Flow name="AddPayloadToPing">
       <Description/>
@@ -20,18 +20,11 @@
       </Response>
       <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null</Condition>
     </Flow>
-    <Flow>
-      <Condition>(proxy.pathsuffix MatchesPath "/token")</Condition>
+    <Flow name="Flow.AuthApiKey">
       <Request>
-          <Step>
-              <Name>Decode-JWT</Name>
-          </Step>
-          <Step>
-              <Name>Verify-JWT</Name>
-          </Step>
-          <Step>
-              <Name>Generate-Access-Token</Name>
-          </Step>
+        <Step>
+          <Name>VerifyApiKey.Header</Name>
+        </Step>
       </Request>
       <Response/>
     </Flow>
