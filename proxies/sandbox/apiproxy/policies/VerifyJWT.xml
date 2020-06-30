@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VerifyJWT async="false" continueOnError="false" enabled="true" name="Verify-JWT">
+    <DisplayName>Verify JWT</DisplayName>
+    <Algorithm>RS256</Algorithm>
+    <Source>request.header.token</Source>
+    <PublicKey>
+        <JWKS>{
+    "keys": [
+        {
+        "alg": "RS256",
+        "use": "sig",
+        "kty": "RSA", 
+        "n": "wmw-11p8wW-aAv2eFh7w2BwBcVJmX9SHOu2taTOkh_DBzs1gFWLoVsSs_pUEAZlayCdgkfcVAH_dpkA9t5oF082ImCEVWDRj0-4OAPDQEU53Q6m37RapDIboIQscf5x3GXvomDeOaoH7XelnkCGlnGWXkBsOhZZ96bZ3fvDdUzzVk8U4_N_lM1nVUrBV_sIVP93Hhs_wPzrJiOCS9jqBDahcvzkyD0jwLbXMAkN9dbty-w2SCLwA4_lvWIPw8YosYaVLLcXqZ2zQiylyrT0O567HEh9MrSxEPsyyKMn2GmKeMRJr_dQTKn8LQpaodOmXZK38jf4pdc9ft2QwpWy-Xme7WILQSsOYxQUS4Jy_DczX5xpW_Z_y36XV65NicBD_5o8EyszDxjNFMeHioVHK5AUBnwn_vsbG-vJ9KYcDZOJFkCYvQmyFjxqonx74027CaLexlrgPs0b0PpAAneFTofZ43bKztHVrISABXT16327glnaiwxNNbkYN8qt68q7JFzUJTkYPvkNSkMDhpcHjRSbWfIpAtayStkZihxE0xPy_3RGP8BQf67yn4xstHXryX_pCUwjYyTZC0c2uNbNKHSeJ7dIY_SGg-47ddbDLUyNVbZZ1nu4vEpZkJZ_kb2GC2S9z-68iJUkXpV8QB6XzzNHPLy9TuseEX9gKFm7YVF8", 
+        "e": "AQAB",
+        "kid": "1"
+        }
+    ]
+}</JWKS>
+    </PublicKey>
+</VerifyJWT>
