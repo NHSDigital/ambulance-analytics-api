@@ -8,6 +8,9 @@ venv
 .idea
 .terraform
 
+# utils directory will be clone during pipeline.
+utils
+
 .#*
 
 __pycache__/
