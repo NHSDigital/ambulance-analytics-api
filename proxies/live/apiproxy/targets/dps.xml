@@ -1,7 +1,7 @@
 <TargetEndpoint name="dps">
   <HTTPTargetConnection>
     <LoadBalancer>
-      <Server name="dps-ambulance-api"/>
+      <Server name="dps-submission-api"/>
     </LoadBalancer>
     <Path>/ingest/dps</Path>
   </HTTPTargetConnection>
