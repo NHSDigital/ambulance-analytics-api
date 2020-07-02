@@ -7,7 +7,7 @@ install-python:
 
 install-node:
 	npm install
-	cd sandbox && npm install
+	cd docker/ambulance-data-sandbox && npm install
 
 install-hooks:
 	cp scripts/pre-commit .git/hooks/pre-commit
@@ -17,8 +17,8 @@ test:
 
 lint:
 	npm run lint
-	cd sandbox && npm run lint && cd ..
-	poetry run flake8 **/*.py
+	cd docker/ambulance-data-sandbox && npm run lint && cd ..
+	poetry run flake8
 	find . -name '*.sh' | grep -v node_modules | xargs shellcheck
 
 validate: generate-examples
@@ -56,7 +56,7 @@ format:
 	poetry run black **/*.py
 
 sandbox: update-examples
-	cd sandbox && npm run start
+	cd docker/ambulance-data-sandbox && npm run start
 
 build-proxy:
 	scripts/build_proxy.sh
