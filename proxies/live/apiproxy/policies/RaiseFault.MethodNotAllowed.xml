@@ -1,0 +1,9 @@
+<RaiseFault name="RaiseFault.MethodNotAllowed">
+ <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+ <FaultResponse>
+   <Set>
+     <StatusCode>405</StatusCode>
+     <ReasonPhrase>Request method must be POST, not {request.method}</ReasonPhrase>
+   </Set>
+ </FaultResponse>
+</RaiseFault>
