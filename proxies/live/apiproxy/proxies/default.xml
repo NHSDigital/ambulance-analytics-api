@@ -43,6 +43,21 @@
         </Request>
         <Response/>
       </Flow>
+      <Flow name="Flow-hello">
+      <Condition>(proxy.pathsuffix MatchesPath "/hello") and (request.verb = "GET")</Condition>
+        <Request>
+          <Step>
+            <Name>DecodeJWT</Name>
+          </Step>
+          <Step>
+            <Name>VerifyJWT</Name>
+          </Step>
+          <Step>
+            <Name>GenerateAccessToken</Name>
+          </Step>
+        </Request>
+        <Response/>
+      </Flow>
   </Flows>
   <HTTPProxyConnection>
     <BasePath>{{ SERVICE_BASE_PATH }}</BasePath>
