@@ -1,10 +1,10 @@
 <TargetEndpoint name="dps">
   <PreFlow>
     <Request>
-      <Step>
+      <!-- <Step>
         <Name>RaiseFault.MethodNotAllowed</Name>
         <Condition>request.verb != "POST"</Condition>
-      </Step>
+      </Step> -->
       <Step>
         <Name>ExtractVariables.DatasetId</Name>
       </Step>
