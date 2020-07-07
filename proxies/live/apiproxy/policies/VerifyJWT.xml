@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VerifyJWT async="false" continueOnError="false" enabled="true" name="VerifyJWT">
+    <DisplayName>Verify JWT</DisplayName>
+    <Algorithm>RS256</Algorithm>
+    <Source>request.header.token</Source>
+    <PublicKey>
+        <JWKS uri="https://raw.githubusercontent.com/NHSDigital/ambulance-key-store/master/internal-dev/jwks.json"/>
+    </PublicKey>
+</VerifyJWT>
