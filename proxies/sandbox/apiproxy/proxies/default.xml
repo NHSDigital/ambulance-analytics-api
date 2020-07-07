@@ -21,20 +21,35 @@
       <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null</Condition>
     </Flow>
     <Flow name="Flow-GenerateAccessToken">
-      <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "GET")</Condition>
-        <Request>
-          <Step>
-            <Name>DecodeJWT</Name>
-          </Step>
-          <Step>
-            <Name>VerifyJWT</Name>
-          </Step>
-          <Step>
-            <Name>GenerateAccessToken</Name>
-          </Step>
-        </Request>
-        <Response/>
-      </Flow>
+            <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "GET")</Condition>
+            <Request>
+                <Step>
+                    <Name>DecodeJWT</Name>
+                </Step>
+                <Step>
+                    <Name>LookupCacheJWKS</Name>
+                </Step>
+                <Step>
+                    <Name>ExecuteJWKSRequest</Name>
+                    <Condition>jwks = null</Condition>
+                </Step>
+                <Step>
+                    <Name>PopulateCacheJWKS</Name>
+                    <Condition>jwks = null</Condition>
+                </Step>
+                <Step>
+                    <Name>ParseJWKSResponse</Name>
+                    <Condition>jwks = null</Condition>
+                </Step>
+                <Step>
+                    <Name>VerifyJWT</Name>
+                </Step>
+                <Step>
+                    <Name>GenerateAccessToken</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
   </Flows>
   <HTTPProxyConnection>
     <BasePath>{{ SERVICE_BASE_PATH }}</BasePath>

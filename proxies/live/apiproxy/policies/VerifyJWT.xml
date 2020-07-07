@@ -4,6 +4,6 @@
     <Algorithm>RS256</Algorithm>
     <Source>request.header.token</Source>
     <PublicKey>
-        <JWKS uri="https://raw.githubusercontent.com/NHSDigital/ambulance-key-store/master/internal-dev/jwks.json"/>
+        <JWKS ref="jwks"/>
     </PublicKey>
 </VerifyJWT>
