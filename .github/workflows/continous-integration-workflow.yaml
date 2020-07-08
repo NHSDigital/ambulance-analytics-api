@@ -46,7 +46,7 @@ jobs:
 
       - name: Start local sandbox server
         run: |
-          cd sandbox
+          cd docker/ambulance-data-sandbox
           npm run start &
 
       - name: Check licenses
