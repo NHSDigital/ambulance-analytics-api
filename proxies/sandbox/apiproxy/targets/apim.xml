@@ -22,6 +22,19 @@
             <Condition>(oauthV2.VerifyApiKey.FromHeader.failed)</Condition>
         </FaultRule>
     </FaultRules>
+    <PreFlow>
+        <Request>
+            <Step>
+                <Name>RaiseFault.MethodNotAllowed</Name>
+                <Condition>request.verb != "POST"</Condition>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>AssignMessage.AddCors</Name>
+            </Step>
+        </Response>
+    </PreFlow>
   <HTTPTargetConnection>
     <SSLInfo>
       <Enabled>true</Enabled>
