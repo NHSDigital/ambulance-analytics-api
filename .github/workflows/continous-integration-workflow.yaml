@@ -70,7 +70,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: ambulance-data-${{ env.SPEC_VERSION }}+${{ github.run_id }}.json
-          path: ./build/amulance-api.json
+          path: /build/amulance-api.json
 
       - name: Create release (master only)
         id: create-release
