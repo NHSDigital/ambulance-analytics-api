@@ -10,6 +10,11 @@
       "key": "auth_base64",
       "value": "base64 of username:password??",
       "enabled": true
+    },
+    {
+      "key": "dataset_id",
+      "value": "foo",
+      "enabled": true
     }
   ],
   "name": "Tests globals values",

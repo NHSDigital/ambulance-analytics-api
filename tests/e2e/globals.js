@@ -12,7 +12,7 @@ async function writeEnvAndGlobals() {
   const nhsPassword = process.env.NHS_ID_PASSWORD;
   const loginUrl = process.env.IDP_URL; // url which we use username and password to get the token
    */
-  const token = `process.env.AMBULANCE_JWT_${apigeeEnv}`
+  const token = `process.env.AMBULANCE_JWT_${apigeeEnv.toUpperCase().replace('-', '_')}`
 
   await writePostmanGlobals(token);
   await writePostmanEnvironment(baseUrl, apigeeEnv);
