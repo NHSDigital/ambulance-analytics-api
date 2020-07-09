@@ -1,0 +1,39 @@
+<TargetEndpoint name="dps">
+  <PreFlow>
+    <Request>
+      <!-- <Step>
+        <Name>RaiseFault.MethodNotAllowed</Name>
+        <Condition>request.verb != "POST"</Condition>
+      </Step> -->
+      <Step>
+        <Name>ExtractVariables.DatasetId</Name>
+      </Step>
+      <Step>
+        <Name>AssignMessage.AddDatasetIdHeader</Name>
+      </Step>
+      <Step>
+        <Name>KeyValueMap.GetUpstreamApiKey</Name>
+      </Step>
+      <Step>
+        <Name>AssignMessage.AddUpstreamApiKeyHeader</Name>
+      </Step>
+      <Step>
+        <Name>AssignMessage.DoNotCopyPathSuffix</Name>
+      </Step>
+      <Step>
+      <Name>VerifyAccessToken</Name>
+      </Step>
+    </Request>
+    <Response>
+      <Step>
+        <Name>AssignMessage.AddCors</Name>
+      </Step>
+    </Response>
+  </PreFlow>
+  <HTTPTargetConnection>
+    <LoadBalancer>
+      <Server name="dps-submission-api"/>
+    </LoadBalancer>
+    <Path>/ingest/dps</Path>
+  </HTTPTargetConnection>
+</TargetEndpoint>

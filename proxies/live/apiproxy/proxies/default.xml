@@ -28,6 +28,36 @@
       </Request>
       <Response/>
     </Flow>
+    <Flow name="Flow-GenerateAccessToken">
+            <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "GET")</Condition>
+            <Request>
+                <Step>
+                    <Name>DecodeJWT</Name>
+                </Step>
+                <!-- <Step>
+                    <Name>LookupCacheJWKS</Name>
+                </Step> -->
+                <!-- <Step>
+                    <Name>ExecuteJWKSRequest</Name>
+                    <Condition>jwks = null</Condition>
+                </Step>
+                <Step>
+                    <Name>PopulateCacheJWKS</Name>
+                    <Condition>jwks = null</Condition>
+                </Step>
+                <Step>
+                    <Name>ParseJWKSResponse</Name>
+                    <Condition>jwks = null</Condition>
+                </Step> -->
+                <Step>
+                    <Name>VerifyJWT</Name>
+                </Step>
+                <Step>
+                    <Name>GenerateAccessToken</Name>
+                </Step>
+            </Request>
+            <Response/>
+        </Flow>
   </Flows>
   <HTTPProxyConnection>
     <BasePath>{{ SERVICE_BASE_PATH }}</BasePath>
@@ -39,7 +69,7 @@
   <RouteRule name="NoRoutePing">
     <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
   </RouteRule>
-  <RouteRule name="apim">
-    <TargetEndpoint>apim</TargetEndpoint>
+  <RouteRule name="dps">
+    <TargetEndpoint>dps</TargetEndpoint>
   </RouteRule>
 </ProxyEndpoint>

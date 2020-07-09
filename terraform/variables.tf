@@ -25,3 +25,7 @@ variable "force_sandbox" {
     default = false
 }
 
+variable "dps-submission-api-host" {
+    type = string
+    description = "upstream host"
+}
