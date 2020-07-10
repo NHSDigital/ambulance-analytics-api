@@ -27,7 +27,7 @@
 							"    pm.response.to.have.status(200);",
 							"});",
 							"pm.test(\"Response body should be empty\", () => {",
-							"    pm.response.to.have.body(\"\");",
+							"    pm.response.to.have.body(\"{}\");",
 							"});",
 							""
 						],
@@ -42,24 +42,26 @@
 				"method": "POST",
 				"header": [
 					{
-						"key": "x-api-key",
-						"type": "text",
-						"value": "{{apikey}}",
-						"disabled": true
-					},
-					{
 						"key": "token",
 						"value": "{{token}}",
-						"type": "text"
+						"type": "text",
+						"disabled": true
 					},
 					{
 						"key": "Authorization",
 						"value": "Basic {{auth_base64}}",
-						"type": "text"
+						"type": "text",
+						"disabled": true
 					},
 					{
 						"key": "grant_type",
 						"value": "client_credentials",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
 						"type": "text"
 					}
 				],
@@ -93,7 +95,7 @@
 				}
 			],
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
@@ -107,12 +109,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/{{dataset_id}}",
+					"raw": "{{base_url}}/token",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"{{dataset_id}}"
+						"token"
 					]
 				}
 			},
@@ -136,7 +138,7 @@
 				}
 			],
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
@@ -155,12 +157,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/{{dataset_id}}",
+					"raw": "{{base_url}}/token",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"{{dataset_id}}"
+						"token"
 					]
 				}
 			},
@@ -184,7 +186,7 @@
 				}
 			],
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
@@ -203,12 +205,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/{{dataset_id}}",
+					"raw": "{{base_url}}/token",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"{{dataset_id}}"
+						"token"
 					]
 				}
 			},

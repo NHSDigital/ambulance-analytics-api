@@ -11,6 +11,7 @@
   "author": "",
   "license": "(MIT OR OGL)",
   "dependencies": {
+    "axios": "^0.19.2",
     "newman": "^5.0.0",
     "node": "^13.12.0"
   }

@@ -12,8 +12,13 @@
       "enabled": true
     },
     {
+      "key": "access_token",
+      "value": "access_token",
+      "enabled": true
+    },
+    {
       "key": "dataset_id",
-      "value": "foo",
+      "value": "covid-19-research-tool",
       "enabled": true
     }
   ],

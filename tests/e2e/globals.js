@@ -1,32 +1,44 @@
 const fs = require('fs')
+const axios = require('axios')
 
 async function writeEnvAndGlobals() {
   const apigeeEnv = process.env.APIGEE_ENVIRONMENT;
   const serviceBasePath = process.env.SERVICE_BASE_PATH;
   const baseUrl = `https://${apigeeEnv}.api.service.nhs.uk/${serviceBasePath}`
 
-  /*
-  const apikey = process.env.API_KEY;
+  const apiKey = process.env.API_KEY;
+  const apiSecret = process.env.API_SECRET;
+  const token = process.env[`AMBULANCE_TOKEN_${apigeeEnv.toUpperCase().replace('-', '_')}`]
 
-  const nhsUsername = process.env.NHS_ID_USERNAME;
-  const nhsPassword = process.env.NHS_ID_PASSWORD;
-  const loginUrl = process.env.IDP_URL; // url which we use username and password to get the token
-   */
-  const token = `process.env.AMBULANCE_JWT_${apigeeEnv.toUpperCase().replace('-', '_')}`
-
-  await writePostmanGlobals(token);
+  await writePostmanGlobals(baseUrl, token, apiKey, apiSecret);
   await writePostmanEnvironment(baseUrl, apigeeEnv);
 }
 
-async function getToken() {
+async function getAccessToken(baseUrl, token, apiKey, apiSecret) {
+  const authBase64 = Buffer.from(`${apiKey}:${apiSecret}`).toString('base64')
+  console.log("base: ", baseUrl)
+  return (async () => {
+    try {
+      return axios.get(`${baseUrl}/token`, {
+        headers: {
+          'token': token,
+          'grant_type': 'client_credentials',
+          'Authorization': `Basic ${authBase64}`
+        }
+      })
+    } catch (e) {
+      console.log(e)
+    }
 
-  // TODO: get token
-  return "get token by GET /token";
+  })()
 }
 
-async function writePostmanGlobals(token) {
+async function writePostmanGlobals(baseUrl, token, apiKey, apiSecret) {
   fs.copyFileSync("e2e/local.globals.json", "e2e/deploy.globals.json");
   let globals = JSON.parse(fs.readFileSync("e2e/deploy.globals.json"));
+  const access_token = (await getAccessToken(baseUrl, token, apiKey, apiSecret)).data.access_token
+  const authBase64 = Buffer.from(`${apiKey}:${apiSecret}`).toString('base64')
+  console.log("token: ", access_token)
 
   for(let i = 0; i < globals.values.length; i++) {
     if (globals.values[i].key === "token") {
@@ -42,21 +54,21 @@ async function writePostmanGlobals(token) {
       };
     }
 
-
-/*
-    if (globals.values[i].key === "apikey") {
-      if (!apikey) {
-        console.log("Your global file has 'apikey' key but, API_KEY environment variable is not provided.")
-        continue;
-      }
-
+    if (globals.values[i].key === 'auth_base64') {
       globals.values[i] = {
-        "key": "apikey",
-        "value": apikey,
+        "key": "auth_base64",
+        "value": authBase64,
         "enabled": true
-      };
+      }
     }
-*/
+
+    if (globals.values[i].key === 'access_token') {
+      globals.values[i] = {
+        "key": "access_token",
+        "value": access_token,
+        "enabled": true
+      }
+    }
   }
 
   fs.writeFileSync('e2e/deploy.globals.json', JSON.stringify(globals));
@@ -78,30 +90,6 @@ async function writePostmanEnvironment(base_url, apigee_environment){
   }
 
   fs.writeFileSync(`e2e/environments/deploy.${apigee_environment}.postman.json`, JSON.stringify(envVariables));
-}
-
-async function retry(func, times) {
-  let result;
-  let success = false;
-  let error;
-
-  for (let i = 0; i < times; i++) {
-    try {
-      result = await func();
-      success = true;
-      break;
-    } catch (e) {
-      error = e;
-      console.error(e);
-    }
-    setTimeout(function(){ console.log("Waiting"); }, 2000 * i);
-  }
-
-  if (!success) {
-    throw error;
-  }
-
-  return result;
 }
 
 async function main() {
