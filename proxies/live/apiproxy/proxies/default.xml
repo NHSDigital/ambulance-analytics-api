@@ -20,24 +20,16 @@
       </Response>
       <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null</Condition>
     </Flow>
-    <Flow name="Flow.AuthApiKey">
-      <Request>
-        <Step>
-          <Name>VerifyApiKey.Header</Name>
-        </Step>
-      </Request>
-      <Response/>
-    </Flow>
     <Flow name="Flow-GenerateAccessToken">
             <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "GET")</Condition>
             <Request>
                 <Step>
                     <Name>DecodeJWT</Name>
                 </Step>
-                <!-- <Step>
+                <Step>
                     <Name>LookupCacheJWKS</Name>
-                </Step> -->
-                <!-- <Step>
+                </Step>
+                <Step>
                     <Name>ExecuteJWKSRequest</Name>
                     <Condition>jwks = null</Condition>
                 </Step>
@@ -48,7 +40,7 @@
                 <Step>
                     <Name>ParseJWKSResponse</Name>
                     <Condition>jwks = null</Condition>
-                </Step> -->
+                </Step>
                 <Step>
                     <Name>VerifyJWT</Name>
                 </Step>
