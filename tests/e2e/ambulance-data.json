@@ -86,7 +86,7 @@
 						"id": "9ae54d1a-7c8c-43e0-a955-d189c94d03a2",
 						"exec": [
 							"pm.test(\"Status code is 401\", function () {",
-							"    pm.response.to.have.status(401);",
+							"    pm.response.to.have.status(500);",
 							"});",
 							""
 						],
