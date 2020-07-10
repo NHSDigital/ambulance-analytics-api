@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ServiceCallout async="false" continueOnError="false" enabled="true" name="ExecuteJWKSRequest">
     <DisplayName>ExecuteJWKSRequest</DisplayName>
-    <Request>
-        <Set>
-            <Verb>GET</Verb>
-        </Set>
-        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
-    </Request>
     <Response>calloutResponse</Response>
     <HTTPTargetConnection>
+        <LoadBalancer>
+            <Server name="{{ DPS_SUBMISSION_API }}"/>
+        </LoadBalancer>
         <SSLInfo>
             <Enabled>true</Enabled>
         </SSLInfo>
-        <URL>https://raw.githubusercontent.com/NHSDigital/ambulance-key-store/master/internal-dev/jwks.json</URL>
+        <Path>{private.apigee.jwks_path}</Path>
     </HTTPTargetConnection>
 </ServiceCallout>

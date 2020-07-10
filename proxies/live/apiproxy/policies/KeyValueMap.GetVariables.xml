@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations encrypted="true" async="false" continueOnError="false" enabled="true" name="KeyValueMap.GetVariables" mapIdentifier="dps-submission-api">
+    <DisplayName>KeyValueMap.GetUpstreamApiKey</DisplayName>
+    <Get assignTo="private.dpsApiKey" index="1">
+        <Key>
+            <Parameter>api-key</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="private.apigee.jwks_path" index="1">
+    <Key>
+        <Parameter>jwks_path</Parameter>
+    </Key>
+  </Get>
+</KeyValueMapOperations>

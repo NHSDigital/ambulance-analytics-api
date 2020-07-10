@@ -12,7 +12,7 @@
         <Name>AssignMessage.AddDatasetIdHeader</Name>
       </Step>
       <Step>
-        <Name>KeyValueMap.GetUpstreamApiKey</Name>
+        <Name>KeyValueMap.GetVariables</Name>
       </Step>
       <Step>
         <Name>AssignMessage.AddUpstreamApiKeyHeader</Name>
