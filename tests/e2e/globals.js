@@ -4,7 +4,7 @@ const axios = require('axios')
 async function writeEnvAndGlobals() {
   const apigeeEnv = process.env.APIGEE_ENVIRONMENT;
   const serviceBasePath = process.env.SERVICE_BASE_PATH;
-  const baseUrl = `https://${apigeeEnv}.api.service.nhs.uk/${serviceBasePath}`
+  const baseUrl = `https://${apigeeEnv}.api.service.nhs.uk${serviceBasePath}`
 
   const apiKey = process.env.API_KEY;
   const apiSecret = process.env.API_SECRET;
