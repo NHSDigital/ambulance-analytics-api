@@ -7,7 +7,7 @@ install-python:
 
 install-node:
 	npm install
-	cd docker/ambulance-data-sandbox && npm install
+	cd docker/ambulance-data-sandbox && npm install && cd ../../tests && npm install
 
 install-hooks:
 	cp scripts/pre-commit .git/hooks/pre-commit
