@@ -4,14 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run global && npm run test",
-    "global": "node_modules/.bin/node e2e/globals.js",
-    "test": "node_modules/.bin/newman run e2e/ambulance-data.json -e e2e/environments/deploy.$APIGEE_ENVIRONMENT.postman.json --globals e2e/deploy.globals.json --reporters junit"
+    "start": "node_modules/.bin/node e2e/test-runner.js ambulance-data $APIGEE_ENVIRONMENT",
+    "test:sandbox": "ACCESS_TOKEN=dummy_token API_KEY=dummy_api_key API_SECRET=dummy_api_secret node_modules/.bin/node e2e/test-runner.js ambulance-data sandbox"
   },
   "author": "",
   "license": "(MIT OR OGL)",
   "dependencies": {
-    "axios": "^0.19.2",
+    "docopt": "^0.6.2",
     "newman": "^5.0.0",
     "node": "^13.12.0"
   }

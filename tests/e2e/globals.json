@@ -2,22 +2,22 @@
   "id": "f936d3f4-2f37-4f56-82b1-f3d1f7505404",
   "values": [
     {
-      "key": "token",
+      "key": "basePath",
+      "value": "/ambulance-data",
+      "enabled": true
+    },
+    {
+      "key": "accessToken",
       "value": "token_from_token_endpoint",
       "enabled": true
     },
     {
-      "key": "auth_base64",
-      "value": "base64 of username:password??",
+      "key": "authBase64",
+      "value": "base64 of apiKey:apiSecret",
       "enabled": true
     },
     {
-      "key": "access_token",
-      "value": "access_token",
-      "enabled": true
-    },
-    {
-      "key": "dataset_id",
+      "key": "datasetId",
       "value": "covid-19-research-tool",
       "enabled": true
     }

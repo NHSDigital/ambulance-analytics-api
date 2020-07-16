@@ -3,8 +3,8 @@
   "name": "internal-dev",
   "values": [
     {
-      "key": "base_url",
-      "value": "base_url",
+      "key": "baseUrl",
+      "value": "https://internal-dev.api.service.nhs.uk",
       "enabled": true
     }
   ],

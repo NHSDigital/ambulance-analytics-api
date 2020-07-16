@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e788abf2-0b8e-45bc-8ab4-48982bd77e33",
+		"_postman_id": "1950a061-1a2e-4019-a209-182ae0472d9c",
 		"name": "Ambulance API Sandbox",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "7462ffa3-3881-4ffa-8d21-32a5632c6d74",
+						"id": "716952f2-50a9-4c27-b921-e7c5114f596b",
 						"exec": [
 							""
 						],
@@ -21,7 +21,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "70fcad29-42aa-4c2f-980a-578c4a0d7329",
+						"id": "89c96769-1cfa-4ca5-aa3b-b5d5a11fffa7",
 						"exec": [
 							"pm.test(\"Returns status code 200 OK\", () => {",
 							"    pm.response.to.have.status(200);",
@@ -49,7 +49,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Basic {{auth_base64}}",
+						"value": "Basic {{authBase64}}",
 						"type": "text",
 						"disabled": true
 					},
@@ -61,17 +61,17 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer {{access_token}}",
+						"value": "Bearer {{accessToken}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/{{dataset_id}}",
+					"raw": "{{baseUrl}}{{basePath}}/{{datasetId}}",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}{{basePath}}"
 					],
 					"path": [
-						"{{dataset_id}}"
+						"{{datasetId}}"
 					]
 				}
 			},
@@ -83,7 +83,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9ae54d1a-7c8c-43e0-a955-d189c94d03a2",
+						"id": "ce24c87b-3f57-4b65-977d-eb0d9e0a965b",
 						"exec": [
 							"pm.test(\"Status code is 401\", function () {",
 							"    pm.response.to.have.status(500);",
@@ -99,7 +99,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Basic {{auth_base64}}",
+						"value": "Basic {{authBase64}}",
 						"type": "text"
 					},
 					{
@@ -109,9 +109,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/token",
+					"raw": "{{baseUrl}}{{basePath}}/token",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}{{basePath}}"
 					],
 					"path": [
 						"token"
@@ -126,7 +126,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e523121b-aba2-4add-911d-d8bcd2bfa25f",
+						"id": "75195710-a1d1-4a7a-9d51-e8865e8ada0d",
 						"exec": [
 							"pm.test(\"Status code is 401\", function () {",
 							"    pm.response.to.have.status(401);",
@@ -143,7 +143,7 @@
 					{
 						"key": "Authorization",
 						"type": "text",
-						"value": "Basic {{auth_base64}}"
+						"value": "Basic {{authBase64}}"
 					},
 					{
 						"key": "grant_type",
@@ -157,9 +157,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/token",
+					"raw": "{{baseUrl}}{{basePath}}/token",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}{{basePath}}"
 					],
 					"path": [
 						"token"
@@ -174,7 +174,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0965ea73-75ed-4bf4-bbd3-4e23f0e323bc",
+						"id": "24daffc3-6f04-45ce-a094-e55c4b1c8304",
 						"exec": [
 							"pm.test(\"Status code is 401\", function () {",
 							"    pm.response.to.have.status(401);",
@@ -191,7 +191,7 @@
 					{
 						"key": "Authorization",
 						"type": "text",
-						"value": "Basic {{auth_base64}}"
+						"value": "Basic {{authBase64}}"
 					},
 					{
 						"key": "grant_type",
@@ -205,9 +205,9 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/token",
+					"raw": "{{baseUrl}}{{basePath}}/token",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}{{basePath}}"
 					],
 					"path": [
 						"token"
@@ -221,7 +221,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "5d4866f4-d98e-492c-994c-3ef57431b5d3",
+				"id": "5a2a9d8a-e3c9-456d-b11b-924835f11944",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -231,7 +231,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "4c959686-6318-43f3-b304-522e622e6006",
+				"id": "6ac8331b-17bc-4e83-bee8-e743b420d2f4",
 				"type": "text/javascript",
 				"exec": [
 					""
