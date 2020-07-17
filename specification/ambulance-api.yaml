@@ -7,29 +7,33 @@ info:
   title: Ambulance API
   description: |
     ## Overview
-    TODO
+    This API is designed for posting data to DPS regarding any event within a timeline of when a patient deals with an Ambulance.
     
     You can:
-    * TODO
+    - Post data.
 
     You cannot currently use this API to:
-    * TODO
-    
-    You can access the following data:
-    * TODO
+    - For any kind of search function
+    - Posting any other sorts data (ambulance only)
+
+    ## Using this API
+    This API follows the OAuth 2.0 protocol so in order to successfully post data a valid access token is required.
+    In order to get an access token a signed JWT token must be successfully validated and only then will an access token be granted.
+    The current flow to use this API is:
+      - GET request with a signed JWT token and other required headers to the /token endpoint
+      - POST request with the access token in the Authorization header to the /foo endpoint
 
     ## Related APIs
-    TODO
+    TBC
     
     ## API status and roadmap
-    TODO
-    
+    The ambulance API is planned to go into Alpha end of August 2020 and it's currently deployed on the internal-dev environment.
+
     The following items are on our roadmap, in rough priority order:
-    - TODO
-    
-    We are extremely keen to receive feedback on the API during alpha and beta,
-    for example if there are data fields missing that you think you need.
-    Please [get in touch](/help-and-support) with any comments or suggestions.
+      - Get to Beta stage and tested (hopefully end of September 2020)
+
+    We look forward to recieving feedback once the API is in Alpha/Beta.
+
 
     ## Technology
     This API is [RESTful](/introduction-to-apis#basic-rest).
@@ -47,10 +51,14 @@ info:
     currently requires a connection to the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network).
 
     ## Authorisation
-    TODO
+    This API follows the OAuth 2.0 protocol, although a user doesn't need to be present to use this API all they need is to send a JWT token signed with a private key with the RS256 algorithm.
+    Once the target server receives the JWT token it will lookup a set of public keys from a url or store and check each public key until it finds one that matches.
+    Refer to documentation for more information.
+
+    Currently this API is targeted at developers that work for NHS Ambulance Trusts but this is subject to change.
     
     ## Testing
-    You can test this API in:
+    There are plans for this API to the following environments:
     * our [sandbox environment](/testing#sandbox-testing) for initial developer testing
     * our [integration test environment](/testing#integration-testing) for formal integration testing (coming soon)
 
@@ -58,9 +66,7 @@ info:
 
     For more details on sandbox testing, or to try out the sandbox using our "Try this API" feature, see the documentation for each endpoint.
 
-    Alternatively, you can try out the sandbox using our Postman collection:
-
-    [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/2871d49488699f3f5a67)
+    Also, there are plans to try out the sandbox using a Postman collection:
 
     ## Assurance
     We are hoping to make the assurance process as lightweight and as self-service as possible.
@@ -68,7 +74,10 @@ info:
     More details to follow.
 
     ## Endpoints
-    TODO
+    Current endpoints for the ambulance API are:
+      - GET /token get a access token in order to successfully post ambulance data to DPS
+      - POST /foo used for posting ambulance data to DPS
+
   contact:
     name: Template API Support
     url: 'https://tbc.api.nhs.net'
@@ -101,7 +110,7 @@ paths:
               example:
                 message: "Hello world!"
       tags:
-        - hello
+        - Post ambulance data
 
 components:
 
