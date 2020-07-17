@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<VerifyJWT async="false" continueOnError="false" enabled="true" name="VerifyJWT.JWKS">
+    <DisplayName>Verify.JWT.JWKS</DisplayName>
+    <Algorithm>RS256</Algorithm>
+    <Source>request.header.token</Source>
+    <PublicKey>
+        <JWKS ref="verifyapikey.VerifyAPIKey.FormParam.jwks"/>
+    </PublicKey>
+</VerifyJWT>

@@ -34,23 +34,35 @@
                 <Step>
                     <Name>DecodeJWT</Name>
                 </Step>
-                <!-- <Step>
-                    <Name>LookupCacheJWKS</Name>
-                </Step> -->
-                <!-- <Step>
-                    <Name>ExecuteJWKSRequest</Name>
+                <Step>
+                    <Name>LookupCache.JWKS</Name>
+                </Step>
+                <Step>
+                    <!-- This is done to get app custom attributes -->
+                    <Name>VerifyAPIKey.FormParam</Name>
                     <Condition>jwks = null</Condition>
                 </Step>
                 <Step>
-                    <Name>PopulateCacheJWKS</Name>
-                    <Condition>jwks = null</Condition>
+                    <Name>ServiceCallout.GetJWKS</Name>
+                    <Condition>jwks = null and verifyapikey.VerifyAPIKey.FormParam.jwks-resource-path != null</Condition>
                 </Step>
                 <Step>
-                    <Name>ParseJWKSResponse</Name>
-                    <Condition>jwks = null</Condition>
-                </Step> -->
+                    <!-- If the JWKS is not cached and a custom attribute
+                         with a jwks url value exists perform action abd for steps below -->
+                    <Name>PopulateCache.JWKS</Name>
+                    <Condition>jwks = null and verifyapikey.VerifyAPIKey.FormParam.jwks-resource-path != null</Condition>
+                </Step>
                 <Step>
-                    <Name>VerifyJWT</Name>
+                    <Name>ExtractVariables.ParseJWKS</Name>
+                    <Condition>jwks = null and verifyapikey.VerifyAPIKey.FormParam.jwks-resource-path != null</Condition>
+                </Step>
+                <Step>
+                    <Name>VerifyJWT.JWKSUrl</Name>
+                    <Condition>verifyapikey.VerifyAPIKey.FormParam.jwks-resource-path != null</Condition>
+                </Step>
+                <Step>
+                    <Name>VerifyJWT.JWKS</Name>
+                    <Condition>verifyapikey.VerifyAPIKey.FormParam.jwks-resource-path = null</Condition>
                 </Step>
                 <Step>
                     <Name>GenerateAccessToken</Name>
