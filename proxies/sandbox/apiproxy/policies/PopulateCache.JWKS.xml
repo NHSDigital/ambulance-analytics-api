@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<PopulateCache async="false" continueOnError="false" enabled="true" name="PopulateCacheJWKS">
+<PopulateCache async="false" continueOnError="false" enabled="true" name="PopulateCache.JWKS">
     <DisplayName>PopulateCache.JWKS</DisplayName>
     <Source>calloutResponse.content</Source>
     <Scope>Application</Scope>
