@@ -4,6 +4,6 @@
     <Algorithm>RS256</Algorithm>
     <Source>request.header.token</Source>
     <PublicKey>
-        <JWKS ref="verifyapikey.VerifyAPIKey.FormParam.jwks"/>
+        <JWKS ref="jwks"/>
     </PublicKey>
 </VerifyJWT>

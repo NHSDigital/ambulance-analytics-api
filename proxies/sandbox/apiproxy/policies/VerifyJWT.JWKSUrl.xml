@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<VerifyJWT async="false" continueOnError="false" enabled="true" name="VerifyJWT.JWKSUrl">
-    <DisplayName>VerifyJWT.JWKSUrl</DisplayName>
-    <Algorithm>RS256</Algorithm>
-    <Source>request.header.token</Source>
-    <PublicKey>
-        <JWKS ref="jwks"/>
-    </PublicKey>
-</VerifyJWT>

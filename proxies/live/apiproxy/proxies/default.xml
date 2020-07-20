@@ -36,25 +36,18 @@
                 </Step>
                 <Step>
                     <Name>ServiceCallout.GetJWKS</Name>
-                    <Condition>jwks = null and verifyapikey.VerifyAPIKey.FormParam.jwks-resource-path != null</Condition>
+                    <Condition>jwks = null</Condition>
                 </Step>
                 <Step>
-                    <!-- If the JWKS is not cached and a custom attribute
-                         with a jwks url value exists perform action abd for steps below -->
                     <Name>PopulateCache.JWKS</Name>
-                    <Condition>jwks = null and verifyapikey.VerifyAPIKey.FormParam.jwks-resource-path != null</Condition>
+                    <Condition>jwks = null</Condition>
                 </Step>
                 <Step>
                     <Name>ExtractVariables.ParseJWKS</Name>
-                    <Condition>jwks = null and verifyapikey.VerifyAPIKey.FormParam.jwks-resource-path != null</Condition>
-                </Step>
-                <Step>
-                    <Name>VerifyJWT.JWKSUrl</Name>
-                    <Condition>verifyapikey.VerifyAPIKey.FormParam.jwks-resource-path != null</Condition>
+                    <Condition>jwks = null</Condition>
                 </Step>
                 <Step>
                     <Name>VerifyJWT.JWKS</Name>
-                    <Condition>verifyapikey.VerifyAPIKey.FormParam.jwks-resource-path = null</Condition>
                 </Step>
                 <Step>
                     <Name>GenerateAccessToken</Name>
