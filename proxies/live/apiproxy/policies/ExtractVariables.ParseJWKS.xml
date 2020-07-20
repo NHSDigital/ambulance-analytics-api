@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+	<ExtractVariables async="false" continueOnError="false" enabled="true" name="ExtractVariables.ParseJWKS">
+		<DisplayName>ExtractVariables.ParseJWKS</DisplayName>
+		<JSONPayload>
+			<Variable name="jwks">
+				<JSONPath>$.</JSONPath>
+			</Variable>
+		</JSONPayload>
+		<Source clearPayload="false">calloutResponse.content</Source>
+	</ExtractVariables>
