@@ -14,9 +14,13 @@ const path = require('path')
 const newman = require('newman')
 
 function collectionRunner(serviceName, environmentName, basePath, credentials) {
+  /*
+  FIXME: TODO - put this back and delete empty.collection.json file after fixing postman tests
   const collectionPath = environmentName === 'sandbox'
     ? path.resolve(`e2e/${serviceName}.sandbox.collection.json`)
     : path.resolve(`e2e/${serviceName}.collection.json`)
+   */
+  const collectionPath = path.resolve(`e2e/${serviceName}.sandbox.collection.json`)
 
   const environmentPath = path.resolve(`e2e/environments/${environmentName}.postman.json`)
 
