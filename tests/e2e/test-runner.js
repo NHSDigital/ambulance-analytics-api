@@ -45,7 +45,6 @@ function collectionRunner(serviceName, environmentName, basePath, credentials) {
   }, callback)
     .on("start", () => {
       const filterValue = (e, key) => e['values'].filter(v => v.key === key)[0]['value']
-      console.log(globals)
       const url = `${filterValue(environment, "baseUrl")}${filterValue(globals, "basePath")}` //concatenates <baseUrl><basePath>
 
       console.log('Running against ' + url);
@@ -100,7 +99,6 @@ function overrideGlobals(basePath, {apiKey, apiSecret, accessToken}) {
   ]
 
   globals['values'] = newValues
-  console.log(globals.values)
 
   return globals
 }
