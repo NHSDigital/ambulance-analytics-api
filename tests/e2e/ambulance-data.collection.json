@@ -1,0 +1,251 @@
+{
+	"info": {
+		"_postman_id": "1950a061-1a2e-4019-a209-182ae0472d9c",
+		"name": "Ambulance API Sandbox",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Ambulance -  POST data",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "716952f2-50a9-4c27-b921-e7c5114f596b",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "89c96769-1cfa-4ca5-aa3b-b5d5a11fffa7",
+						"exec": [
+							"pm.test(\"Returns status code 200 OK\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response body should be empty\", () => {",
+							"    pm.response.to.have.body(\"{}\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic {{authBase64}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "grant_type",
+						"value": "client_credentials",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}{{basePath}}/{{datasetId}}",
+					"host": [
+						"{{baseUrl}}{{basePath}}"
+					],
+					"path": [
+						"{{datasetId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ambulance - Auth, missing JWT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ce24c87b-3f57-4b65-977d-eb0d9e0a965b",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic {{authBase64}}",
+						"type": "text"
+					},
+					{
+						"key": "grant_type",
+						"value": "client_credentials",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}{{basePath}}/token",
+					"host": [
+						"{{baseUrl}}{{basePath}}"
+					],
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ambulance - Auth, invalid JWT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "75195710-a1d1-4a7a-9d51-e8865e8ada0d",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Basic {{authBase64}}"
+					},
+					{
+						"key": "grant_type",
+						"type": "text",
+						"value": "client_credentials"
+					},
+					{
+						"key": "token",
+						"value": "invalid-token",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}{{basePath}}/token",
+					"host": [
+						"{{baseUrl}}{{basePath}}"
+					],
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ambulance - Auth, JWT signed by wrong key",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "24daffc3-6f04-45ce-a094-e55c4b1c8304",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Basic {{authBase64}}"
+					},
+					{
+						"key": "grant_type",
+						"type": "text",
+						"value": "client_credentials"
+					},
+					{
+						"key": "token",
+						"type": "text",
+						"value": "todo:add-invalid-signed-key-here"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}{{basePath}}/token",
+					"host": [
+						"{{baseUrl}}{{basePath}}"
+					],
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "5a2a9d8a-e3c9-456d-b11b-924835f11944",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6ac8331b-17bc-4e83-bee8-e743b420d2f4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "704012c1-0f35-467b-b92c-8a3fe6470fe2",
+			"key": "api_key",
+			"value": "xlNAz98DIP3I7xQDR7BnOdG9tGxKyBll",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

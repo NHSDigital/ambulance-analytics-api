@@ -37,14 +37,14 @@
 				"header": [
 					{
 						"key": "x-api-key",
-						"value": "{{apikey}}",
+						"value": "{{apiKey}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/data/test",
+					"raw": "{{baseUrl}}/data/test",
 					"host": [
-						"{{base_url}}"
+						"{{baseUrl}}"
 					],
 					"path": [
 						"data",

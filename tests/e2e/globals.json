@@ -1,0 +1,29 @@
+{
+  "id": "f936d3f4-2f37-4f56-82b1-f3d1f7505404",
+  "values": [
+    {
+      "key": "basePath",
+      "value": "/ambulance-data",
+      "enabled": true
+    },
+    {
+      "key": "accessToken",
+      "value": "token_from_token_endpoint",
+      "enabled": true
+    },
+    {
+      "key": "authBase64",
+      "value": "base64 of apiKey:apiSecret",
+      "enabled": true
+    },
+    {
+      "key": "datasetId",
+      "value": "covid-19-research-tool",
+      "enabled": true
+    }
+  ],
+  "name": "Tests globals values",
+  "_postman_variable_scope": "globals",
+  "_postman_exported_at": "2020-04-29T13:25:57.505Z",
+  "_postman_exported_using": "Postman/7.22.1"
+}

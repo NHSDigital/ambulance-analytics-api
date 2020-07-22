@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "d3827019-24bb-430e-bdd7-dec1048de189",
+		"name": "Ambulance API Sandbox",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a67d6030-81f3-4713-85eb-d4da17470d14",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "88db3eb9-fe1a-4bad-90f4-705dbeb9f47d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "704012c1-0f35-467b-b92c-8a3fe6470fe2",
+			"key": "api_key",
+			"value": "xlNAz98DIP3I7xQDR7BnOdG9tGxKyBll",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

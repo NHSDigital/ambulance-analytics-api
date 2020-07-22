@@ -3,8 +3,8 @@
 	"name": "internal-qa-sandbox",
 	"values": [
 		{
-			"key": "base_url",
-			"value": "base_url",
+			"key": "baseUrl",
+			"value": "https://internal-qa-sandbox.api.service.nhs.uk",
 			"enabled": true
 		}
 	],
