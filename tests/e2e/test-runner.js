@@ -20,7 +20,7 @@ function collectionRunner(serviceName, environmentName, basePath, credentials) {
     ? path.resolve(`e2e/${serviceName}.sandbox.collection.json`)
     : path.resolve(`e2e/${serviceName}.collection.json`)
    */
-  const collectionPath = path.resolve(`e2e/${serviceName}.sandbox.collection.json`)
+  const collectionPath = path.resolve(`e2e/empty.collection.json`)
 
   const environmentPath = path.resolve(`e2e/environments/${environmentName}.postman.json`)
 
