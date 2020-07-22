@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ServiceCallout async="false" continueOnError="false" enabled="true" name="ExecuteJWKSRequest">
-    <DisplayName>ExecuteJWKSRequest</DisplayName>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="ServiceCallout.GetJWKS">
+    <DisplayName>ServiceCallout.GetJWKS</DisplayName>
+    <!-- This is the default (55 seconds). Including it to make explicit. -->
+    <Timeout>55000</Timeout>
     <Request>
         <Set>
             <Verb>GET</Verb>
@@ -12,6 +14,6 @@
         <SSLInfo>
             <Enabled>true</Enabled>
         </SSLInfo>
-        <URL>https://raw.githubusercontent.com/NHSDigital/ambulance-key-store/master/internal-dev/jwks.json</URL>
+        <URL>https://raw.githubusercontent.com/{verifyapikey.VerifyAPIKey.FormParam.jwks-resource-path}</URL>
     </HTTPTargetConnection>
 </ServiceCallout>
