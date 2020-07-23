@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false"
+            continueOnError="false" enabled="true" timeLimit="200"
+            name="JS.DoAuth">
+  <DisplayName>Unattended</DisplayName>
+  <Properties>
+    <Property name="propName">propertyValue</Property>
+  </Properties>
+  <ResourceURL>jsc://unattended.js</ResourceURL>
+</Javascript>

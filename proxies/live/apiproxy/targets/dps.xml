@@ -7,23 +7,26 @@
         <Condition>request.verb != "POST"</Condition>
       </Step> -->
       <Step>
-        <Name>ExtractVariables.DatasetId</Name>
+        <Name>JS.DoAuth</Name>
       </Step>
-      <Step>
-        <Name>AssignMessage.AddDatasetIdHeader</Name>
-      </Step>
-      <Step>
-        <Name>KeyValueMap.GetUpstreamApiKey</Name>
-      </Step>
-      <Step>
-        <Name>AssignMessage.AddUpstreamApiKeyHeader</Name>
-      </Step>
-      <Step>
-        <Name>AssignMessage.DoNotCopyPathSuffix</Name>
-      </Step>
-      <Step>
-      <Name>VerifyAccessToken</Name>
-      </Step>
+<!--      <Step>-->
+<!--        <Name>ExtractVariables.DatasetId</Name>-->
+<!--      </Step>-->
+<!--      <Step>-->
+<!--        <Name>AssignMessage.AddDatasetIdHeader</Name>-->
+<!--      </Step>-->
+<!--      <Step>-->
+<!--        <Name>KeyValueMap.GetUpstreamApiKey</Name>-->
+<!--      </Step>-->
+<!--      <Step>-->
+<!--        <Name>AssignMessage.AddUpstreamApiKeyHeader</Name>-->
+<!--      </Step>-->
+<!--      <Step>-->
+<!--        <Name>AssignMessage.DoNotCopyPathSuffix</Name>-->
+<!--      </Step>-->
+<!--      <Step>-->
+<!--      <Name>VerifyAccessToken</Name>-->
+<!--      </Step>-->
     </Request>
     <Response>
       <Step>
