@@ -1,27 +1,7 @@
 <TargetEndpoint name="apim">
-<FaultRules>
-        <FaultRule name="no_api_key">
-            <Step>
-                <Name>AssignMessage.NoApiKeyErrorResponse</Name>
-            </Step>
-            <Step>
-                <Name>AssignMessage.AddCors</Name>
-            </Step>
-            <Condition>fault.name Matches "FailedToResolveAPIKey"</Condition>
-        </FaultRule>
-        <FaultRule name="invalid_api_key">
-            <Step>
-                <Name>ExtractVariables.VerifyApiKeyFaultString</Name>
-            </Step>
-            <Step>
-                <Name>AssignMessage.BadApiKeyErrorResponse</Name>
-            </Step>
-            <Step>
-                <Name>AssignMessage.AddCors</Name>
-            </Step>
-            <Condition>(oauthV2.VerifyApiKey.FromHeader.failed)</Condition>
-        </FaultRule>
-    </FaultRules>
+<!-- <FaultRules>
+
+</FaultRules> -->
     <PreFlow>
         <Request>
             <Step>
