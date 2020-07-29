@@ -1,7 +1,4 @@
 <TargetEndpoint name="apim">
-<!-- <FaultRules>
-
-</FaultRules> -->
     <PreFlow>
         <Request>
             <Step>
