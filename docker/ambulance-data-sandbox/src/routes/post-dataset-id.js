@@ -9,7 +9,6 @@ module.exports = [
     handler: (request, h) => {
       //const path = `${request.params['datasetId']}.json`
       const path = 'datasetId.json'
-      
       return h.file(path)
     }
   }
