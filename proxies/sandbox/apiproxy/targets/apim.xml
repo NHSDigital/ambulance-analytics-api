@@ -5,9 +5,6 @@
                 <Name>RaiseFault.MethodNotAllowed</Name>
                 <Condition>request.verb != "POST"</Condition>
             </Step>
-            <Step>
-                <Name>VerifyAccessToken</Name>
-            </Step>
         </Request>
         <Response>
             <Step>
