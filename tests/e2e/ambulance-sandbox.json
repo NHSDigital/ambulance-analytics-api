@@ -42,12 +42,11 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/data/test",
+					"raw": "{{base_url}}/test",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"data",
 						"test"
 					]
 				}
