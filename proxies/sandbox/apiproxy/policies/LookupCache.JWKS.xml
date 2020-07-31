@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<LookupCache async="false" continueOnError="false" enabled="true" name="LookupCacheJWKS">
-    <DisplayName>LookupCache.JWKS</DisplayName>
-    <AssignTo>jwks</AssignTo>
-    <Scope>Application</Scope>
-    <CacheKey>
-        <KeyFragment>jwks</KeyFragment>
-    </CacheKey>
-</LookupCache>

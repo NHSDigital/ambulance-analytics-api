@@ -1,5 +1,6 @@
 <TargetEndpoint name="dps">
   <PreFlow>
+  <Condition>(proxy.pathsuffix MatchesPath "/foo") and (request.verb = "POST")</Condition>
     <Request>
       <!-- <Step>
         <Name>RaiseFault.MethodNotAllowed</Name>

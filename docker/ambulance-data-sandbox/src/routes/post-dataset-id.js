@@ -5,10 +5,10 @@ module.exports = [
    */
   {
     method: 'POST',
-    path: '/data/{datasetId}',
+    path: '/{datasetId}',
     handler: (request, h) => {
-      const path = `${request.params['datasetId']}.json`
-
+      //const path = `${request.params['datasetId']}.json`
+      const path = 'datasetId.json'
       return h.file(path)
     }
   }

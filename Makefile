@@ -17,7 +17,12 @@ test:
 
 lint:
 	npm run lint
-	cd docker/ambulance-data-sandbox && npm run lint && cd ..	
+	cd docker/ambulance-data-sandbox && npm run lint && cd ..
+	poetry run flake8
+	
+
+validate: generate-examples
+	java -jar bin/org.hl7.fhir.validator.jar build/examples/**/*application_fhir+json*.json -version 4.0.1 -tx n/a | tee /tmp/validation.txt
 
 clean:
 	rm -rf build
