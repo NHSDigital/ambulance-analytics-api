@@ -12,13 +12,13 @@ terraform {
   }
 }
 
-module "ambulance-data" {
+module "ambulance-analytics" {
   source             = "github.com/NHSDigital/api-platform-service-module.git"
-  name               = "ambulance-data"
-  path               = "ambulance-data"
+  name               = "ambulance-analytics"
+  path               = "ambulance-analytics"
   apigee_environment = var.apigee_environment
   proxy_type         = (var.force_sandbox || length(regexall("sandbox", var.apigee_environment)) > 0) ? "sandbox" : "live"
   namespace          = var.namespace
   make_api_product   = length(var.namespace) == 0
-  api_product_display_name = length(var.namespace) > 0 ? "ambulance-data${var.namespace}" : "Ambulance Data Api"
+  api_product_display_name = length(var.namespace) > 0 ? "ambulance-analytics${var.namespace}" : "Ambulance Analytics Api"
 }

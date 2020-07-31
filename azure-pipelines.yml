@@ -76,10 +76,10 @@ jobs:
       # - task: Cache@2
       #   displayName: "Cache Sandbox NPM Dependencies"
       #   inputs:
-      #       key: '"$(Agent.OS)" | "node-sandbox" | docker/ambulance-data-sandbox/package-lock.json'
-      #       path: "docker/ambulance-data-sandbox/node_modules"
+      #       key: '"$(Agent.OS)" | "node-sandbox" | docker/ambulance-analytics-sandbox/package-lock.json'
+      #       path: "docker/ambulance-analytics-sandbox/node_modules"
       #       restoreKeys: |
-      #           "$(Agent.OS)" | "node-sandbox" | docker/ambulance-data-sandbox/package-lock.json
+      #           "$(Agent.OS)" | "node-sandbox" | docker/ambulance-analytics-sandbox/package-lock.json
       #           "$(Agent.OS)" | "node-sandbox"
 
       - bash: "make install"
@@ -114,7 +114,7 @@ jobs:
       - template: az/create-build-env-vars.yml@utils
         parameters:
           out_dir: 'dist'
-          service_name: 'ambulance-data'
+          service_name: 'ambulance-analytics'
 
       - template: az/become-build-user.yml@utils
         parameters:
@@ -125,4 +125,4 @@ jobs:
           env_vars_dir: 'dist'
 
       - publish: dist/
-        artifact: ambulance-data-$(Build.BuildNumber)
+        artifact: ambulance-analytics-$(Build.BuildNumber)

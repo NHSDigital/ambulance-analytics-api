@@ -4,7 +4,7 @@
 openapi: "3.0.0"
 info:
   version: "0.0.1"
-  title: Ambulance API
+  title: Ambulance Analytics API
   description: |
     ## Overview
     TODO
@@ -77,7 +77,7 @@ servers:
   - url: 'https://emea-demo8-test.apigee.net/TODO sandbox endpoint'
     description: Sandbox service.
 tags:
-  - name: Ambulance Api
+  - name: Ambulance Analytics Api
 paths:
   /hello:
     get:
