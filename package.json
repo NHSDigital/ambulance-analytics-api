@@ -11,7 +11,7 @@
   },
   "author": "NHS Digital",
   "license": "MIT",
-  "homepage": "https://github.com/NHSDigital/ambulance-data-api",
+  "homepage": "https://github.com/NHSDigital/ambulance-analytics-api",
   "dependencies": {
     "speccy": "^0.11.0"
   },
