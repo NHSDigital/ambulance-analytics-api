@@ -22,9 +22,6 @@ info:
     The current flow to use this API is:
       - GET request with a signed JWT token and other required headers to the /token endpoint
       - POST request with the access token in the Authorization header to /{x-dataset-id}
-
-    ## Related APIs
-    TBC
     
     ## API status and roadmap
     The ambulance analytics API is planned to go into Alpha end of August 2020 and is currently deployed on the int environment.
@@ -71,8 +68,6 @@ info:
     ## Assurance
     We are hoping to make the assurance process as lightweight and as self-service as possible.
 
-    More details to follow.
-
     ## Endpoints
     Currently the endpoints for the ambulance analytics API for testing within sandbox are:
           - POST /{x-dataset-id} used for posting ambulance data to DPS
@@ -85,10 +80,11 @@ info:
 servers:
   - url: 'https://sandbox.api.service.nhs.uk/ambulance-data'
     description: Sandbox environment.
-
+tags:
+  - name: ambulance
 paths:
 
-  /{x-dataset-id}:
+  /x-dataset-id:
     post:
       summary: Post Ambulance Analytics data.
       operationId: postData
@@ -112,7 +108,6 @@ paths:
         - Post ambulance data
 
 components:
-
   schemas:
     Greeting:
       $ref: components/schemas/Greeting.yaml
