@@ -4,7 +4,7 @@
 openapi: "3.0.0"
 info:
   version: "0.0.1"
-  title: Ambulance API
+  title: Ambulance Analytics API
   description: |
     ## Overview
     This API is designed for posting data to DPS regarding any event within a timeline of when a patient deals with an Ambulance.
@@ -21,13 +21,13 @@ info:
     In order to get an access token a signed JWT token must be successfully validated and only then will an access token be granted.
     The current flow to use this API is:
       - GET request with a signed JWT token and other required headers to the /token endpoint
-      - POST request with the access token in the Authorization header to the /foo endpoint
+      - POST request with the access token in the Authorization header to /{x-dataset-id}
 
     ## Related APIs
     TBC
     
     ## API status and roadmap
-    The ambulance API is planned to go into Alpha end of August 2020 and it's currently deployed on the internal-dev environment.
+    The ambulance analytics API is planned to go into Alpha end of August 2020 and is currently deployed on the int environment.
 
     The following items are on our roadmap, in rough priority order:
       - Get to Beta stage and tested (hopefully end of September 2020)
@@ -36,9 +36,9 @@ info:
 
 
     ## Technology
-    This API is [RESTful](/introduction-to-apis#basic-rest).
+    This API is [RESTful](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#basic-rest).
 
-    It also conforms to the [FHIR](/introduction-to-apis#fhir) global standard for health care data exchange.
+    It also conforms to the [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#fhir) global standard for health care data exchange.
     Specifically, it is aligned with [FHIR UK Core](https://digital.nhs.uk/services/fhir-uk-core), which is built on FHIR Release 4.
 
     You don’t need to know much about FHIR to use this API - FHIR APIs are just RESTful APIs that follow specific rules.
@@ -58,9 +58,9 @@ info:
     Currently this API is targeted at developers that work for NHS Ambulance Trusts but this is subject to change.
     
     ## Testing
-    There are plans for this API to the following environments:
-    * our [sandbox environment](/testing#sandbox-testing) for initial developer testing
-    * our [integration test environment](/testing#integration-testing) for formal integration testing (coming soon)
+    You can test this API in:
+    * our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing) for initial developer testing
+    * our [integration test environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing) for formal integration testing
 
     Our sandbox environment is a very basic simulation of the live service. It only covers a limited set of scenarios and is stateless, so does not actually persist any updates.
 
@@ -74,28 +74,27 @@ info:
     More details to follow.
 
     ## Endpoints
-    Current endpoints for the ambulance API are:
-      - GET /token get a access token in order to successfully post ambulance data to DPS
-      - POST /foo used for posting ambulance data to DPS
+    Currently the endpoints for the ambulance analytics API for testing within sandbox are:
+          - POST /{x-dataset-id} used for posting ambulance data to DPS
+
+    Authorisation within the sandbox is disabled which is why only the one endpoint is available for testing.
 
   contact:
-    name: Template API Support
-    url: 'https://tbc.api.nhs.net'
-    email: tbc-api-support@nhs.net
+    name: API Management Support
+    email: api.management@nhs.net
 servers:
-  - url: 'https://emea-demo8-test.apigee.net/TODO sandbox endpoint'
-    description: Sandbox service.
-tags:
-  - name: Ambulance Api
-paths:
-  /hello:
-    get:
-      summary: Say hello world.
-      operationId: getHello
-      description: |
-        Get a "Hello world!" response from an open-access endpoint.
+  - url: 'https://sandbox.api.service.nhs.uk/ambulance-data'
+    description: Sandbox environment.
 
-        Use this API alongside our [open-access REST API tutorial](https://digital.nhs.uk/developer/api-tutorials#open-access-rest-api-tutorial) to learn how to connect to our APIs.
+paths:
+
+  /{x-dataset-id}:
+    post:
+      summary: Post Ambulance Analytics data.
+      operationId: postData
+      description: |
+        Get a 200 response with an empty response body "{}"
+
       responses:
         '200':
           description: Successful response.
@@ -106,27 +105,13 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: "Hello world!"
+                    example: "Test"
               example:
-                message: "Hello world!"
+                message: "{}"
       tags:
         - Post ambulance data
 
 components:
-
-  securitySchemes:
-    api_key:
-      type: apiKey
-      name: apikey
-      in: header
-
-    oAuth2AuthCode:
-      type: oauth2
-      flows:
-        authorizationCode:
-          authorizationUrl: https://sandbox.api.service.nhs.uk/oauth2/authorize
-          tokenUrl: https://sandbox.api.service.nhs.uk/oauth2/token
-          scopes: {}
 
   schemas:
     Greeting:
