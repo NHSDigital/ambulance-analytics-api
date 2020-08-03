@@ -11,9 +11,6 @@
     </Request>
     <Response>calloutResponse</Response>
     <HTTPTargetConnection>
-        <LoadBalancer>
-            <Server name="{{ DPS_SUBMISSION_API }}"/>
-        </LoadBalancer>
         <SSLInfo>
             <Enabled>true</Enabled>
         </SSLInfo>
