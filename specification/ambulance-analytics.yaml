@@ -81,7 +81,7 @@ servers:
   - url: 'https://sandbox.api.service.nhs.uk/ambulance-data'
     description: Sandbox environment.
 tags:
-  - name: ambulance
+  - name: Ambulance Analytics Api
 paths:
 
   /x-dataset-id:
