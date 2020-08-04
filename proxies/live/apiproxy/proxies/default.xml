@@ -30,40 +30,40 @@
       <Condition>((proxy.pathsuffix MatchesPath "/_status")) and (request.verb = "GET")</Condition>
     </Flow>
     <Flow name="Flow-GenerateAccessToken">
-            <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "GET")</Condition>
-            <Request>
-                <Step>
-                    <Name>DecodeJWT</Name>
-                </Step>
-                <Step>
-                    <Name>LookupCache.JWKS</Name>
-                </Step>
-                <Step>
-                    <!-- This is done to get app custom attributes -->
-                    <Name>VerifyAPIKey.FormParam</Name>
-                    <Condition>jwks = null</Condition>
-                </Step>
-                <Step>
-                    <Name>ServiceCallout.GetJWKS</Name>
-                    <Condition>jwks = null</Condition>
-                </Step>
-                <Step>
-                    <Name>PopulateCache.JWKS</Name>
-                    <Condition>jwks = null</Condition>
-                </Step>
-                <Step>
-                    <Name>ExtractVariables.ParseJWKS</Name>
-                    <Condition>jwks = null</Condition>
-                </Step>
-                <Step>
-                    <Name>VerifyJWT.JWKS</Name>
-                </Step>
-                <Step>
-                    <Name>GenerateAccessToken</Name>
-                </Step>
-            </Request>
-            <Response/>
-        </Flow>
+      <Request>
+        <Step>
+          <Name>DecodeJWT</Name>
+        </Step>
+        <Step>
+          <Name>LookupCache.JWKS</Name>
+        </Step>
+        <Step>
+        <!-- This is done to get app custom attributes -->
+          <Name>VerifyAPIKey.FormParam</Name>
+          <Condition>jwks = null</Condition>
+        </Step>
+        <Step>
+          <Name>ServiceCallout.GetJWKS</Name>
+          <Condition>jwks = null</Condition>
+        </Step>
+        <Step>
+          <Name>PopulateCache.JWKS</Name>
+          <Condition>jwks = null</Condition>
+        </Step>
+        <Step>
+          <Name>ExtractVariables.ParseJWKS</Name>
+          <Condition>jwks = null</Condition>
+        </Step>
+        <Step>
+          <Name>VerifyJWT.JWKS</Name>
+        </Step>
+        <Step>
+          <Name>GenerateAccessToken</Name>
+        </Step>
+      </Request>
+      <Response/>
+      <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "GET")</Condition>
+    </Flow>
   </Flows>
   <HTTPProxyConnection>
     <BasePath>{{ SERVICE_BASE_PATH }}</BasePath>
