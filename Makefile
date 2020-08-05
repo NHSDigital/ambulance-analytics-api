@@ -39,7 +39,7 @@ generate-examples: publish
 	poetry run python scripts/generate_examples.py build/ambulance-analytics.json build/examples
 
 update-examples: generate-examples
-	jq -rM . <build/examples/resources/Greeting.json >specification/components/examples/Greeting.json
+	jq -rM . <build/examples/resources/x-dataset-id.json >specification/components/examples/x-dataset-id.json
 	make publish
 
 check-licenses:

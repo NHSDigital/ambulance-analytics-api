@@ -2,4 +2,4 @@ type: object
 properties:
   message:
     type: string
-    example: "Hello user!"
+    example: "x-dataset-id"
