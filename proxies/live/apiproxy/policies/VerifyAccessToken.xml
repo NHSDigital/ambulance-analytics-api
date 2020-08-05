@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<OAuthV2 async="false" continueOnError="false" enabled="true" name="VerifyAccessToken">
-    <DisplayName>Verify Access Token</DisplayName>
-    <Operation>VerifyAccessToken</Operation>
-    <ExternalAuthorization>false</ExternalAuthorization>
-</OAuthV2>
+<VerifyAPIKey async="false" continueOnError="false" enabled="true" name="VerifyAccessToken">
+    <APIKey ref="request.header.X-API-Key"/>
+</VerifyAPIKey>
