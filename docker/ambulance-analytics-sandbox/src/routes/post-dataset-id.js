@@ -1,6 +1,6 @@
 module.exports = [
   /**
-   * POST to /data/{datasetId}
+   * POST to /{datasetId}
    * If datasetId.json file exists in `mock` directory then that will be the response otherwise, 404
    */
   {
