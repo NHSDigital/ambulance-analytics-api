@@ -78,7 +78,7 @@ info:
     name: API Management Support
     email: api.management@nhs.net
 servers:
-  - url: 'https://sandbox.api.service.nhs.uk/ambulance-data'
+  - url: 'https://sandbox.api.service.nhs.uk/ambulance-analytics'
     description: Sandbox environment.
 tags:
   - name: Ambulance Analytics Api
@@ -109,5 +109,5 @@ paths:
 
 components:
   schemas:
-    Greeting:
-      $ref: components/schemas/Greeting.yaml
+    x-dataset-id:
+      $ref: components/schemas/x-dataset-id.yaml

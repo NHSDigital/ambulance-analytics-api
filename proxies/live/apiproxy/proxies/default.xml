@@ -20,17 +20,9 @@
       </Response>
       <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null</Condition>
     </Flow>
-    <Flow name="Flow.AuthApiKey">
-      <Request>
-        <Step>
-          <Name>VerifyApiKey-Header</Name>
-        </Step>
-      </Request>
-      <Response/>
-      <Condition>((proxy.pathsuffix MatchesPath "/_status")) and (request.verb = "GET")</Condition>
-    </Flow>
     <Flow name="Flow-GenerateAccessToken">
-      <Request>
+      <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "GET")</Condition>
+       <Request>
         <Step>
           <Name>DecodeJWT</Name>
         </Step>
@@ -62,7 +54,6 @@
         </Step>
       </Request>
       <Response/>
-      <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "GET")</Condition>
     </Flow>
   </Flows>
   <HTTPProxyConnection>
