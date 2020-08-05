@@ -22,7 +22,7 @@
         <Name>AssignMessage.DoNotCopyPathSuffix</Name>
       </Step>
       <Step>
-      <Name>VerifyAccessToken</Name>
+      <Name>VerifyApiKey-Header</Name>
       </Step>
     </Request>
     <Response>
