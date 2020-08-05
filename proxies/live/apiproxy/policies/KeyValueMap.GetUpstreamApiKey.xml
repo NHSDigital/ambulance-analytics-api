@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<KeyValueMapOperations encrypted="true" async="false" continueOnError="false" enabled="true" name="KeyValueMap.GetUpstreamApiKey" mapIdentifier="dps-submission-api">
-    <DisplayName>KeyValueMap.GetUpstreamApiKey</DisplayName>
-    <Get assignTo="private.dpsApiKey">
-        <Key>
-            <Parameter>api-key</Parameter>
-        </Key>
-    </Get>
-</KeyValueMapOperations>

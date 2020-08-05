@@ -109,18 +109,18 @@ jobs:
       - bash: "for env in internal-dev-sandbox internal-qa-sandbox sandbox; do cp ecs-proxies-deploy.yml dist/ecs-deploy-$env.yml; done"
         displayName: Copy ECS deployment config
 
-      - template: az/build-prereqs.yml@utils
+      - template: azure/build-prereqs.yml@utils
 
-      - template: az/create-build-env-vars.yml@utils
+      - template: azure/create-build-env-vars.yml@utils
         parameters:
           out_dir: 'dist'
           service_name: 'ambulance-analytics'
 
-      - template: az/become-build-user.yml@utils
+      - template: azure/become-build-user.yml@utils
         parameters:
           env_vars_dir: 'dist'
 
-      - template: az/build-and-push-ecs-proxies.yml@utils
+      - template: azure/build-and-push-ecs-proxies.yml@utils
         parameters:
           env_vars_dir: 'dist'
 
