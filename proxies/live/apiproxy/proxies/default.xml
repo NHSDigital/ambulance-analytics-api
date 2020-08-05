@@ -30,6 +30,7 @@
       <Condition>((proxy.pathsuffix MatchesPath "/_status")) and (request.verb = "GET")</Condition>
     </Flow>
     <Flow name="Flow-GenerateAccessToken">
+      <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "GET")</Condition>
       <Request>
         <Step>
           <Name>DecodeJWT</Name>
@@ -62,7 +63,6 @@
         </Step>
       </Request>
       <Response/>
-      <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "GET")</Condition>
     </Flow>
   </Flows>
   <HTTPProxyConnection>
