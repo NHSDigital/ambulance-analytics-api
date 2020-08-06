@@ -97,13 +97,11 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: "Test"
-              example:
-                message: "{}"
+                $ref: components/schemas/x-dataset-id.yaml
+              examples:
+                example:
+                  value:
+                    $ref: components/examples/x-dataset-id.json 
       tags:
         - Post ambulance data
 
