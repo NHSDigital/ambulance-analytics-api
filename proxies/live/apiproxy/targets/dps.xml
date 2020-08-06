@@ -1,6 +1,5 @@
 <TargetEndpoint name="dps">
   <PreFlow>
-  <Condition>(proxy.pathsuffix MatchesPath "/foo") and (request.verb = "POST")</Condition>
     <Request>
       <!-- <Step>
         <Name>RaiseFault.MethodNotAllowed</Name>
@@ -21,9 +20,6 @@
       <Step>
         <Name>AssignMessage.DoNotCopyPathSuffix</Name>
       </Step>
-      <Step>
-      <Name>VerifyAccessToken</Name>
-      </Step>
     </Request>
     <Response>
       <Step>
@@ -31,6 +27,26 @@
       </Step>
     </Response>
   </PreFlow>
+  <Flows>
+    <Flow>
+    <Condition>(proxy.pathsuffix MatchesPath "/foo") and (request.verb = "POST")</Condition>
+      <Request>
+        <Step>
+          <Name>VerifyAccessToken</Name>
+        </Step>
+      </Request>
+      <Response/>
+    </Flow>
+    <Flow>
+    <Condition>((proxy.pathsuffix MatchesPath "/_status")) and (request.verb = "GET")</Condition>
+      <Request>
+        <Step>
+          <Name>ServiceCallout.HealthCheck</Name>
+        </Step>
+      </Request>
+      <Response/>
+    </Flow>
+  </Flows>
   <HTTPTargetConnection>
     <LoadBalancer>
       <Server name="dps-submission-api"/>
