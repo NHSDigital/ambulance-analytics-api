@@ -43,5 +43,8 @@
       <Server name="dps-submission-api"/>
     </LoadBalancer>
     <Path>/ingest/dps</Path>
+    <Properties>
+      <Property name="GET.override.method">POST</Property>
+    </Properties>
   </HTTPTargetConnection>
 </TargetEndpoint>
