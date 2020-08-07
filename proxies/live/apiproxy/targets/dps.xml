@@ -37,14 +37,20 @@
       </Request>
       <Response/>
     </Flow>
+    <Flow>
+    <Condition>((proxy.pathsuffix MatchesPath "/_status")) and (request.verb = "GET")</Condition>
+      <Request>
+        <Step>
+          <Name>AssignMessage.ChangeMethod</Name>
+        </Step>
+      </Request>
+      <Response/>
+    </Flow>
   </Flows>
   <HTTPTargetConnection>
     <LoadBalancer>
       <Server name="dps-submission-api"/>
     </LoadBalancer>
     <Path>/ingest/dps</Path>
-    <Properties>
-      <Property name="GET.override.method">POST</Property>
-    </Properties>
   </HTTPTargetConnection>
 </TargetEndpoint>
