@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d742dec4-ced2-4e09-b2eb-82cee1af18a4",
+		"_postman_id": "45b0924d-80d3-4017-8b46-c166d8dfcec7",
 		"name": "Ambulance Analytics Sandbox",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "d4fda834-5bf0-4775-be6e-a58cb2403ed9",
+						"id": "e158ec75-b879-47bb-9bc4-406ddf66ed1f",
 						"exec": [
 							""
 						],
@@ -21,7 +21,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "95e83dea-8b15-4784-afc5-b6ba4899492f",
+						"id": "2c5be271-2944-4b67-8bf7-3e179e9e13aa",
 						"exec": [
 							"pm.test(\"Returns status code 200 OK\", () => {",
 							"    pm.response.to.have.status(200);",
@@ -52,13 +52,73 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "_status endpoint",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "85a06830-a7b2-4fb4-99b3-81391fd9baa0",
+						"exec": [
+							"pm.test(\"Returns status code 200 OK\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "2VGON6TbKjoLyGCpfx71SBB9guQtaRvi",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "apikey",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://int.api.service.nhs.uk/ambulance-analytics/_status",
+					"protocol": "https",
+					"host": [
+						"int",
+						"api",
+						"service",
+						"nhs",
+						"uk"
+					],
+					"path": [
+						"ambulance-analytics",
+						"_status"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "01fb7d5b-709a-45a6-9e79-def8bc7aade3",
+				"id": "6ddfb6dd-223b-4a2c-9529-7fe5e94819c4",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -68,7 +128,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "c3fa3d4e-91b5-48ac-9524-ec0d8504ec43",
+				"id": "e8519596-f055-4d69-b7a0-e10addd0dfc1",
 				"type": "text/javascript",
 				"exec": [
 					""
