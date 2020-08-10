@@ -1,0 +1,6 @@
+<AssignMessage continueOnError="false" enabled="true" name="AssignMessage.ChangeMethod">
+  <Set>
+    <Verb>POST</Verb>
+  </Set>
+  <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>
