@@ -1,5 +1,5 @@
 {
-  "name": "apim-abulance-analytics-api",
+  "name": "apim-ambulance-analytics-api",
   "version": "0.0.1",
   "description": "OAS (Swagger v3) API Definition for Ambulance Analytics API",
   "scripts": {
