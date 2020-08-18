@@ -1,87 +1,82 @@
-# This is an OpenAPI Specification (https://swagger.io/specification/)
-# for the Personal Demographics Service (PDS) API
-# owned by NHS Digital (https://digital.nhs.uk/)
-openapi: "3.0.0"
+openapi: 3.0.0
 info:
-  version: "0.0.1"
+  version: 0.0.1
   title: Ambulance Analytics API
   description: |
-    ## Overview
-    This API is designed for posting data to DPS regarding any event within a timeline of when a patient deals with an Ambulance.
-    
+    ## Overview 
+    The Ambulance Analytics API allows the submission of ambulance call centre data to be stored by the
+    Data Processing Service (DPS) for analysis and review by NHS England and the ambulance trusts.
+
     You can:
-    - Post data.
+      - post ambulance response records individually or in batches
 
-    You cannot currently use this API to:
-    - For any kind of search function
-    - Posting any other sorts data (ambulance only)
+    You cannot:
+      - read any of the records stored in DPS
 
-    ## Using this API
-    This API follows the OAuth 2.0 protocol so in order to successfully post data a valid access token is required.
-    In order to get an access token a signed JWT token must be successfully validated and only then will an access token be granted.
-    The current flow to use this API is:
-      - GET request with a signed JWT token and other required headers to the /token endpoint
-      - POST request with the access token in the Authorization header to /{x-dataset-id}
-    
+    ## Legal Use
+    This API can only be used where there is a legal basis to do so. You should make an access request before you go too far
+    with your development.
+
+    ## Related APIs
+    [Ambulance Domain Messaging Specification](https://isd.digital.nhs.uk/trud3/user/guest/group/0/pack/34)
+
     ## API status and roadmap
-    The ambulance analytics API is planned to go into Alpha end of August 2020 and is currently deployed on the int environment.
+    The ambulance analytics API is in [alpha](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), expect further breaking changes.
 
-    The following items are on our roadmap, in rough priority order:
-      - Get to Beta stage and tested (hopefully end of September 2020)
+    The API is currently available for sandbox testing and integration testing, but not for production use.
 
-    We look forward to recieving feedback once the API is in Alpha/Beta.
+    To see our roadmap, or to suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=&tag=#controls).
+
+    If you have any other queries, please [contact us](https://digital.nhs.uk/developer/help-and-support).
+    This API is due to go into a private beta (September 2020)
 
 
     ## Technology
     This API is [RESTful](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#basic-rest).
-
-    It also conforms to the [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#fhir) global standard for health care data exchange.
-    Specifically, it is aligned with [FHIR UK Core](https://digital.nhs.uk/services/fhir-uk-core), which is built on FHIR Release 4.
-
-    You don’t need to know much about FHIR to use this API - FHIR APIs are just RESTful APIs that follow specific rules.
-    In particular:
-    - resource names are capitalised and singular, for example the `/Patient` not `/patients`
-    - array names are singular, for example `line` not `lines` for address lines
-    - data items that are country-specific and thus not included in the FHIR global base resources are usually wrapped in an `extension` object
-
-    This API is available on the Internet, although access using NHS smartcards (see below)
-    currently requires a connection to the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network).
+    The message payload conforms to the [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#fhir)
+    global standard for health care data exchange. Specifically, it is aligned with [FHIR UK Core](https://digital.nhs.uk/services/fhir-uk-core),
+    which is built on FHIR Release 4. Read the specification for the [message payload](https://simplifier.net/guide/FHIRImplementationGuideTemplateambulance/Overview).
+    This API is available on the Internet.
 
     ## Authorisation
-    This API follows the OAuth 2.0 protocol, although a user doesn't need to be present to use this API all they need is to send a JWT token signed with a private key with the RS256 algorithm.
+    This API follows the OAuth 2.0 protocol, although a user doesn't need to be present to use this API all they need is to
+    send a JWT token signed with a private key with the RS256 algorithm.
+
     Once the target server receives the JWT token it will lookup a set of public keys from a url or store and check each public key until it finds one that matches.
-    Refer to documentation for more information.
 
-    Currently this API is targeted at developers that work for NHS Ambulance Trusts but this is subject to change.
-    
+    The current flow to use this API is:
+    - GET request with a signed JWT token and other required headers to the /token endpoint
+    - POST request with the access token in the Authorization header to /{dataset-id}
+
     ## Environments and testing
-
-    | Environment       | Base URL                                                       |
-    | ----------------- | -------------------------------------------------------------- |
+    | Purpose           | URL                                                            |
+    | -------------     | -----------------------------------------                      |
     | Sandbox           | `https://sandbox.api.service.nhs.uk/ambulance-analytics`       |
     | Integration test  | `https://int.api.service.nhs.uk/ambulance-analytics`           |
     | Production        | `https://api.service.nhs.uk/ambulance-analytics`               |
-    
-    ## Testing
-    You can test this API in:
-    * our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing) for initial developer testing
-    * our [integration test environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing) for formal integration testing
 
-    Our sandbox environment is a very basic simulation of the live service. It only covers a limited set of scenarios and is stateless, so does not actually persist any updates.
+    ### Sandbox testing
+    Our sandbox environment:
+    - is for early developer testing
+    - only covers a limited set of scenarios
+    - is stateless, so it does not actually persist any updates
+    - is open access, so does not allow you to test authorisation
 
-    For more details on sandbox testing, or to try out the sandbox using our "Try this API" feature, see the documentation for each endpoint.
+    For more details on sandbox testing, or to try out the sandbox using our \"Try this API\" feature.
 
-    Also, there are plans to try out the sandbox using a Postman collection:
+    ### Integration testing
+    Our integration test environment:
+    - is for formal integration testing
+    - is stateful, so persists updates
+    - includes authorisation with either a username/password or smartcard/PIN
 
-    ## Assurance
-    We are hoping to make the assurance process as lightweight and as self-service as possible.
+    For more details see [integration testing with our RESTful APIs](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing-with-our-restful-apis).
 
-    ## Endpoints
-    Currently the endpoints for the ambulance analytics API for testing within sandbox are:
-          - POST /{x-dataset-id} used for posting ambulance data to DPS
+    ## Onboarding
 
-    Authorisation within the sandbox is disabled which is why only the one endpoint is available for testing.
+    You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
 
+    To be confirmed.
   contact:
     name: API Management Support
     email: api.management@nhs.net
@@ -91,29 +86,35 @@ servers:
 tags:
   - name: Ambulance Analytics Api
 paths:
-
-  /x-dataset-id:
+  /dataset-id:
     post:
       summary: Post Ambulance Analytics data.
       operationId: postData
       description: |
-        Get a 200 response with an empty response body "{}"
-
+        Accepts and stores [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#fhir)
+        compatible payload. Successfull call will return 200 with an empty json body. Refer to Authorisation section of the description
+        for more details.
+        **Note**: Payload validation is done via MESH API.
+#TODO: If we want to return 202, then create a ticket and add modification of this spec as AC
+#TODO: What is the link for MESH api? 
+#TODO: We can't create a link to Authorization section in the Description. It doesn't work since, these two sections are separated. Do we want to
+#      add an external link or is the above description good enough?
+#TODO: When unattended access link is available add it to the Authorisation section
+      
       responses:
         '200':
           description: Successful response.
           content:
             application/json:
               schema:
-                $ref: components/schemas/x-dataset-id.yaml
+                $ref: components/schemas/dataset-id.yaml
               examples:
                 example:
                   value:
-                    $ref: components/examples/x-dataset-id.json 
+                    $ref: components/examples/dataset-id.json
       tags:
         - Post ambulance data
-
 components:
   schemas:
-    x-dataset-id:
-      $ref: components/schemas/x-dataset-id.yaml
+    dataset-id:
+      $ref: components/schemas/dataset-id.yaml

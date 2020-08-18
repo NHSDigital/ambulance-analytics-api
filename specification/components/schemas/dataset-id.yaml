@@ -2,4 +2,4 @@ type: object
 properties:
   message:
     type: string
-    example: "x-dataset-id"
+    example: "dataset-id"
