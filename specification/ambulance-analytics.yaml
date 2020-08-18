@@ -92,15 +92,10 @@ paths:
       operationId: postData
       description: |
         Accepts and stores [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#fhir)
-        compatible payload. Successfull call will return 200 with an empty json body. Refer to Authorisation section of the description
+        compatible payload. Successfull call will return 200 with an empty json body. Refer to Authorisation section of the API description
         for more details.
-        **Note**: Payload validation is done via MESH API.
-#TODO: If we want to return 202, then create a ticket and add modification of this spec as AC
-#TODO: What is the link for MESH api? 
-#TODO: We can't create a link to Authorization section in the Description. It doesn't work since, these two sections are separated. Do we want to
-#      add an external link or is the above description good enough?
-#TODO: When unattended access link is available add it to the Authorisation section
-      
+        This endpoint doesn't validate posted payload and it will only acknowledge the receipt of the payload.
+        
       responses:
         '200':
           description: Successful response.
