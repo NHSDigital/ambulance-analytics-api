@@ -12,7 +12,7 @@ resources:
 
   pipelines:
   - pipeline: build_pipeline
-    source: "Sync-Wrap-Build"
+    source: "Ambulance-Analytics-Build"
     trigger:
       branches:
         exclude:
