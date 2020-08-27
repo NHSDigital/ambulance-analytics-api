@@ -12,7 +12,7 @@ resources:
 
   pipelines:
   - pipeline: build_pipeline
-    source: "Spine-Directory-Service-Build"
+    source: "Ambulance-Analytics-Build"
     trigger:
       branches:
         include:
