@@ -24,7 +24,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://raw.githubusercontent.com/kjur/jsrsasign/master/jsrsasign-latest-all-min.js",
+					"raw": "https://raw.githubusercontent.com/kjur/jsrsasign/master/jsrsasign-all-min.js",
 					"protocol": "https",
 					"host": [
 						"raw",
@@ -35,7 +35,7 @@
 						"kjur",
 						"jsrsasign",
 						"master",
-						"jsrsasign-latest-all-min.js"
+						"jsrsasign-all-min.js"
 					]
 				}
 			},
@@ -56,7 +56,6 @@
 							"var header = {",
 							"    \"typ\": \"JWT\",",
 							"    \"alg\": \"RS256\",",
-							"    \"kid\": \"\"",
 							"}",
 							"",
 							"var data = {",
@@ -76,7 +75,8 @@
 					"script": {
 						"id": "7d5a4c2a-7b23-4f01-bf81-f7b9b3db6fba",
 						"exec": [
-							"pm.test(\"Response Code\", function(){ pm.response.to.have.status(401); });"
+							"console.log(responseBody);",
+							"pm.test(\"Response Code\", function(){ pm.response.to.have.status(400); });"
 						],
 						"type": "text/javascript"
 					}
@@ -167,7 +167,8 @@
 					"script": {
 						"id": "1d43c194-756c-4bc0-8585-cd6de2ee3417",
 						"exec": [
-							"pm.test(\"Response Code\", function(){ pm.response.to.have.status(401); });"
+							"console.log(responseBody);",
+							"pm.test(\"Response Code\", function(){ pm.response.to.have.status(400); });"
 						],
 						"type": "text/javascript"
 					}
@@ -238,7 +239,7 @@
 							"var header = {",
 							"    \"typ\": \"JWT\",",
 							"    \"alg\": \"RS256\",",
-							"    \"kid\": \"\"",
+							"    \"kid\": \"unknown\"",
 							"}",
 							"",
 							"var data = {",
@@ -258,6 +259,7 @@
 					"script": {
 						"id": "970b0177-e884-4fc7-a8ac-81855b753546",
 						"exec": [
+							"console.log(responseBody);",
 							"pm.test(\"Response Code\", function(){ pm.response.to.have.status(401); });"
 						],
 						"type": "text/javascript"
@@ -329,7 +331,7 @@
 							"var header = {",
 							"    \"typ\": \"JWT\",",
 							"    \"alg\": \"RS256\",",
-							"    \"kid\": \"\"",
+							"    \"kid\": \"test\"",
 							"}",
 							"",
 							"var data = {",
@@ -349,6 +351,7 @@
 					"script": {
 						"id": "2175382f-a6b0-4a55-b6a6-d8a24c8b0151",
 						"exec": [
+							"console.log(responseBody);",
 							"pm.test(\"Response Code\", function(){ pm.response.to.have.status(200); });"
 						],
 						"type": "text/javascript"
