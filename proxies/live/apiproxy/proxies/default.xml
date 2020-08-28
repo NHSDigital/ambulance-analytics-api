@@ -36,6 +36,10 @@
           <Name>DecodeJWT</Name>
         </Step>
         <Step>
+          <Name>RaiseFault.InvalidJWT</Name>
+          <Condition>jwt.DecodeJWT.decoded.header.kid = "" or jwt.DecodeJWT.decoded.header.kid = null</Condition>
+        </Step>
+        <Step>
           <Name>LookupCache.JWKS</Name>
         </Step>
         <Step>
