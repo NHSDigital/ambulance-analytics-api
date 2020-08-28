@@ -19,7 +19,7 @@ lint:
 	npm run lint
 	cd docker/ambulance-analytics-sandbox && npm run lint && cd ..
 	poetry run flake8
-	
+
 
 validate: generate-examples
 	java -jar bin/org.hl7.fhir.validator.jar build/examples/**/*application_fhir+json*.json -version 4.0.1 -tx n/a | tee /tmp/validation.txt
@@ -39,7 +39,7 @@ generate-examples: publish
 	poetry run python scripts/generate_examples.py build/ambulance-analytics.json build/examples
 
 update-examples: generate-examples
-	jq -rM . <build/examples/resources/x-dataset-id.json >specification/components/examples/x-dataset-id.json
+	jq -rM . <build/examples/resources/dataset-id.json >specification/components/examples/dataset-id.json
 	make publish
 
 check-licenses:
@@ -64,6 +64,8 @@ build-proxy:
 release: clean publish build-proxy
 	mkdir -p dist
 	tar -zcvf dist/package.tar.gz build
-	cp -r terraform dist
 	cp -r build/. dist
 	cp -r tests dist
+	for env in internal-dev-sandbox internal-qa-sandbox sandbox; do \
+		cp ecs-proxies-deploy.yml dist/ecs-deploy-$$env.yml; \
+	done

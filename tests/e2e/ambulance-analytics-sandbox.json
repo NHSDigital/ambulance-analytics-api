@@ -1,17 +1,17 @@
 {
 	"info": {
-		"_postman_id": "d742dec4-ced2-4e09-b2eb-82cee1af18a4",
+		"_postman_id": "17e985d4-43ab-4a8d-80b0-0ae2af0c27d4",
 		"name": "Ambulance Analytics Sandbox",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Ambulance - test dataset-id",
+			"name": "Ambulance - Bad request if dataset-id missing",
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "d4fda834-5bf0-4775-be6e-a58cb2403ed9",
+						"id": "55c70d9d-6576-437c-91c0-7cc8ad5eb91a",
 						"exec": [
 							""
 						],
@@ -21,10 +21,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "95e83dea-8b15-4784-afc5-b6ba4899492f",
+						"id": "02bdfdda-5792-4340-b16e-1e21596feb71",
 						"exec": [
-							"pm.test(\"Returns status code 200 OK\", () => {",
-							"    pm.response.to.have.status(200);",
+							"pm.test(\"Returns status code 400 Bad Request\", () => {",
+							"    pm.response.to.have.status(400);",
 							"});",
 							""
 						],
@@ -42,12 +42,101 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/test",
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "_status endpoint",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "42d0d2ec-b47d-4b13-b8c1-955abd6f084f",
+						"exec": [
+							"pm.test(\"Returns status code 200 OK\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "2VGON6TbKjoLyGCpfx71SBB9guQtaRvi",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "apikey",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://int.api.service.nhs.uk/ambulance-analytics/_status",
+					"protocol": "https",
+					"host": [
+						"int",
+						"api",
+						"service",
+						"nhs",
+						"uk"
+					],
+					"path": [
+						"ambulance-analytics",
+						"_status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ambulance - dataset-id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "28a3216d-762f-4018-9ac9-6a6ab5e0e82f",
+						"exec": [
+							"pm.test(\"Returns status code 200 OK\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/my-dataset-id",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"test"
+						"my-dataset-id"
 					]
 				}
 			},
@@ -58,7 +147,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "01fb7d5b-709a-45a6-9e79-def8bc7aade3",
+				"id": "50fe33bc-e2f5-4e91-a70c-87387e6e1a64",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -68,7 +157,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "c3fa3d4e-91b5-48ac-9524-ec0d8504ec43",
+				"id": "59ee02f6-d88f-4475-94fd-a076d2a8bfe7",
 				"type": "text/javascript",
 				"exec": [
 					""
