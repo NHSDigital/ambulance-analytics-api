@@ -1,0 +1,410 @@
+{
+	"info": {
+		"_postman_id": "064deb27-628b-45a6-8b74-11c1176b68a6",
+		"name": "KID Test Suite",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "INIT: Load Crypto Library for RS256",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fd4395b0-b0cc-4dfd-924b-9025462fe704",
+						"exec": [
+							"postman.setGlobalVariable(\"jsrsasign-js\", responseBody);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://raw.githubusercontent.com/kjur/jsrsasign/master/jsrsasign-latest-all-min.js",
+					"protocol": "https",
+					"host": [
+						"raw",
+						"githubusercontent",
+						"com"
+					],
+					"path": [
+						"kjur",
+						"jsrsasign",
+						"master",
+						"jsrsasign-latest-all-min.js"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Missing KID",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d3caef21-8892-4682-9a0a-632761201fb1",
+						"exec": [
+							"var navigator = {}; //fake a navigator object for the lib",
+							"var window = {}; //fake a window object for the lib",
+							"eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
+							"",
+							"var header = {",
+							"    \"typ\": \"JWT\",",
+							"    \"alg\": \"RS256\",",
+							"    \"kid\": \"\"",
+							"}",
+							"",
+							"var data = {",
+							"};",
+							"",
+							"var secret = postman.getEnvironmentVariable(\"PRIVATE_KEY\");",
+							"var sHeader = JSON.stringify(header);",
+							"var sPayload = JSON.stringify(data);",
+							"var sJWT = KJUR.jws.JWS.sign(\"RS256\", sHeader, sPayload, secret);",
+							"postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7d5a4c2a-7b23-4f01-bf81-f7b9b3db6fba",
+						"exec": [
+							"pm.test(\"Response Code\", function(){ pm.response.to.have.status(401); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{jwt_token}}",
+						"type": "text"
+					},
+					{
+						"key": "grant_type",
+						"value": "client_credentials",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{client_secret}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://internal-dev.api.service.nhs.uk/ambulance-analytics/token",
+					"protocol": "https",
+					"host": [
+						"internal-dev",
+						"api",
+						"service",
+						"nhs",
+						"uk"
+					],
+					"path": [
+						"ambulance-analytics",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "KID is Empty",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a1088086-216e-4ed4-a338-de7069e785c1",
+						"exec": [
+							"var navigator = {}; //fake a navigator object for the lib",
+							"var window = {}; //fake a window object for the lib",
+							"eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
+							"",
+							"var header = {",
+							"    \"typ\": \"JWT\",",
+							"    \"alg\": \"RS256\",",
+							"    \"kid\": \"\"",
+							"}",
+							"",
+							"var data = {",
+							"};",
+							"",
+							"var secret = postman.getEnvironmentVariable(\"PRIVATE_KEY\");",
+							"var sHeader = JSON.stringify(header);",
+							"var sPayload = JSON.stringify(data);",
+							"var sJWT = KJUR.jws.JWS.sign(\"RS256\", sHeader, sPayload, secret);",
+							"postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1d43c194-756c-4bc0-8585-cd6de2ee3417",
+						"exec": [
+							"pm.test(\"Response Code\", function(){ pm.response.to.have.status(401); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{jwt_token}}",
+						"type": "text"
+					},
+					{
+						"key": "grant_type",
+						"value": "client_credentials",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{client_secret}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://internal-dev.api.service.nhs.uk/ambulance-analytics/token",
+					"protocol": "https",
+					"host": [
+						"internal-dev",
+						"api",
+						"service",
+						"nhs",
+						"uk"
+					],
+					"path": [
+						"ambulance-analytics",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unknown KID",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1e678076-bfdb-4582-9a59-339ad24b4354",
+						"exec": [
+							"var navigator = {}; //fake a navigator object for the lib",
+							"var window = {}; //fake a window object for the lib",
+							"eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
+							"",
+							"var header = {",
+							"    \"typ\": \"JWT\",",
+							"    \"alg\": \"RS256\",",
+							"    \"kid\": \"\"",
+							"}",
+							"",
+							"var data = {",
+							"};",
+							"",
+							"var secret = postman.getEnvironmentVariable(\"PRIVATE_KEY\");",
+							"var sHeader = JSON.stringify(header);",
+							"var sPayload = JSON.stringify(data);",
+							"var sJWT = KJUR.jws.JWS.sign(\"RS256\", sHeader, sPayload, secret);",
+							"postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "970b0177-e884-4fc7-a8ac-81855b753546",
+						"exec": [
+							"pm.test(\"Response Code\", function(){ pm.response.to.have.status(401); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{jwt_token}}",
+						"type": "text"
+					},
+					{
+						"key": "grant_type",
+						"value": "client_credentials",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{client_secret}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://internal-dev.api.service.nhs.uk/ambulance-analytics/token",
+					"protocol": "https",
+					"host": [
+						"internal-dev",
+						"api",
+						"service",
+						"nhs",
+						"uk"
+					],
+					"path": [
+						"ambulance-analytics",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valid test KID",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ee1e73fc-f782-407d-8792-a6c6c75c7713",
+						"exec": [
+							"var navigator = {}; //fake a navigator object for the lib",
+							"var window = {}; //fake a window object for the lib",
+							"eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
+							"",
+							"var header = {",
+							"    \"typ\": \"JWT\",",
+							"    \"alg\": \"RS256\",",
+							"    \"kid\": \"\"",
+							"}",
+							"",
+							"var data = {",
+							"};",
+							"",
+							"var secret = postman.getEnvironmentVariable(\"PRIVATE_KEY\");",
+							"var sHeader = JSON.stringify(header);",
+							"var sPayload = JSON.stringify(data);",
+							"var sJWT = KJUR.jws.JWS.sign(\"RS256\", sHeader, sPayload, secret);",
+							"postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "2175382f-a6b0-4a55-b6a6-d8a24c8b0151",
+						"exec": [
+							"pm.test(\"Response Code\", function(){ pm.response.to.have.status(200); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{jwt_token}}",
+						"type": "text"
+					},
+					{
+						"key": "grant_type",
+						"value": "client_credentials",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{client_secret}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://internal-dev.api.service.nhs.uk/ambulance-analytics/token",
+					"protocol": "https",
+					"host": [
+						"internal-dev",
+						"api",
+						"service",
+						"nhs",
+						"uk"
+					],
+					"path": [
+						"ambulance-analytics",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
