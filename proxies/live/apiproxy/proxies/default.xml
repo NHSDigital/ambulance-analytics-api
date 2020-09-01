@@ -60,11 +60,6 @@
             jwt.DecodeJWT.decoded.claim.iss = ""
           </Condition>
         </Step>
-        <!--
-        <Step>
-            <Name>LookupCache.JWKS</Name>
-        </Step>
-        !-->
         <Step>
           <Name>VerifyAPIKey.FormParam</Name>
         </Step>
