@@ -1,164 +1,169 @@
 {
-	"info": {
-		"_postman_id": "68f3e9c3-5500-43e6-916f-c5eb4fef8592",
-		"name": "Ambulance Analytics",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "INIT: Load Crypto Library for RS256",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "e8bd8f31-bf24-468e-99cb-759e7441fbe6",
-						"exec": [
-							"postman.setGlobalVariable(\"jsrsasign-js\", responseBody);",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://raw.githubusercontent.com/kjur/jsrsasign/master/jsrsasign-all-min.js",
-					"protocol": "https",
-					"host": [
-						"raw",
-						"githubusercontent",
-						"com"
-					],
-					"path": [
-						"kjur",
-						"jsrsasign",
-						"master",
-						"jsrsasign-all-min.js"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Unattended Access Token Request",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "6bad7907-e895-4fbd-8ecf-73cdea6b4dd4",
-						"exec": [
-							"var navigator = {}; //fake a navigator object for the lib",
-							"var window = {}; //fake a window object for the lib",
-							"eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
-							"",
-							"var header = {",
-							"    \"typ\": \"JWT\",",
-							"    \"alg\": \"RS256\",",
-							"    \"kid\": \"test\"",
-							"}",
-							"",
-							"var data = {",
-							"    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
-							"    \"sub\": postman.getEnvironmentVariable(\"client_id\")",
-							"};",
-							"",
-							"var secret = postman.getEnvironmentVariable(\"PRIVATE_KEY\");",
-							"var sHeader = JSON.stringify(header);",
-							"var sPayload = JSON.stringify(data);",
-							"var sJWT = KJUR.jws.JWS.sign(\"RS256\", sHeader, sPayload, secret);",
-							"postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "c62d4598-9ec5-49a3-9bba-7cd127dd6903",
-						"exec": [
-							"var data = JSON.parse(responseBody);",
-							"postman.setEnvironmentVariable(\"ACCESS_TOKEN\", data.access_token);",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "token",
-						"value": "{{jwt_token}}",
-						"type": "text"
-					},
-					{
-						"key": "grant_type",
-						"value": "client_credentials",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "client_id",
-							"value": "{{client_id}}",
-							"type": "text"
-						},
-						{
-							"key": "client_secret",
-							"value": "{{client_secret}}",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "client_assertion_type",
-							"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "client_assertion",
-							"value": "{{jwt_token}}",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "https://internal-dev.api.service.nhs.uk/ambulance-analytics/token",
-					"protocol": "https",
-					"host": [
-						"internal-dev",
-						"api",
-						"service",
-						"nhs",
-						"uk"
-					],
-					"path": [
-						"ambulance-analytics",
-						"token"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Data Submission",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": ""
-				}
-			},
-			"response": []
-		}
-	],
-	"protocolProfileBehavior": {}
+  "info": {
+    "_postman_id": "68f3e9c3-5500-43e6-916f-c5eb4fef8592",
+    "name": "Ambulance Analytics",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "INIT: Load Crypto Library for RS256",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "e8bd8f31-bf24-468e-99cb-759e7441fbe6",
+            "exec": [
+              "postman.setGlobalVariable(\"jsrsasign-js\", responseBody);",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://raw.githubusercontent.com/kjur/jsrsasign/master/jsrsasign-all-min.js",
+          "protocol": "https",
+          "host": [
+            "raw",
+            "githubusercontent",
+            "com"
+          ],
+          "path": [
+            "kjur",
+            "jsrsasign",
+            "master",
+            "jsrsasign-all-min.js"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Happy Path Tests",
+      "item": [
+        {
+          "name": "Unattended Access Token Request",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "6bad7907-e895-4fbd-8ecf-73cdea6b4dd4",
+                "exec": [
+                  "var navigator = {}; //fake a navigator object for the lib",
+                  "var window = {}; //fake a window object for the lib",
+                  "eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
+                  "",
+                  "var header = {",
+                  "    \"typ\": \"JWT\",",
+                  "    \"alg\": \"RS256\",",
+                  "    \"kid\": \"test\"",
+                  "}",
+                  "",
+                  "var data = {",
+                  "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
+                  "    \"sub\": postman.getEnvironmentVariable(\"client_id\")",
+                  "};",
+                  "",
+                  "var secret = postman.getEnvironmentVariable(\"PRIVATE_KEY\");",
+                  "var sHeader = JSON.stringify(header);",
+                  "var sPayload = JSON.stringify(data);",
+                  "var sJWT = KJUR.jws.JWS.sign(\"RS256\", sHeader, sPayload, secret);",
+                  "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "c62d4598-9ec5-49a3-9bba-7cd127dd6903",
+                "exec": [
+                  "var data = JSON.parse(responseBody);",
+                  "pm.test(\"Response Code\", function(){ pm.response.to.have.status(200); console.log(data); });",
+                  "postman.setEnvironmentVariable(\"ACCESS_TOKEN\", data.access_token);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "token",
+                "value": "{{jwt_token}}",
+                "type": "text"
+              },
+              {
+                "key": "grant_type",
+                "value": "client_credentials",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "client_id",
+                  "value": "{{client_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "{{client_secret}}",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "client_assertion_type",
+                  "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "client_assertion",
+                  "value": "{{jwt_token}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://internal-dev.api.service.nhs.uk/ambulance-analytics/token",
+              "protocol": "https",
+              "host": [
+                "internal-dev",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "ambulance-analytics",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Data Submission",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "protocolProfileBehavior": {}
 }
