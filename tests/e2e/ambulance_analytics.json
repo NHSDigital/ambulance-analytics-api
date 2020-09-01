@@ -82,7 +82,9 @@
                 "id": "c62d4598-9ec5-49a3-9bba-7cd127dd6903",
                 "exec": [
                   "var data = JSON.parse(responseBody);",
-                  "pm.test(\"Response Code\", function(){ pm.response.to.have.status(200); console.log(data); });",
+                  "pm.test(\"response is Ok\", function(){ pm.response.to.have.status(200); });",
+                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+                  "pm.test(\"response JSON has access_token\", function(){ pm.expect(data.access_token); });",
                   "postman.setEnvironmentVariable(\"ACCESS_TOKEN\", data.access_token);"
                 ],
                 "type": "text/javascript"
