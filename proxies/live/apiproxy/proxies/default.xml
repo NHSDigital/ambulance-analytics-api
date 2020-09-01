@@ -1,5 +1,5 @@
 <ProxyEndpoint name="default">
-    <PreFlow/>
+  <PreFlow/>
   <Flows>
     <Flow name="AddPayloadToPing">
       <Description/>
@@ -9,7 +9,8 @@
           <Name>AssignMessage.AddPayloadToPing</Name>
         </Step>
       </Response>
-      <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
+      <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))
+      </Condition>
     </Flow>
     <Flow name="OptionsPreFlight">
       <Request/>
@@ -18,7 +19,9 @@
           <Name>AssignMessage.AddCors</Name>
         </Step>
       </Response>
-      <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null</Condition>
+      <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND
+        request.header.Access-Control-Request-Method != null
+      </Condition>
     </Flow>
     <Flow name="Flow.AuthApiKey">
       <Request>
@@ -30,42 +33,52 @@
       <Condition>((proxy.pathsuffix MatchesPath "/_status")) and (request.verb = "GET")</Condition>
     </Flow>
     <Flow name="Flow-GenerateAccessToken">
-      <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "GET")</Condition>
+      <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
       <Request>
+        <Step>
+          <Name>RaiseFault.MissingGrantType</Name>
+          <Condition>request.formparam.grant_type != "client_credentials"</Condition>
+        </Step>
+        <Step>
+          <Name>RaiseFault.MissingClientID</Name>
+          <Condition>request.formparam.client_id != ""</Condition>
+        </Step>
+        <Step>
+          <Name>RaiseFault.MissingClientAssertionType</Name>
+          <Condition>request.formparam.client_assertion_type != "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"</Condition>
+        </Step>
         <Step>
           <Name>DecodeJWT</Name>
         </Step>
         <Step>
-          <Name>LookupCache.JWKS</Name>
+          <Name>RaiseFault.InvalidJWT</Name>
+          <Condition>jwt.DecodeJWT.decoded.header.kid = "" or jwt.DecodeJWT.decoded.header.kid = null</Condition>
         </Step>
         <Step>
-          <Name>AccessEntity.AppDetails</Name>
+          <Name>RaiseFault.MissingIssOrSub</Name>
+          <Condition>(jwt.DecodeJWT.decoded.claim.iss != jwt.DecodeJWT.decoded.claim.sub) or
+            jwt.DecodeJWT.decoded.claim.iss = ""
+          </Condition>
         </Step>
+        <!--
         <Step>
-          <Name>ExtractVariable.ExtractClientId</Name>
+            <Name>LookupCache.JWKS</Name>
         </Step>
+        !-->
         <Step>
-        <!-- This is done to get app custom attributes -->
           <Name>VerifyAPIKey.FormParam</Name>
-          <Condition>jwks = null</Condition>
+        </Step>
+        <Step>
+          <Name>AssignMessage.AddIdAndSecret</Name>
         </Step>
         <Step>
           <Name>ServiceCallout.GetJWKS</Name>
-          <Condition>jwks = null</Condition>
-        </Step>
-        <Step>
-          <Name>PopulateCache.JWKS</Name>
-          <Condition>jwks = null</Condition>
         </Step>
         <Step>
           <Name>ExtractVariables.ParseJWKS</Name>
-          <Condition>jwks = null</Condition>
         </Step>
         <Step>
           <Name>VerifyJWT.JWKS</Name>
-        </Step>
-        <Step>
-          <Name>AssignMessage.AddClientCredentials</Name>
         </Step>
         <Step>
           <Name>GenerateAccessToken</Name>
@@ -79,10 +92,13 @@
     <VirtualHost>secure</VirtualHost>
   </HTTPProxyConnection>
   <RouteRule name="NoRoute">
-    <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null</Condition>
+    <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND
+      request.header.Access-Control-Request-Method != null
+    </Condition>
   </RouteRule>
   <RouteRule name="NoRoutePing">
-    <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
+    <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))
+    </Condition>
   </RouteRule>
   <RouteRule name="dps">
     <TargetEndpoint>dps</TargetEndpoint>
