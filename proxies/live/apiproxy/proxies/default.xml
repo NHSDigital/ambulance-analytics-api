@@ -39,6 +39,12 @@
           <Name>LookupCache.JWKS</Name>
         </Step>
         <Step>
+          <Name>AccessEntity.AppDetails</Name>
+        </Step>
+        <Step>
+          <Name>ExtractVariable.ExtractClientId</Name>
+        </Step>
+        <Step>
         <!-- This is done to get app custom attributes -->
           <Name>VerifyAPIKey.FormParam</Name>
           <Condition>jwks = null</Condition>
@@ -57,6 +63,9 @@
         </Step>
         <Step>
           <Name>VerifyJWT.JWKS</Name>
+        </Step>
+        <Step>
+          <Name>AssignMessage.AddClientCredentials</Name>
         </Step>
         <Step>
           <Name>GenerateAccessToken</Name>

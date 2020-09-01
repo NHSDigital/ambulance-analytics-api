@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="ExtractVariable.ExtractClientId">
+    <DisplayName>ExtractVariable.ExtractClientId</DisplayName>
+    <Properties/>
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <XMLPayload>
+        <Variable name="consumer_key" type="string">
+            <!-- You parse elements from the developer profile using XPath. -->
+            <XPath>/App/Credentials/Credential/ConsumerKey</XPath>
+        </Variable>
+        <Variable name="consumer_secret" type="string">
+            <!-- You parse elements from the developer profile using XPath. -->
+            <XPath>/App/Credentials/Credential/ConsumerSecret</XPath>
+        </Variable>
+    </XMLPayload>
+    <Source clearPayload="false">AccessEntity.AccessEntity.AppDetails</Source>
+</ExtractVariables>
