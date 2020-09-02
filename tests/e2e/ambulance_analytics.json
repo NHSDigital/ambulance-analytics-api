@@ -109,8 +109,7 @@
                 {
                   "key": "client_assertion_type",
                   "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-                  "type": "text",
-                  "disabled": true
+                  "type": "text"
                 },
                 {
                   "key": "client_assertion",
@@ -222,8 +221,7 @@
                 {
                   "key": "client_assertion_type",
                   "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-                  "type": "text",
-                  "disabled": true
+                  "type": "text"
                 },
                 {
                   "key": "client_assertion",
@@ -309,8 +307,7 @@
                 {
                   "key": "client_assertion_type",
                   "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-                  "type": "text",
-                  "disabled": true
+                  "type": "text"
                 },
                 {
                   "key": "client_assertion",
@@ -501,8 +498,7 @@
                 {
                   "key": "client_assertion_type",
                   "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-                  "type": "text",
-                  "disabled": true
+                  "type": "text"
                 },
                 {
                   "key": "client_assertion",
@@ -598,8 +594,7 @@
                 {
                   "key": "client_assertion_type",
                   "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-                  "type": "text",
-                  "disabled": true
+                  "type": "text"
                 },
                 {
                   "key": "client_assertion",
