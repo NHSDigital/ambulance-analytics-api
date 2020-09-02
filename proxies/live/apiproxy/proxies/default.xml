@@ -40,7 +40,7 @@
         </Step>
         <Step>
           <Name>RaiseFault.MissingClientID</Name>
-          <Condition>request.formparam.client_id != ""</Condition>
+          <Condition>request.formparam.client_id = ""</Condition>
         </Step>
         <Step>
           <Name>RaiseFault.MissingClientAssertionType</Name>
