@@ -340,6 +340,97 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Missing Client Assertion Type",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "6bad7907-e895-4fbd-8ecf-73cdea6b4dd4",
+                "exec": [
+                  "var navigator = {}; //fake a navigator object for the lib",
+                  "var window = {}; //fake a window object for the lib",
+                  "eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
+                  "",
+                  "var header = {",
+                  "    \"typ\": \"JWT\",",
+                  "    \"alg\": \"RS256\",",
+                  "    \"kid\": \"test\"",
+                  "}",
+                  "",
+                  "var data = {",
+                  "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
+                  "    \"sub\": postman.getEnvironmentVariable(\"client_id\")",
+                  "};",
+                  "",
+                  "var secret = postman.getEnvironmentVariable(\"PRIVATE_KEY\");",
+                  "var sHeader = JSON.stringify(header);",
+                  "var sPayload = JSON.stringify(data);",
+                  "var sJWT = KJUR.jws.JWS.sign(\"RS256\", sHeader, sPayload, secret);",
+                  "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "c62d4598-9ec5-49a3-9bba-7cd127dd6903",
+                "exec": [
+                  "var data = JSON.parse(responseBody);",
+                  "console.log(responseBody);",
+                  "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
+                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+                  "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "client_id",
+                  "value": "{{client_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_assertion",
+                  "value": "{{jwt_token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://internal-dev.api.service.nhs.uk/ambulance-analytics/token",
+              "protocol": "https",
+              "host": [
+                "internal-dev",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "ambulance-analytics",
+                "token"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     }
