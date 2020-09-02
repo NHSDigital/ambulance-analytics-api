@@ -145,9 +145,27 @@
           "name": "Data Submission",
           "request": {
             "method": "POST",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{ACCESS_TOKEN}}",
+                "type": "text"
+              }
+            ],
             "url": {
-              "raw": ""
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/dps",
+              "protocol": "https",
+              "host": [
+                "{{base_url}}",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "{{root_path}}",
+                "dps"
+              ]
             }
           },
           "response": []
