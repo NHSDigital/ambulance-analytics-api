@@ -216,6 +216,8 @@
                   "console.log(responseBody);",
                   "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+                  "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('grant_type is a required field'); });",
                   "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
                 ],
                 "type": "text/javascript"
@@ -307,6 +309,8 @@
                   "console.log(responseBody);",
                   "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+                  "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('client_id is a required field'); });",
                   "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
                 ],
                 "type": "text/javascript"
@@ -398,6 +402,8 @@
                   "console.log(responseBody);",
                   "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+                  "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('client_assertion_type is a required field'); });",
                   "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
                 ],
                 "type": "text/javascript"
@@ -493,6 +499,8 @@
                   "console.log(responseBody);",
                   "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+                  "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('iss and sub claims are required'); });",
                   "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
                 ],
                 "type": "text/javascript"
@@ -589,6 +597,8 @@
                   "console.log(responseBody);",
                   "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+                  "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('iss and sub claims must be identical'); });",
                   "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
                 ],
                 "type": "text/javascript"
