@@ -82,6 +82,7 @@
                 "id": "c62d4598-9ec5-49a3-9bba-7cd127dd6903",
                 "exec": [
                   "var data = JSON.parse(responseBody);",
+                  "console.log(responseBody);",
                   "pm.test(\"response is Ok\", function(){ pm.response.to.have.status(200); });",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
                   "pm.test(\"response JSON has access_token\", function(){ pm.expect(data).to.have.property('access_token'); });",
@@ -95,7 +96,7 @@
             "disableBodyPruning": true
           },
           "request": {
-            "method": "GET",
+            "method": "POST",
             "header": [],
             "body": {
               "mode": "urlencoded",
@@ -124,17 +125,17 @@
               ]
             },
             "url": {
-              "raw": "https://internal-dev.api.service.nhs.uk/ambulance-analytics/token",
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
               "protocol": "https",
               "host": [
-                "internal-dev",
+                "{{base_url}}",
                 "api",
                 "service",
                 "nhs",
                 "uk"
               ],
               "path": [
-                "ambulance-analytics",
+                "{{root_path}}",
                 "token"
               ]
             }
@@ -144,7 +145,7 @@
         {
           "name": "Data Submission",
           "request": {
-            "method": "GET",
+            "method": "POST",
             "header": [],
             "url": {
               "raw": ""
@@ -208,7 +209,7 @@
             "disableBodyPruning": true
           },
           "request": {
-            "method": "GET",
+            "method": "POST",
             "header": [],
             "body": {
               "mode": "urlencoded",
@@ -232,17 +233,17 @@
               ]
             },
             "url": {
-              "raw": "https://internal-dev.api.service.nhs.uk/ambulance-analytics/token",
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
               "protocol": "https",
               "host": [
-                "internal-dev",
+                "{{base_url}}",
                 "api",
                 "service",
                 "nhs",
                 "uk"
               ],
               "path": [
-                "ambulance-analytics",
+                "{{root_path}}",
                 "token"
               ]
             }
@@ -300,7 +301,7 @@
             "disableBodyPruning": true
           },
           "request": {
-            "method": "GET",
+            "method": "POST",
             "header": [],
             "body": {
               "mode": "urlencoded",
@@ -324,17 +325,17 @@
               ]
             },
             "url": {
-              "raw": "https://internal-dev.api.service.nhs.uk/ambulance-analytics/token",
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
               "protocol": "https",
               "host": [
-                "internal-dev",
+                "{{base_url}}",
                 "api",
                 "service",
                 "nhs",
                 "uk"
               ],
               "path": [
-                "ambulance-analytics",
+                "{{root_path}}",
                 "token"
               ]
             }
@@ -392,7 +393,7 @@
             "disableBodyPruning": true
           },
           "request": {
-            "method": "GET",
+            "method": "POST",
             "header": [],
             "body": {
               "mode": "urlencoded",
@@ -415,17 +416,17 @@
               ]
             },
             "url": {
-              "raw": "https://internal-dev.api.service.nhs.uk/ambulance-analytics/token",
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
               "protocol": "https",
               "host": [
-                "internal-dev",
+                "{{base_url}}",
                 "api",
                 "service",
                 "nhs",
                 "uk"
               ],
               "path": [
-                "ambulance-analytics",
+                "{{root_path}}",
                 "token"
               ]
             }
@@ -487,7 +488,7 @@
             "disableBodyPruning": true
           },
           "request": {
-            "method": "GET",
+            "method": "POST",
             "header": [],
             "body": {
               "mode": "urlencoded",
@@ -516,17 +517,17 @@
               ]
             },
             "url": {
-              "raw": "https://internal-dev.api.service.nhs.uk/ambulance-analytics/token",
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
               "protocol": "https",
               "host": [
-                "internal-dev",
+                "{{base_url}}",
                 "api",
                 "service",
                 "nhs",
                 "uk"
               ],
               "path": [
-                "ambulance-analytics",
+                "{{root_path}}",
                 "token"
               ]
             }
@@ -584,7 +585,7 @@
             "disableBodyPruning": true
           },
           "request": {
-            "method": "GET",
+            "method": "POST",
             "header": [],
             "body": {
               "mode": "urlencoded",
@@ -613,17 +614,17 @@
               ]
             },
             "url": {
-              "raw": "https://internal-dev.api.service.nhs.uk/ambulance-analytics/token",
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
               "protocol": "https",
               "host": [
-                "internal-dev",
+                "{{base_url}}",
                 "api",
                 "service",
                 "nhs",
                 "uk"
               ],
               "path": [
-                "ambulance-analytics",
+                "{{root_path}}",
                 "token"
               ]
             }

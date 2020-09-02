@@ -21,6 +21,16 @@
 			"key": "client_id",
 			"value": "",
 			"enabled": true
+		},
+		{
+			"key": "base_host",
+			"value": "internal-dev",
+			"enabled": true
+		},
+		{
+			"key": "root_path",
+			"value": "ambulance-analytics",
+			"enabled": true
 		}
 	],
 	"_postman_variable_scope": "environment",
