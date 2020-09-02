@@ -19,8 +19,7 @@
           <Name>AssignMessage.AddCors</Name>
         </Step>
       </Response>
-      <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND
-        request.header.Access-Control-Request-Method != null
+      <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null
       </Condition>
     </Flow>
     <Flow name="Flow.AuthApiKey">
@@ -89,8 +88,7 @@
     <VirtualHost>secure</VirtualHost>
   </HTTPProxyConnection>
   <RouteRule name="NoRoute">
-    <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND
-      request.header.Access-Control-Request-Method != null
+    <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null
     </Condition>
   </RouteRule>
   <RouteRule name="NoRoutePing">
