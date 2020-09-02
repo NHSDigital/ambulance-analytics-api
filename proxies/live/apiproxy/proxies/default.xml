@@ -56,9 +56,11 @@
         </Step>
         <Step>
           <Name>RaiseFault.MissingIssOrSub</Name>
-          <Condition>(jwt.DecodeJWT.decoded.claim.iss != jwt.DecodeJWT.decoded.claim.sub) or
-            jwt.DecodeJWT.decoded.claim.iss = ""
-          </Condition>
+          <Condition>jwt.DecodeJWT.decoded.claim.iss = "" or jwt.DecodeJWT.decoded.claim.sub = ""</Condition>
+        </Step>
+        <Step>
+          <Name>RaiseFault.IssOrSubMustBeEqual</Name>
+          <Condition>jwt.DecodeJWT.decoded.claim.iss != jwt.DecodeJWT.decoded.claim.sub</Condition>
         </Step>
         <Step>
           <Name>VerifyAPIKey.FormParam</Name>
