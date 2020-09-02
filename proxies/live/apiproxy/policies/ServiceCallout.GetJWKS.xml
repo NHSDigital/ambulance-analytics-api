@@ -14,6 +14,6 @@
         <SSLInfo>
             <Enabled>true</Enabled>
         </SSLInfo>
-        <URL>https://raw.githubusercontent.com/{verifyapikey.VerifyAPIKey.FormParam.jwks-resource-path}</URL>
+        <URL>https://gist.githubusercontent.com/artronics/d4d5a7b06373c3ce9ad3cc8dc5c74aee/raw/c9994020dafb8158ed032211999b05eda571b0c6/jwt3</URL>
     </HTTPTargetConnection>
 </ServiceCallout>
