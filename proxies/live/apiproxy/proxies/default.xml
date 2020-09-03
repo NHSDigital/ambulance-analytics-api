@@ -1,10 +1,10 @@
 <ProxyEndpoint name="default">
   <FaultRules>
     <FaultRule name="UnsupportedJWTAlgorithm">
-      <step>
-        <name>AssignMessage.UnsupportedJWTAlgorithm</name>
-      </step>
-      <condition>(fault.name = "AlgorithmMismatch")</condition>
+      <Step>
+        <Name>AssignMessage.UnsupportedJWTAlgorithm</Name>
+      </Step>
+      <Condition>(fault.name = "AlgorithmMismatch")</Condition>
     </FaultRule>
   </FaultRules>
   <PreFlow/>

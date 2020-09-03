@@ -3,7 +3,12 @@
 	"name": "local",
 	"values": [
 		{
-			"key": "PRIVATE_KEY",
+			"key": "RS256_PRIVATE_KEY",
+			"value": "-----BEGIN RSA PRIVATE KEY-----\n-----END RSA PRIVATE KEY-----",
+			"enabled": true
+		},
+		{
+			"key": "RS512_PRIVATE_KEY",
 			"value": "-----BEGIN RSA PRIVATE KEY-----\n-----END RSA PRIVATE KEY-----",
 			"enabled": true
 		},
