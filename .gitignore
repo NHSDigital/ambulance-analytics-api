@@ -8,6 +8,7 @@ venv/
 .venv/
 .idea
 .terraform
+tools/files
 
 # utils directory will be clone during pipeline.
 utils

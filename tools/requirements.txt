@@ -1,1 +1,1 @@
-authlib
+authlib==0.14.3
