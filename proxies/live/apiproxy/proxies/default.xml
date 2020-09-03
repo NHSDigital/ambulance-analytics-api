@@ -2,7 +2,7 @@
   <FaultRules>
     <FaultRule name="UnsupportedJWTAlgorithm">
       <step>
-        <name>UnsupportedJWTAlgorithm</name>
+        <name>AssignMessage.UnsupportedJWTAlgorithm</name>
       </step>
       <condition>(fault.name = "AlgorithmMismatch")</condition>
     </FaultRule>
