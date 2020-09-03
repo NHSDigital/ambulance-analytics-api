@@ -6,7 +6,7 @@
   },
   "item": [
     {
-      "name": "INIT: Load Crypto Library for RS256",
+      "name": "INIT: Load Crypto Library for RS512",
       "event": [
         {
           "listen": "test",
@@ -58,8 +58,8 @@
                   "",
                   "var header = {",
                   "    \"typ\": \"JWT\",",
-                  "    \"alg\": \"RS256\",",
-                  "    \"kid\": \"test\"",
+                  "    \"alg\": \"RS512\",",
+                  "    \"kid\": \"test-rs512\"",
                   "}",
                   "",
                   "var data = {",
@@ -70,7 +70,7 @@
                   "var secret = postman.getEnvironmentVariable(\"PRIVATE_KEY\");",
                   "var sHeader = JSON.stringify(header);",
                   "var sPayload = JSON.stringify(data);",
-                  "var sJWT = KJUR.jws.JWS.sign(\"RS256\", sHeader, sPayload, secret);",
+                  "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
                   "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
                 ],
                 "type": "text/javascript"
@@ -189,8 +189,8 @@
                   "",
                   "var header = {",
                   "    \"typ\": \"JWT\",",
-                  "    \"alg\": \"RS256\",",
-                  "    \"kid\": \"test\"",
+                  "    \"alg\": \"RS512\",",
+                  "    \"kid\": \"test-rs512\"",
                   "}",
                   "",
                   "var data = {",
@@ -201,7 +201,7 @@
                   "var secret = postman.getEnvironmentVariable(\"PRIVATE_KEY\");",
                   "var sHeader = JSON.stringify(header);",
                   "var sPayload = JSON.stringify(data);",
-                  "var sJWT = KJUR.jws.JWS.sign(\"RS256\", sHeader, sPayload, secret);",
+                  "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
                   "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
                 ],
                 "type": "text/javascript"
@@ -282,8 +282,8 @@
                   "",
                   "var header = {",
                   "    \"typ\": \"JWT\",",
-                  "    \"alg\": \"RS256\",",
-                  "    \"kid\": \"test\"",
+                  "    \"alg\": \"RS512\",",
+                  "    \"kid\": \"test-rs512\"",
                   "}",
                   "",
                   "var data = {",
@@ -294,7 +294,7 @@
                   "var secret = postman.getEnvironmentVariable(\"PRIVATE_KEY\");",
                   "var sHeader = JSON.stringify(header);",
                   "var sPayload = JSON.stringify(data);",
-                  "var sJWT = KJUR.jws.JWS.sign(\"RS256\", sHeader, sPayload, secret);",
+                  "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
                   "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
                 ],
                 "type": "text/javascript"
@@ -375,8 +375,8 @@
                   "",
                   "var header = {",
                   "    \"typ\": \"JWT\",",
-                  "    \"alg\": \"RS256\",",
-                  "    \"kid\": \"test\"",
+                  "    \"alg\": \"RS512\",",
+                  "    \"kid\": \"test-rs512\"",
                   "}",
                   "",
                   "var data = {",
@@ -387,7 +387,7 @@
                   "var secret = postman.getEnvironmentVariable(\"PRIVATE_KEY\");",
                   "var sHeader = JSON.stringify(header);",
                   "var sPayload = JSON.stringify(data);",
-                  "var sJWT = KJUR.jws.JWS.sign(\"RS256\", sHeader, sPayload, secret);",
+                  "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
                   "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
                 ],
                 "type": "text/javascript"
@@ -473,8 +473,8 @@
                   "",
                   "var header = {",
                   "    \"typ\": \"JWT\",",
-                  "    \"alg\": \"RS256\",",
-                  "    \"kid\": \"test\"",
+                  "    \"alg\": \"RS512\",",
+                  "    \"kid\": \"test-rs512\"",
                   "}",
                   "",
                   "var data = {",
@@ -484,7 +484,7 @@
                   "var secret = postman.getEnvironmentVariable(\"PRIVATE_KEY\");",
                   "var sHeader = JSON.stringify(header);",
                   "var sPayload = JSON.stringify(data);",
-                  "var sJWT = KJUR.jws.JWS.sign(\"RS256\", sHeader, sPayload, secret);",
+                  "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
                   "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
                 ],
                 "type": "text/javascript"
@@ -570,8 +570,8 @@
                   "",
                   "var header = {",
                   "    \"typ\": \"JWT\",",
-                  "    \"alg\": \"RS256\",",
-                  "    \"kid\": \"test\"",
+                  "    \"alg\": \"RS512\",",
+                  "    \"kid\": \"test-rs512\"",
                   "}",
                   "",
                   "var data = {",
@@ -582,7 +582,7 @@
                   "var secret = postman.getEnvironmentVariable(\"PRIVATE_KEY\");",
                   "var sHeader = JSON.stringify(header);",
                   "var sPayload = JSON.stringify(data);",
-                  "var sJWT = KJUR.jws.JWS.sign(\"RS256\", sHeader, sPayload, secret);",
+                  "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
                   "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
                 ],
                 "type": "text/javascript"
