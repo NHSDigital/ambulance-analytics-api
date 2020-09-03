@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AccessEntity async="false" continueOnError="false" enabled="true" name="AccessEntity.AppDetails">
-    <DisplayName>AccessEntity.AppDetails</DisplayName>
-    <EntityIdentifier ref="jwt.DecodeJWT.decoded.claim.iss" type="appid"/>
-    <EntityType value="app"/>
-</AccessEntity>
