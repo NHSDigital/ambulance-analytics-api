@@ -35,6 +35,7 @@ extends:
     short_service_name: ${{ variables.short_service_name }}
     product_display_name: ${{ variables.product_display_name }}
     product_description: ${{ variables.product_description }}
+    has_monitoring: true
     apigee_deployments:
         - environment: internal-dev
         - environment: internal-dev-sandbox
