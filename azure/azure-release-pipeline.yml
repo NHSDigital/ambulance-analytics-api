@@ -8,6 +8,7 @@ resources:
     - repository: common
       type: github
       name: NHSDigital/api-management-utils
+      ref: 'refs/heads/APM-00-AMB-229-add-monitoring-endpoints-to-pipeline-3'
       endpoint: NHSDigital
 
   pipelines:
