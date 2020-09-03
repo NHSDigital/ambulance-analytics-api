@@ -7,6 +7,6 @@
     <SupportedGrantTypes>
         <GrantType>client_credentials</GrantType>
     </SupportedGrantTypes>
-    <GrantType>request.header.grant_type</GrantType>
+    <GrantType>request.formparam.grant_type</GrantType>
     <GenerateResponse enabled="true"/>
 </OAuthV2>
