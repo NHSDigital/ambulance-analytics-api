@@ -2,7 +2,7 @@
 <VerifyJWT async="false" continueOnError="false" enabled="true" name="VerifyJWT.JWKS">
     <DisplayName>Verify.JWT.JWKS</DisplayName>
     <Algorithm>RS256</Algorithm>
-    <Source>request.header.token</Source>
+    <Source>request.formparam.client_assertion</Source>
     <PublicKey>
         <JWKS ref="jwks"/>
     </PublicKey>
