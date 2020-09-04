@@ -28,7 +28,7 @@
     </Response>
   </PreFlow>
   <Flows>
-    <Flow>
+    <Flow name="AccessTokenVerification">
     <Condition>(proxy.pathsuffix MatchesPath "/foo") and (request.verb = "POST")</Condition>
       <Request>
         <Step>
@@ -37,7 +37,7 @@
       </Request>
       <Response/>
     </Flow>
-    <Flow>
+    <Flow name="SwitchStatusMethod">
     <Condition>((proxy.pathsuffix MatchesPath "/_status")) and (request.verb = "GET")</Condition>
       <Request>
         <Step>
