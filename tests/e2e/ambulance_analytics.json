@@ -81,8 +81,8 @@
               "script": {
                 "id": "c62d4598-9ec5-49a3-9bba-7cd127dd6903",
                 "exec": [
+                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
-                  "//console.log(responseBody);",
                   "pm.test(\"response is Ok\", function(){ pm.response.to.have.status(200); });",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
                   "pm.test(\"response JSON has access_token\", function(){ pm.expect(data).to.have.property('access_token'); });",
@@ -212,8 +212,8 @@
               "script": {
                 "id": "c62d4598-9ec5-49a3-9bba-7cd127dd6903",
                 "exec": [
+                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
-                  "//console.log(responseBody);",
                   "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
                   "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
@@ -305,8 +305,8 @@
               "script": {
                 "id": "c62d4598-9ec5-49a3-9bba-7cd127dd6903",
                 "exec": [
+                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
-                  "//console.log(responseBody);",
                   "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
                   "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
@@ -398,8 +398,8 @@
               "script": {
                 "id": "c62d4598-9ec5-49a3-9bba-7cd127dd6903",
                 "exec": [
+                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
-                  "//console.log(responseBody);",
                   "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
                   "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
@@ -495,8 +495,8 @@
               "script": {
                 "id": "c62d4598-9ec5-49a3-9bba-7cd127dd6903",
                 "exec": [
+                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
-                  "//console.log(responseBody);",
                   "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
                   "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
@@ -593,8 +593,8 @@
               "script": {
                 "id": "c62d4598-9ec5-49a3-9bba-7cd127dd6903",
                 "exec": [
+                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
-                  "//console.log(responseBody);",
                   "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
                   "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
@@ -696,8 +696,8 @@
               "script": {
                 "id": "c62d4598-9ec5-49a3-9bba-7cd127dd6903",
                 "exec": [
+                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
-                  "//console.log(responseBody);",
                   "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
                   "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
