@@ -152,7 +152,7 @@
                 "type": "text"
               }
             ],
-            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/dps/test"
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/submission/test"
           },
           "response": [],
           "event": [
@@ -775,7 +775,7 @@
                 "type": "text"
               }
             ],
-            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/dps/test",
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/submission/test",
             "body": {
               "mode": "application/json",
               "dataMode": "raw",
@@ -813,7 +813,7 @@
                 "type": "text"
               }
             ],
-            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/dps",
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/submission",
             "body": {
               "mode": "application/json",
               "dataMode": "raw",
