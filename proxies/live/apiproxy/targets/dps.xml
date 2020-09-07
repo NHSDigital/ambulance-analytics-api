@@ -51,6 +51,6 @@
     <LoadBalancer>
       <Server name="dps-submission-api"/>
     </LoadBalancer>
-    <Path>/ingest/dps</Path>
+    <Path>/v1/submission</Path>
   </HTTPTargetConnection>
 </TargetEndpoint>
