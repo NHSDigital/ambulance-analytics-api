@@ -817,7 +817,7 @@
             "body": {
               "mode": "application/json",
               "dataMode": "raw",
-              "rawModeData": "{\"bad-content"
+              "rawModeData": "{}"
             }
           },
           "response": [],
