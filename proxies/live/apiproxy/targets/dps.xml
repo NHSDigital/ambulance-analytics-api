@@ -1,12 +1,4 @@
 <TargetEndpoint name="dps">
-  <FaultRules>
-    <FaultRule name="MissingXDataSetHeader">
-      <Step>
-        <Name>AssignMessage.MissingSubmissionPath</Name>
-      </Step>
-      <Condition>(flow.AccessTokenVerification.error.code = 200)</Condition>
-    </FaultRule>
-  </FaultRules>
   <PreFlow>
     <Request>
       <!-- <Step>
@@ -32,6 +24,18 @@
     <Response>
       <Step>
         <Name>AssignMessage.AddCors</Name>
+      </Step>
+      <Step>
+        <Name>RaiseFault.DPSAPIKeyError</Name>
+        <Condition>(response.status.code = 401)</Condition>
+      </Step>
+      <Step>
+        <Name>ExtractVariables.ParseErrorMessage</Name>
+        <Condition>(response.status.code = 400)</Condition>
+      </Step>
+      <Step>
+        <Name>RaiseFault.DPSMissingSubmissionPath</Name>
+        <Condition>(response.status.code = 400) and (error_message = "Missing x-dataset-id header")</Condition>
       </Step>
     </Response>
   </PreFlow>

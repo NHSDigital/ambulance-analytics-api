@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="ExtractVariables.ParseErrorMessage">
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <JSONPayload>
+        <Variable name="error_message">
+            <JSONPath>$.error</JSONPath>
+        </Variable>
+    </JSONPayload>
+    <Source clearPayload="false">error</Source>
+</ExtractVariables>
