@@ -1,4 +1,12 @@
 <TargetEndpoint name="dps">
+  <FaultRules>
+    <FaultRule name="MissingXDataSetHeader">
+      <Step>
+        <Name>AssignMessage.MissingSubmissionPath</Name>
+      </Step>
+      <Condition>(flow.AccessTokenVerification.error.code = 200)</Condition>
+    </FaultRule>
+  </FaultRules>
   <PreFlow>
     <Request>
       <!-- <Step>
