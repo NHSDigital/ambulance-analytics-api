@@ -832,7 +832,7 @@
                   "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
                   "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
-                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('Missing x-dataset-id header'); });"
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('/submission sub-path is required'); });"
                 ],
                 "type": "text/javascript"
               }
