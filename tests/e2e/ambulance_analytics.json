@@ -152,23 +152,25 @@
                 "type": "text"
               }
             ],
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/dps",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "dps"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/dps/test"
           },
-          "response": []
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c62d4598-9ec5-49a3-9bba-7cd127dd6903",
+                "exec": [
+                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+                  "var data = JSON.parse(responseBody);",
+                  "pm.test(\"response is Successful\", function(){ pm.response.to.have.status(200); });",
+                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+                  "pm.test(\"response JSON body has id\", function(){ pm.expect(data).to.have.property('id'); });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
         }
       ]
     },
@@ -756,6 +758,86 @@
             }
           },
           "response": []
+        }
+      ]
+    },
+    {
+      "name": "DPS Response",
+      "item": [
+        {
+          "name": "Request payload is invalid JSON document",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{ACCESS_TOKEN}}",
+                "type": "text"
+              }
+            ],
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/dps/test",
+            "body": {
+              "mode": "application/json",
+              "dataMode": "raw",
+              "rawModeData": "{\"bad-content"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c62d4598-9ec5-49a3-9bba-7cd127dd6903",
+                "exec": [
+                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+                  "var data = JSON.parse(responseBody);",
+                  "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
+                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+                  "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('The request payload was an invalid JSON document.'); });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+
+          ]
+        },
+        {
+          "name": "Missing x-dataset-id header",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{ACCESS_TOKEN}}",
+                "type": "text"
+              }
+            ],
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/dps",
+            "body": {
+              "mode": "application/json",
+              "dataMode": "raw",
+              "rawModeData": "{\"bad-content"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c62d4598-9ec5-49a3-9bba-7cd127dd6903",
+                "exec": [
+                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+                  "var data = JSON.parse(responseBody);",
+                  "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
+                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+                  "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('Missing x-dataset-id header'); });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
         }
       ]
     }
