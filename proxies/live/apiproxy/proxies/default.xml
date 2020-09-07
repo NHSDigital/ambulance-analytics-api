@@ -1,4 +1,12 @@
 <ProxyEndpoint name="default">
+  <FaultRules>
+    <FaultRule name="UnsupportedJWTAlgorithm">
+      <Step>
+        <Name>AssignMessage.UnsupportedJWTAlgorithm</Name>
+      </Step>
+      <Condition>(fault.name = "AlgorithmMismatch")</Condition>
+    </FaultRule>
+  </FaultRules>
   <PreFlow/>
   <Flows>
     <Flow name="AddPayloadToPing">
