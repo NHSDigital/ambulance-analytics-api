@@ -64,7 +64,7 @@
                   "",
                   "var data = {",
                   "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
-                  "    \"sub\": postman.getEnvironmentVariable(\"client_id\")",
+                  "    \"sub\": postman.getEnvironmentVariable(\"client_id\"),",
                   "    \"exp\": Math.floor(Date.now() / 1000) - 300",
                   "};",
                   "",
