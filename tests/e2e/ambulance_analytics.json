@@ -581,7 +581,7 @@
                   "",
                   "var data = {",
                   "    \"iss\": \"apples\",",
-                  "    \"sub\": \"oranges\"",
+                  "    \"sub\": \"oranges\",",
                   "    \"exp\": Math.floor(Date.now() / 1000) + 300",
                   "};",
                   "",
