@@ -1,5 +1,19 @@
 <ProxyEndpoint name="default">
-    <PreFlow/>
+  <FaultRules>
+    <FaultRule name="UnsupportedJWTAlgorithm">
+      <Step>
+        <Name>AssignMessage.UnsupportedJWTAlgorithm</Name>
+      </Step>
+      <Condition>(fault.name = "AlgorithmMismatch")</Condition>
+    </FaultRule>
+    <FaultRule name="ExpiredJWT">
+      <Step>
+        <Name>AssignMessage.ExpiredJWT</Name>
+      </Step>
+      <Condition>(fault.name = "TokenExpired")</Condition>
+    </FaultRule>
+  </FaultRules>
+  <PreFlow/>
   <Flows>
     <Flow name="AddPayloadToPing">
       <Description/>
@@ -9,7 +23,8 @@
           <Name>AssignMessage.AddPayloadToPing</Name>
         </Step>
       </Response>
-      <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
+      <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))
+      </Condition>
     </Flow>
     <Flow name="OptionsPreFlight">
       <Request/>
@@ -18,7 +33,8 @@
           <Name>AssignMessage.AddCors</Name>
         </Step>
       </Response>
-      <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null</Condition>
+      <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null
+      </Condition>
     </Flow>
     <Flow name="Flow.AuthApiKey">
       <Request>
@@ -30,34 +46,58 @@
       <Condition>((proxy.pathsuffix MatchesPath "/_status")) and (request.verb = "GET")</Condition>
     </Flow>
     <Flow name="Flow-GenerateAccessToken">
-      <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "GET")</Condition>
+      <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
       <Request>
+        <Step>
+          <Name>RaiseFault.MissingGrantType</Name>
+          <Condition>request.formparam.grant_type != "client_credentials"</Condition>
+        </Step>
+        <Step>
+          <Name>RaiseFault.MissingClientID</Name>
+          <Condition>request.formparam.client_id = null or request.formparam.client_id = ""</Condition>
+        </Step>
+        <Step>
+          <Name>RaiseFault.MissingClientAssertionType</Name>
+          <Condition>request.formparam.client_assertion_type != "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"</Condition>
+        </Step>
         <Step>
           <Name>DecodeJWT</Name>
         </Step>
         <Step>
+<<<<<<< HEAD
           <Name>RaiseFault.InvalidJWT</Name>
           <Condition>jwt.DecodeJWT.decoded.header.kid = "" or jwt.DecodeJWT.decoded.header.kid = null</Condition>
         </Step>
         <Step>
           <Name>LookupCache.JWKS</Name>
+=======
+          <Name>RaiseFault.InvalidExpiry</Name>
+          <Condition>jwt.DecodeJWT.decoded.claim.exp = null</Condition>
+        </Step>
+        <Step>        
+          <Name>RaiseFault.InvalidKid</Name>
+          <Condition>jwt.DecodeJWT.decoded.header.kid = "" or jwt.DecodeJWT.decoded.header.kid = null</Condition>
         </Step>
         <Step>
-        <!-- This is done to get app custom attributes -->
+          <Name>RaiseFault.MissingIssOrSub</Name>
+          <Condition>(jwt.DecodeJWT.decoded.claim.iss = null or jwt.DecodeJWT.decoded.claim.iss = "") or (jwt.DecodeJWT.decoded.claim.sub = null or jwt.DecodeJWT.decoded.claim.sub = "")</Condition>
+        </Step>
+        <Step>
+          <Name>RaiseFault.IssOrSubMustBeEqual</Name>
+          <Condition>jwt.DecodeJWT.decoded.claim.iss != jwt.DecodeJWT.decoded.claim.sub</Condition>
+>>>>>>> master
+        </Step>
+        <Step>
           <Name>VerifyAPIKey.FormParam</Name>
-          <Condition>jwks = null</Condition>
+        </Step>
+        <Step>
+          <Name>AssignMessage.AddIdAndSecret</Name>
         </Step>
         <Step>
           <Name>ServiceCallout.GetJWKS</Name>
-          <Condition>jwks = null</Condition>
-        </Step>
-        <Step>
-          <Name>PopulateCache.JWKS</Name>
-          <Condition>jwks = null</Condition>
         </Step>
         <Step>
           <Name>ExtractVariables.ParseJWKS</Name>
-          <Condition>jwks = null</Condition>
         </Step>
         <Step>
           <Name>VerifyJWT.JWKS</Name>
@@ -74,10 +114,12 @@
     <VirtualHost>secure</VirtualHost>
   </HTTPProxyConnection>
   <RouteRule name="NoRoute">
-    <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null</Condition>
+    <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null
+    </Condition>
   </RouteRule>
   <RouteRule name="NoRoutePing">
-    <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
+    <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))
+    </Condition>
   </RouteRule>
   <RouteRule name="dps">
     <TargetEndpoint>dps</TargetEndpoint>

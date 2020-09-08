@@ -1,15 +1,44 @@
-  
 {
-	"id": "f6516e5f-26bb-45d5-a4a5-ad6e17416db5",
-	"name": "internal-dev",
+	"id": "6d45aef4-8664-443f-9211-188c962c0810",
+	"name": "local",
 	"values": [
-	  {
-		"key": "base_url",
-		"value": "base_url",
-		"enabled": true
-	  }
+		{
+			"key": "RS256_PRIVATE_KEY",
+			"value": "-----BEGIN RSA PRIVATE KEY-----\n-----END RSA PRIVATE KEY-----",
+			"enabled": true
+		},
+		{
+			"key": "RS512_PRIVATE_KEY",
+			"value": "-----BEGIN RSA PRIVATE KEY-----\n-----END RSA PRIVATE KEY-----",
+			"enabled": true
+		},
+		{
+			"key": "ACCESS_TOKEN",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "jwt_token",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "client_id",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "base_host",
+			"value": "internal-dev",
+			"enabled": true
+		},
+		{
+			"key": "root_path",
+			"value": "ambulance-analytics",
+			"enabled": true
+		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2020-03-06T15:58:24.883Z",
-	"_postman_exported_using": "Postman/7.19.1"
-  }
+	"_postman_exported_at": "2020-09-01T15:56:02.873Z",
+	"_postman_exported_using": "Postman/7.31.1"
+}
