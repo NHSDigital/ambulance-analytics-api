@@ -6,6 +6,12 @@
       </Step>
       <Condition>(fault.name = "AlgorithmMismatch")</Condition>
     </FaultRule>
+    <FaultRule name="ExpiredJWT">
+      <Step>
+        <Name>AssignMessage.ExpiredJWT</Name>
+      </Step>
+      <Condition>(fault.name = "TokenExpired")</Condition>
+    </FaultRule>
   </FaultRules>
   <PreFlow/>
   <Flows>
