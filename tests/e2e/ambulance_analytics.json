@@ -856,8 +856,205 @@
             }
           },
           "response": []
-        }
-      ]
+        },
+        {
+          "name": "Missing KID",
+			    "event": [
+				  {
+					"listen": "prerequest",
+					"script": {
+						"id": "d3caef21-8892-4682-9a0a-632761201fb1",
+						"exec": [
+              "var navigator = {}; //fake a navigator object for the lib",
+              "var window = {}; //fake a window object for the lib",
+              "eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
+              "",
+              "var header = {",
+              "    \"typ\": \"JWT\",",
+              "    \"alg\": \"RS512\"",
+              "}",
+              "",
+              "var data = {",
+              "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
+              "    \"sub\": postman.getEnvironmentVariable(\"client_id\"),",
+              "    \"exp\": Math.floor(Date.now() / 1000) + 300",                  
+              "};",
+              "",
+              "var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\");",
+              "var sHeader = JSON.stringify(header);",
+              "var sPayload = JSON.stringify(data);",
+              "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
+              "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
+            ],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7d5a4c2a-7b23-4f01-bf81-f7b9b3db6fba",
+						"exec": [
+							"if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+                "var data = JSON.parse(responseBody);",
+                "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
+                "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+                "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+                "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('kid claim is required and cannot be empty validate JWT'); });",
+                "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+              "key": "client_id",
+              "value": "{{client_id}}",
+              "type": "text"
+            },
+            {
+              "key": "client_assertion_type",
+              "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+              "type": "text"
+            },
+            {
+              "key": "client_assertion",
+              "value": "{{jwt_token}}",
+              "type": "text"
+            },
+            {
+              "key": "grant_type",
+              "value": "client_credentials",
+              "type": "text"
+            }
+					]
+				},
+				"url": {
+					"raw": "https://internal-dev.api.service.nhs.uk/ambulance-analytics/token",
+					"protocol": "https",
+					"host": [
+						"internal-dev",
+						"api",
+						"service",
+						"nhs",
+						"uk"
+					],
+					"path": [
+						"ambulance-analytics",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "KID is Empty",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a1088086-216e-4ed4-a338-de7069e785c1",
+						"exec": [
+							"var navigator = {}; //fake a navigator object for the lib",
+							"var window = {}; //fake a window object for the lib",
+							"eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
+							"",
+							"var header = {",
+							"    \"typ\": \"JWT\",",
+							"    \"alg\": \"RS256\",",
+							"    \"kid\": \"\"",
+							"}",
+							"",
+							"var data = {",
+                  "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
+                  "    \"sub\": postman.getEnvironmentVariable(\"client_id\"),",
+                  "    \"exp\": Math.floor(Date.now() / 1000) + 300",                  
+                  "};",
+							"",
+							"var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\");",
+							"var sHeader = JSON.stringify(header);",
+							"var sPayload = JSON.stringify(data);",
+							"var sJWT = KJUR.jws.JWS.sign(\"RS256\", sHeader, sPayload, secret);",
+							"postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1d43c194-756c-4bc0-8585-cd6de2ee3417",
+						"exec": [
+							"if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+                "var data = JSON.parse(responseBody);",
+                "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
+                "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+                "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+                "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('kid claim is required and cannot be empty validate JWT'); });",
+                "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+              "key": "client_id",
+              "value": "{{client_id}}",
+              "type": "text"
+            },
+            {
+              "key": "client_assertion_type",
+              "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+              "type": "text"
+            },
+            {
+              "key": "client_assertion",
+              "value": "{{jwt_token}}",
+              "type": "text"
+            },
+            {
+              "key": "grant_type",
+              "value": "client_credentials",
+              "type": "text"
+            }
+					]
+				},
+				"url": {
+					"raw": "https://internal-dev.api.service.nhs.uk/ambulance-analytics/token",
+					"protocol": "https",
+					"host": [
+						"internal-dev",
+						"api",
+						"service",
+						"nhs",
+						"uk"
+					],
+					"path": [
+						"ambulance-analytics",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+    ]
     },
     {
       "name": "Authentication",
