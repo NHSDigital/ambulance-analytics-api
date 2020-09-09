@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ExtractVariables name="ExtractVariables.DatasetId">
-  <DisplayName>Extract DatasetId</DisplayName>
-  <URIPath>
-    <Pattern ignoreCase="true">**/{datasetId}</Pattern>
-  </URIPath>
-  <VariablePrefix>dps</VariablePrefix>
-  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
-</ExtractVariables>

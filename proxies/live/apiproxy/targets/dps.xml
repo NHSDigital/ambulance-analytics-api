@@ -6,9 +6,6 @@
         <Condition>request.verb != "POST"</Condition>
       </Step> -->
       <Step>
-        <Name>ExtractVariables.DatasetId</Name>
-      </Step>
-      <Step>
         <Name>AssignMessage.AddDatasetIdHeader</Name>
       </Step>
       <Step>
