@@ -938,19 +938,19 @@
 					]
 				},
 				"url": {
-					"raw": "https://internal-dev.api.service.nhs.uk/ambulance-analytics/token",
+					"raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
 					"protocol": "https",
 					"host": [
-						"internal-dev",
-						"api",
-						"service",
-						"nhs",
-						"uk"
-					],
-					"path": [
-						"ambulance-analytics",
-						"token"
-					]
+            "{{base_url}}",
+            "api",
+            "service",
+            "nhs",
+            "uk"
+          ],
+          "path": [
+            "{{root_path}}",
+            "token"
+          ]
 				}
 			},
 			"response": []
@@ -1037,19 +1037,19 @@
 					]
 				},
 				"url": {
-					"raw": "https://internal-dev.api.service.nhs.uk/ambulance-analytics/token",
+					"raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
 					"protocol": "https",
 					"host": [
-						"internal-dev",
-						"api",
-						"service",
-						"nhs",
-						"uk"
-					],
-					"path": [
-						"ambulance-analytics",
-						"token"
-					]
+            "{{base_url}}",
+            "api",
+            "service",
+            "nhs",
+            "uk"
+          ],
+          "path": [
+            "{{root_path}}",
+            "token"
+          ]
 				}
 			},
 			"response": []
