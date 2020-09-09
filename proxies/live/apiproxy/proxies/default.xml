@@ -6,6 +6,12 @@
       </Step>
       <Condition>(fault.name = "AlgorithmMismatch")</Condition>
     </FaultRule>
+    <FaultRule name="ExpiredJWT">
+      <Step>
+        <Name>AssignMessage.ExpiredJWT</Name>
+      </Step>
+      <Condition>(fault.name = "TokenExpired")</Condition>
+    </FaultRule>
   </FaultRules>
   <PreFlow/>
   <Flows>
@@ -58,7 +64,11 @@
           <Name>DecodeJWT</Name>
         </Step>
         <Step>
-          <Name>RaiseFault.InvalidJWT</Name>
+          <Name>RaiseFault.InvalidExpiry</Name>
+          <Condition>jwt.DecodeJWT.decoded.claim.exp = null</Condition>
+        </Step>
+        <Step>        
+          <Name>RaiseFault.InvalidKid</Name>
           <Condition>jwt.DecodeJWT.decoded.header.kid = "" or jwt.DecodeJWT.decoded.header.kid = null</Condition>
         </Step>
         <Step>
