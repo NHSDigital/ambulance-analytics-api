@@ -1,7 +1,7 @@
 <AssignMessage continueOnError="false" enabled="true" name="AssignMessage.AddDatasetIdHeader">
   <Add>
     <Headers>
-      <Header name="x-dataset-id">{dps.datasetId}</Header>
+      <Header name="x-dataset-id">ambulance</Header>
     </Headers>
   </Add>
   <AssignTo createNew="false" transport="http" type="request"/>
