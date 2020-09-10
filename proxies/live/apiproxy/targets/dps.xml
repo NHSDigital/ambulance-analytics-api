@@ -26,10 +26,6 @@
         <Name>ExtractVariables.ParseErrorMessage</Name>
         <Condition>(response.status.code = 400)</Condition>
       </Step>
-      <Step>
-        <Name>RaiseFault.DPSMissingSubmissionPath</Name>
-        <Condition>(response.status.code = 400) and (error_message = "Missing x-dataset-id header")</Condition>
-      </Step>
     </Response>
   </PreFlow>
   <Flows>
