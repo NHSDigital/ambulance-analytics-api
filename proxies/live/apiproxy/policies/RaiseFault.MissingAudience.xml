@@ -2,7 +2,7 @@
 <RaiseFault async="false" continueOnError="false" enabled="true" name="RaiseFault.MissingAudience">
   <FaultResponse>
     <Set>
-      <Payload contentType="application/json">{"error": "invalid or missing aud claim"}</Payload>
+      <Payload contentType="application/json">{"error": "aud claim is required"}</Payload>
       <StatusCode>400</StatusCode>
       <ReasonPhrase>Bad Request</ReasonPhrase>
     </Set>

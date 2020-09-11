@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "88665f4d-1696-4cfb-8eb3-65600b1ee526",
+    "_postman_id": "b8f88587-cd76-41e6-b31b-dd4a549709ea",
     "name": "Ambulance Analytics",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -14,7 +14,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "9d86b6e9-c6cd-4355-8825-be846dac9442",
+                "id": "3503c30a-f9dc-484f-a1dd-9bf0e58bdb65",
                 "exec": [
                   "postman.setGlobalVariable(\"jsrsasign-js\", responseBody);",
                   "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; }",
@@ -61,7 +61,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "9fb59e50-2ec9-48df-961a-c454543a2768",
+                "id": "b29818d8-2951-4f34-8160-9f7578f562f7",
                 "exec": [
                   "var navigator = {}; //fake a navigator object for the lib",
                   "var window = {}; //fake a window object for the lib",
@@ -93,7 +93,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "b28734a5-0cd5-43bc-befa-ffc59484cf5a",
+                "id": "d3c2bf84-0c59-4dc5-a4ed-f4fbb043b6e8",
                 "exec": [
                   "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
@@ -158,7 +158,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "79311795-070e-4fc3-accd-77ae502ed8e1",
+                "id": "f628bc95-009c-4b83-972b-9bf6a64fd7cb",
                 "exec": [
                   "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
@@ -209,7 +209,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "98e88dbb-0116-4bb7-a1d6-20fd335d73a6",
+                "id": "e4d88f77-75ed-430b-9297-266d0f3627c4",
                 "exec": [
                   "var navigator = {}; //fake a navigator object for the lib",
                   "var window = {}; //fake a window object for the lib",
@@ -239,7 +239,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "2a52f49f-9129-4942-a65c-ae9f574b5fc9",
+                "id": "b2deb961-8e52-4ba7-9b10-3ef8d308447a",
                 "exec": [
                   "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
@@ -300,7 +300,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "8be3aca7-a3dc-46c1-bdc9-cb6bc687b1e0",
+                "id": "821579e2-b2da-4eb1-993e-4db3851e152f",
                 "exec": [
                   "var navigator = {}; //fake a navigator object for the lib",
                   "var window = {}; //fake a window object for the lib",
@@ -330,7 +330,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "43bdb363-ebaf-47f1-9680-708fc4b7958c",
+                "id": "30d8e041-c136-4ba3-98a8-d9bd28de3c0d",
                 "exec": [
                   "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
@@ -391,7 +391,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "707717d2-edb0-4153-9d7d-c7f9077c8a08",
+                "id": "d8b8e026-fb56-4dea-8833-ffbf072149ab",
                 "exec": [
                   "var navigator = {}; //fake a navigator object for the lib",
                   "var window = {}; //fake a window object for the lib",
@@ -421,7 +421,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "1a4de114-6f97-4f50-8079-6860413196af",
+                "id": "89c54acf-809e-4c3a-8f8f-e401fd647496",
                 "exec": [
                   "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
@@ -488,7 +488,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "f1749c06-9727-4b24-a0f2-4a9c922687cb",
+                "id": "87ba2b7e-4b74-4d30-b755-92c730ceef55",
                 "exec": [
                   "var navigator = {}; //fake a navigator object for the lib",
                   "var window = {}; //fake a window object for the lib",
@@ -518,14 +518,14 @@
             {
               "listen": "test",
               "script": {
-                "id": "b957c73e-2572-488d-9e8a-60df923d72ac",
+                "id": "90567ef5-ef54-486f-82ff-be4f6a55cc6b",
                 "exec": [
                   "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
                   "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
                   "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
-                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('invalid or missing aud claim'); });",
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('aud claim is required'); });",
                   "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
                 ],
                 "type": "text/javascript"
@@ -584,7 +584,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "57ce4558-eede-40d4-8d00-a8cd177c40eb",
+                "id": "aad996db-b007-4d47-8a06-d6d7922571f4",
                 "exec": [
                   "var navigator = {}; //fake a navigator object for the lib",
                   "var window = {}; //fake a window object for the lib",
@@ -615,15 +615,12 @@
             {
               "listen": "test",
               "script": {
-                "id": "d2474699-16a1-434f-98dd-9d5db1512218",
+                "id": "c33310bd-0cdd-4629-84f2-7e8473b4cce5",
                 "exec": [
                   "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
-                  "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
-                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
-                  "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
-                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('invalid or missing aud claim'); });",
-                  "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
+                  "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(401); });",
+                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
                 ],
                 "type": "text/javascript"
               }
@@ -681,7 +678,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "d460d32a-d7f1-4c6f-845f-ebbcb144c8ff",
+                "id": "b6548aee-8b27-47f7-bfa3-00278a729cc4",
                 "exec": [
                   "var navigator = {}; //fake a navigator object for the lib",
                   "var window = {}; //fake a window object for the lib",
@@ -710,7 +707,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "501bf69b-84f0-48e9-81a8-7c30f4e52bf6",
+                "id": "bfcbfe7c-9aa5-4bc1-a5d8-272280d249a5",
                 "exec": [
                   "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
@@ -776,7 +773,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "c08bce7f-5e63-4a27-8a0f-7366674f8007",
+                "id": "8d217032-a849-4b7f-a895-51c36f95017a",
                 "exec": [
                   "var navigator = {}; //fake a navigator object for the lib",
                   "var window = {}; //fake a window object for the lib",
@@ -806,7 +803,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "74422593-e37c-4af0-a145-b69e07bc99ca",
+                "id": "70420462-0b23-403b-9c7d-265c49a440fe",
                 "exec": [
                   "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
@@ -872,7 +869,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "bbad2d86-aae5-423b-8b56-26e509df57fb",
+                "id": "0e13c73f-aded-40d3-ac04-75bf34e23ad0",
                 "exec": [
                   "var navigator = {}; //fake a navigator object for the lib",
                   "var window = {}; //fake a window object for the lib",
@@ -901,7 +898,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "908ab2a9-4df5-460f-9ed0-2fb9ad611d6b",
+                "id": "83db6d43-e07a-4b40-a3d9-62ef3a5e5143",
                 "exec": [
                   "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
@@ -973,7 +970,7 @@
             {
               "listen": "prerequest",
               "script": {
-                "id": "24542569-eb2d-4ef2-b561-b6c541b23af9",
+                "id": "098ae70d-0f2b-449d-b7b4-2c4c87d1b72c",
                 "exec": [
                   "var navigator = {}; //fake a navigator object for the lib",
                   "var window = {}; //fake a window object for the lib",
@@ -985,10 +982,12 @@
                   "    \"kid\": \"test-rs256\"",
                   "}",
                   "",
+                  "var url = pm.variables.replaceIn(pm.request.url.getHost()+pm.request.url.getPath())",
                   "var data = {",
                   "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
                   "    \"sub\": postman.getEnvironmentVariable(\"client_id\"),",
-                  "    \"exp\": Math.floor(Date.now() / 1000) + 300",
+                  "    \"exp\": Math.floor(Date.now() / 1000) + 300,",
+                  "    \"aud\": `https://${url}`",
                   "};",
                   "",
                   "var secret = postman.getEnvironmentVariable(\"RS256_PRIVATE_KEY\");",
@@ -1003,7 +1002,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "f19e15d7-9762-40dd-923e-47eff6809d34",
+                "id": "acae7a36-6a6a-4bc9-bfe3-634a565e87bd",
                 "exec": [
                   "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
