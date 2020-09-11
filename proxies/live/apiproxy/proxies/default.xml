@@ -67,7 +67,7 @@
           <Name>RaiseFault.InvalidExpiry</Name>
           <Condition>jwt.DecodeJWT.decoded.claim.exp = null</Condition>
         </Step>
-        <Step>        
+        <Step>
           <Name>RaiseFault.InvalidKid</Name>
           <Condition>jwt.DecodeJWT.decoded.header.kid = "" or jwt.DecodeJWT.decoded.header.kid = null</Condition>
         </Step>
@@ -78,6 +78,10 @@
         <Step>
           <Name>RaiseFault.IssOrSubMustBeEqual</Name>
           <Condition>jwt.DecodeJWT.decoded.claim.iss != jwt.DecodeJWT.decoded.claim.sub</Condition>
+        </Step>
+        <Step>
+          <Name>RaiseFault.MissingAudience</Name>
+          <Condition>jwt.DecodeJWT.decoded.claim.aud = null or jwt.DecodeJWT.decoded.claim.aud = ""</Condition>
         </Step>
         <Step>
           <Name>VerifyAPIKey.FormParam</Name>

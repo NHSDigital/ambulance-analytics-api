@@ -6,4 +6,5 @@
     <PublicKey>
         <JWKS ref="jwks"/>
     </PublicKey>
+  <Audience ref="proxy.url"/>
 </VerifyJWT>
