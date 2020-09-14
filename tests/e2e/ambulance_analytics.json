@@ -1761,10 +1761,158 @@
             }
           },
           "response": []
+        }                         
+      ],
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Request Validation",
+      "item": [
+        {
+          "name": "Incorrect Request Method Token Endpoint",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "fdb31d48-1952-45e1-9300-4a77111d0b53",
+                "exec": [
+                  "var navigator = {}; //fake a navigator object for the lib",
+                  "var window = {}; //fake a window object for the lib",
+                  "eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
+                  "",
+                  "var header = {",
+                  "    \"typ\": \"JWT\",",
+                  "    \"alg\": \"RS512\",",
+                  "    \"kid\": \"test-rs512\"",
+                  "}",
+                  "",
+                  "postman.setEnvironmentVariable(\"JTI_UNIQUE_ID\", \"\"+Math.floor(100000 + Math.random() * 900000));",
+                  "",
+                  "var data = {",
+                  "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
+                  "    \"sub\": postman.getEnvironmentVariable(\"client_id\"),",
+                  "    \"exp\": Math.floor(Date.now() / 1000) + 300,",
+                  "    \"aud\": pm.variables.replaceIn(pm.request.url.getRaw()),",
+                  "    \"jti\": postman.getEnvironmentVariable(\"JTI_UNIQUE_ID\")",
+                  "};",
+                  "",
+                  "var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\");",
+                  "var sHeader = JSON.stringify(header);",
+                  "var sPayload = JSON.stringify(data);",
+                  "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
+                  "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "375c417e-20bd-40b3-a4e3-c14f2e8de884",
+                "exec": [
+                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+                  "var data = JSON.parse(responseBody);",
+                  "pm.test(\"response is Method Not Allowed\", function(){ pm.response.to.have.status(405); });",
+                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "client_id",
+                  "value": "{{client_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_assertion_type",
+                  "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+                  "type": "text"
+                },
+                {
+                  "key": "client_assertion",
+                  "value": "{{jwt_token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
+              "protocol": "https",
+              "host": [
+                "{{base_url}}",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "{{root_path}}",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Incorrect Request Method DPS Endpoint",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "37a70b78-83c0-48a3-baf9-8016ebad09af",
+                "exec": [
+                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+                  "var data = JSON.parse(responseBody);",
+                  "pm.test(\"response is Method Not Allowed\", function(){ pm.response.to.have.status(405); });",
+                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{ACCESS_TOKEN}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/submission",
+              "protocol": "https",
+              "host": [
+                "{{base_url}}",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "{{root_path}}",
+                "submission"
+              ]
+            }
+          },
+          "response": []
         }
       ],
       "protocolProfileBehavior": {}
-    }
-  ],
-  "protocolProfileBehavior": {}
+    }      
+  ]
 }
+
+

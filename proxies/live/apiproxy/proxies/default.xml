@@ -55,6 +55,10 @@
       <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
       <Request>
         <Step>
+          <Name>RaiseFault.MethodNotAllowed</Name>
+          <Condition>request.verb != "POST"</Condition>
+        </Step>
+        <Step>
           <Name>RaiseFault.MissingGrantType</Name>
           <Condition>request.formparam.grant_type != "client_credentials"</Condition>
         </Step>
