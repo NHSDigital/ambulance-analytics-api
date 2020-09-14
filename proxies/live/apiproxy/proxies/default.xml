@@ -80,6 +80,10 @@
           <Condition>jwt.DecodeJWT.decoded.claim.iss != jwt.DecodeJWT.decoded.claim.sub</Condition>
         </Step>
         <Step>
+          <Name>RaiseFault.MissingAudience</Name>
+          <Condition>jwt.DecodeJWT.decoded.claim.aud = null or jwt.DecodeJWT.decoded.claim.aud = ""</Condition>
+        </Step>
+        <Step>
           <Name>VerifyAPIKey.FormParam</Name>
         </Step>
         <Step>

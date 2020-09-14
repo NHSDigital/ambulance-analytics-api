@@ -93,17 +93,11 @@
 					}
 				],
 				"url": {
-					"raw": "https://int.api.service.nhs.uk/ambulance-analytics/_status",
-					"protocol": "https",
+					"raw": "{{base_url}}/_status",
 					"host": [
-						"int",
-						"api",
-						"service",
-						"nhs",
-						"uk"
+						"{{base_url}}"
 					],
 					"path": [
-						"ambulance-analytics",
 						"_status"
 					]
 				}
