@@ -30,7 +30,7 @@
   </PreFlow>
   <Flows>
     <Flow name="AccessTokenVerification">
-    <Condition>(proxy.pathsuffix MatchesPath "/submission") and (request.verb = "POST")</Condition>
+    <Condition>(proxy.pathsuffix MatchesPath "/submission")</Condition>
       <Request>
         <Step>
           <Name>RaiseFault.MethodNotAllowed</Name>

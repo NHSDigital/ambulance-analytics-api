@@ -52,7 +52,7 @@
       <Condition>((proxy.pathsuffix MatchesPath "/_status")) and (request.verb = "GET")</Condition>
     </Flow>
     <Flow name="Flow-GenerateAccessToken">
-      <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
+      <Condition>(proxy.pathsuffix MatchesPath "/token")</Condition>
       <Request>
         <Step>
           <Name>RaiseFault.MethodNotAllowed</Name>
