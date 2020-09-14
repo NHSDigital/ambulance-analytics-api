@@ -12,6 +12,12 @@
       </Step>
       <Condition>(fault.name = "TokenExpired")</Condition>
     </FaultRule>
+    <FaultRule name="FailedToDecode">
+      <Step>
+        <Name>AssignMessage.FailedToDecode</Name>
+      </Step>
+      <Condition>(fault.name = "FailedToDecode")</Condition>
+    </FaultRule>
   </FaultRules>
   <PreFlow/>
   <Flows>
@@ -62,6 +68,10 @@
         </Step>
         <Step>
           <Name>DecodeJWT</Name>
+        </Step>
+        <Step>
+          <Name>RaiseFault.WarningDecodingJWT</Name>
+          <Condition>jwt.DecodeJWT.warning != null</Condition>
         </Step>
         <Step>
           <Name>RaiseFault.ErrorDecodingJWT</Name>
