@@ -1200,211 +1200,207 @@
           "response": []
         },
         {
+          "name": "JTI Unique Identifier is unique",
           "item": [
             {
-              "name": "Unique identifier is unique",
-              "item": [
+              "name": "Successful JTI Unique Identifier",
+              "event": [
                 {
-                  "name": "Successful Unique Identifer",
-                  "event": [
-                    {
-                      "listen": "prerequest",
-                      "script": {
-                        "id": "a1088086-216e-4ed4-a338-de7069e785c1",
-                        "exec": [
-                          "var navigator = {}; //fake a navigator object for the lib",
-                          "var window = {}; //fake a window object for the lib",
-                          "eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
-                          "",
-                          "var header = {",
-                          "    \"typ\": \"JWT\",",
-                          "    \"alg\": \"RS512\",",
-                          "    \"kid\": \"test-rs512\"",
-                          "}",
-                          "",
-                          "var data = {",
-                          "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
-                          "    \"sub\": postman.getEnvironmentVariable(\"client_id\"),",
-                          "    \"exp\": Math.floor(Date.now() / 1000) + 300,",
-                          "    \"jti\": Math.floor(100000 + Math.random() * 900000)",
-                          "};",
-                          "",
-                          "var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\");",
-                          "var sHeader = JSON.stringify(header);",
-                          "var sPayload = JSON.stringify(data);",
-                          "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
-                          "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
-                        ],
-                        "type": "text/javascript"
-                      }
-                    },
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "375c417e-20bd-40b3-a4e3-c14f2e8de884",
-                        "exec": [
-                          "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
-                          "var data = JSON.parse(responseBody);",
-                          "pm.test(\"response is Ok\", function(){ pm.response.to.have.status(200); });",
-                          "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
-                          "pm.test(\"response JSON has access_token\", function(){ pm.expect(data).to.have.property('access_token'); });",
-                          "var sJWT = JSON.parse(postman.getEnvironmentVariable(\"jwt_token\"));",
-                          "postman.setEnvironmentVariable(\"JTI_UNIQUE_ID\", sJWT.data.jti);"
-                        ],
-                        "type": "text/javascript"
-                      }
-                    }
-                  ],
-                  "protocolProfileBehavior": {
-                    "disableBodyPruning": true
-                  },
-                  "request": {
-                    "method": "POST",
-                    "header": [],
-                    "body": {
-                      "mode": "urlencoded",
-                      "urlencoded": [
-                        {
-                          "key": "client_id",
-                          "value": "{{client_id}}",
-                          "type": "text"
-                        },
-                        {
-                          "key": "client_assertion_type",
-                          "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-                          "type": "text"
-                        },
-                        {
-                          "key": "client_assertion",
-                          "value": "{{jwt_token}}",
-                          "type": "text"
-                        },
-                        {
-                          "key": "grant_type",
-                          "value": "client_credentials",
-                          "type": "text"
-                        }
-                      ]
-                    },
-                    "url": {
-                      "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-                      "protocol": "https",
-                      "host": [
-                        "{{base_url}}",
-                        "api",
-                        "service",
-                        "nhs",
-                        "uk"
-                      ],
-                      "path": [
-                        "{{root_path}}",
-                        "token"
-                      ]
-                    }
-                  },
-                  "response": []
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "a1088086-216e-4ed4-a338-de7069e785c1",
+                    "exec": [
+                      "var navigator = {}; //fake a navigator object for the lib",
+                      "var window = {}; //fake a window object for the lib",
+                      "eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
+                      "",
+                      "var header = {",
+                      "    \"typ\": \"JWT\",",
+                      "    \"alg\": \"RS512\",",
+                      "    \"kid\": \"test-rs512\"",
+                      "}",
+                      "",
+                      "var data = {",
+                      "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
+                      "    \"sub\": postman.getEnvironmentVariable(\"client_id\"),",
+                      "    \"exp\": Math.floor(Date.now() / 1000) + 300,",
+                      "    \"jti\": Math.floor(100000 + Math.random() * 900000)",
+                      "};",
+                      "",
+                      "var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\");",
+                      "var sHeader = JSON.stringify(header);",
+                      "var sPayload = JSON.stringify(data);",
+                      "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
+                      "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
+                    ],
+                    "type": "text/javascript"
+                  }
                 },
                 {
-                  "name": "Clashing Unique Identifer",
-                  "event": [
-                    {
-                      "listen": "prerequest",
-                      "script": {
-                        "id": "a1088086-216e-4ed4-a338-de7069e785c1",
-                        "exec": [
-                          "var navigator = {}; //fake a navigator object for the lib",
-                          "var window = {}; //fake a window object for the lib",
-                          "eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
-                          "",
-                          "var header = {",
-                          "    \"typ\": \"JWT\",",
-                          "    \"alg\": \"RS512\",",
-                          "    \"kid\": \"test-rs512\"",
-                          "}",
-                          "",
-                          "var data = {",
-                          "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
-                          "    \"sub\": postman.getEnvironmentVariable(\"client_id\"),",
-                          "    \"exp\": Math.floor(Date.now() / 1000) + 300,",
-                          "    \"jti\": postman.getEnvironmentVariable(\"JTI_UNIQUE_ID\")",
-                          "};",
-                          "",
-                          "var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\");",
-                          "var sHeader = JSON.stringify(header);",
-                          "var sPayload = JSON.stringify(data);",
-                          "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
-                          "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
-                        ],
-                        "type": "text/javascript"
-                      }
-                    },
-                    {
-                      "listen": "test",
-                      "script": {
-                        "id": "375c417e-20bd-40b3-a4e3-c14f2e8de884",
-                        "exec": [
-                          "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
-                          "var data = JSON.parse(responseBody);",
-                          "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
-                          "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
-                          "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
-                          "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('kid claim is required and cannot be empty validate JWT'); });",
-                          "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
-                        ],
-                        "type": "text/javascript"
-                      }
-                    }
-                  ],
-                  "protocolProfileBehavior": {
-                    "disableBodyPruning": true
-                  },
-                  "request": {
-                    "method": "POST",
-                    "header": [],
-                    "body": {
-                      "mode": "urlencoded",
-                      "urlencoded": [
-                        {
-                          "key": "client_id",
-                          "value": "{{client_id}}",
-                          "type": "text"
-                        },
-                        {
-                          "key": "client_assertion_type",
-                          "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-                          "type": "text"
-                        },
-                        {
-                          "key": "client_assertion",
-                          "value": "{{jwt_token}}",
-                          "type": "text"
-                        },
-                        {
-                          "key": "grant_type",
-                          "value": "client_credentials",
-                          "type": "text"
-                        }
-                      ]
-                    },
-                    "url": {
-                      "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-                      "protocol": "https",
-                      "host": [
-                        "{{base_url}}",
-                        "api",
-                        "service",
-                        "nhs",
-                        "uk"
-                      ],
-                      "path": [
-                        "{{root_path}}",
-                        "token"
-                      ]
-                    }
-                  },
-                  "response": []
+                  "listen": "test",
+                  "script": {
+                    "id": "375c417e-20bd-40b3-a4e3-c14f2e8de884",
+                    "exec": [
+                      "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+                      "var data = JSON.parse(responseBody);",
+                      "pm.test(\"response is Ok\", function(){ pm.response.to.have.status(200); });",
+                      "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+                      "pm.test(\"response JSON has access_token\", function(){ pm.expect(data).to.have.property('access_token'); });",
+                      "var sJWT = JSON.parse(postman.getEnvironmentVariable(\"jwt_token\"));",
+                      "postman.setEnvironmentVariable(\"JTI_UNIQUE_ID\", sJWT.data.jti);"
+                    ],
+                    "type": "text/javascript"
+                  }
                 }
-              ]
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "client_id",
+                      "value": "{{client_id}}",
+                      "type": "text"
+                    },
+                    {
+                      "key": "client_assertion_type",
+                      "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+                      "type": "text"
+                    },
+                    {
+                      "key": "client_assertion",
+                      "value": "{{jwt_token}}",
+                      "type": "text"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "client_credentials",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
+                  "protocol": "https",
+                  "host": [
+                    "{{base_url}}",
+                    "api",
+                    "service",
+                    "nhs",
+                    "uk"
+                  ],
+                  "path": [
+                    "{{root_path}}",
+                    "token"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Clashing JTI Unique Identifier",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "id": "a1088086-216e-4ed4-a338-de7069e785c1",
+                    "exec": [
+                      "var navigator = {}; //fake a navigator object for the lib",
+                      "var window = {}; //fake a window object for the lib",
+                      "eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
+                      "",
+                      "var header = {",
+                      "    \"typ\": \"JWT\",",
+                      "    \"alg\": \"RS512\",",
+                      "    \"kid\": \"test-rs512\"",
+                      "}",
+                      "",
+                      "var data = {",
+                      "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
+                      "    \"sub\": postman.getEnvironmentVariable(\"client_id\"),",
+                      "    \"exp\": Math.floor(Date.now() / 1000) + 300,",
+                      "    \"jti\": postman.getEnvironmentVariable(\"JTI_UNIQUE_ID\")",
+                      "};",
+                      "",
+                      "var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\");",
+                      "var sHeader = JSON.stringify(header);",
+                      "var sPayload = JSON.stringify(data);",
+                      "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
+                      "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "375c417e-20bd-40b3-a4e3-c14f2e8de884",
+                    "exec": [
+                      "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+                      "var data = JSON.parse(responseBody);",
+                      "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
+                      "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+                      "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+                      "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('kid claim is required and cannot be empty validate JWT'); });",
+                      "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "client_id",
+                      "value": "{{client_id}}",
+                      "type": "text"
+                    },
+                    {
+                      "key": "client_assertion_type",
+                      "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+                      "type": "text"
+                    },
+                    {
+                      "key": "client_assertion",
+                      "value": "{{jwt_token}}",
+                      "type": "text"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "client_credentials",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
+                  "protocol": "https",
+                  "host": [
+                    "{{base_url}}",
+                    "api",
+                    "service",
+                    "nhs",
+                    "uk"
+                  ],
+                  "path": [
+                    "{{root_path}}",
+                    "token"
+                  ]
+                }
+              },
+              "response": []
             }
           ]
         }
