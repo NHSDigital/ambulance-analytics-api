@@ -1,8 +1,8 @@
 {
   "info": {
-    "_postman_id": "a4a1691a-e8bc-4e59-8eb9-61d614c82171",
+    "_postman_id": "071ac4e6-c683-462f-8f42-88759b1e41c1",
     "name": "Ambulance Analytics",
-    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
@@ -31,7 +31,21 @@
           "request": {
             "method": "GET",
             "header": [],
-            "url": "https://raw.githubusercontent.com/kjur/jsrsasign/master/jsrsasign-all-min.js"
+            "url": {
+              "raw": "https://raw.githubusercontent.com/kjur/jsrsasign/master/jsrsasign-all-min.js",
+              "protocol": "https",
+              "host": [
+                "raw",
+                "githubusercontent",
+                "com"
+              ],
+              "path": [
+                "kjur",
+                "jsrsasign",
+                "master",
+                "jsrsasign-all-min.js"
+              ]
+            }
           },
           "response": []
         }
@@ -122,7 +136,21 @@
                 }
               ]
             },
-            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
+            "url": {
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
+              "protocol": "https",
+              "host": [
+                "{{base_url}}",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "{{root_path}}",
+                "token"
+              ]
+            }
           },
           "response": []
         },
@@ -153,7 +181,21 @@
                 "type": "text"
               }
             ],
-            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/submission"
+            "url": {
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/submission",
+              "protocol": "https",
+              "host": [
+                "{{base_url}}",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "{{root_path}}",
+                "submission"
+              ]
+            }
           },
           "response": []
         }
@@ -238,7 +280,21 @@
                 }
               ]
             },
-            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
+            "url": {
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
+              "protocol": "https",
+              "host": [
+                "{{base_url}}",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "{{root_path}}",
+                "token"
+              ]
+            }
           },
           "response": []
         },
@@ -317,7 +373,21 @@
                 }
               ]
             },
-            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
+            "url": {
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
+              "protocol": "https",
+              "host": [
+                "{{base_url}}",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "{{root_path}}",
+                "token"
+              ]
+            }
           },
           "response": []
         },
@@ -396,7 +466,21 @@
                 }
               ]
             },
-            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
+            "url": {
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
+              "protocol": "https",
+              "host": [
+                "{{base_url}}",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "{{root_path}}",
+                "token"
+              ]
+            }
           },
           "response": []
         }
@@ -485,7 +569,21 @@
                 }
               ]
             },
-            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
+            "url": {
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
+              "protocol": "https",
+              "host": [
+                "{{base_url}}",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "{{root_path}}",
+                "token"
+              ]
+            }
           },
           "response": []
         },
@@ -566,7 +664,21 @@
                 }
               ]
             },
-            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
+            "url": {
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
+              "protocol": "https",
+              "host": [
+                "{{base_url}}",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "{{root_path}}",
+                "token"
+              ]
+            }
           },
           "response": []
         },
@@ -649,7 +761,21 @@
                 }
               ]
             },
-            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
+            "url": {
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
+              "protocol": "https",
+              "host": [
+                "{{base_url}}",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "{{root_path}}",
+                "token"
+              ]
+            }
           },
           "response": []
         },
@@ -733,7 +859,21 @@
                 }
               ]
             },
-            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
+            "url": {
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
+              "protocol": "https",
+              "host": [
+                "{{base_url}}",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "{{root_path}}",
+                "token"
+              ]
+            }
           },
           "response": []
         },
@@ -816,7 +956,21 @@
                 }
               ]
             },
-            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
+            "url": {
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
+              "protocol": "https",
+              "host": [
+                "{{base_url}}",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "{{root_path}}",
+                "token"
+              ]
+            }
           },
           "response": []
         },
@@ -871,9 +1025,6 @@
               }
             }
           ],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
           "request": {
             "method": "POST",
             "header": [],
@@ -972,9 +1123,6 @@
               }
             }
           ],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
           "request": {
             "method": "POST",
             "header": [],
@@ -1072,9 +1220,6 @@
               }
             }
           ],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
           "request": {
             "method": "POST",
             "header": [],
@@ -1159,7 +1304,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "1d43c194-756c-4bc0-8585-cd6de2ee3417",
+                "id": "fdf749d9-9bc9-43a0-a7a9-b87c1cd46b67",
                 "exec": [
                   "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
@@ -1173,9 +1318,6 @@
               }
             }
           ],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
           "request": {
             "method": "POST",
             "header": [],
@@ -1222,108 +1364,302 @@
           },
           "response": []
         },
-          {
-            "name": "Clashing JTI Unique Identifier",
-            "event": [
-              {
-                "listen": "prerequest",
-                "script": {
-                  "id": "a1088086-216e-4ed4-a338-de7069e785c1",
-                  "exec": [
-                    "var navigator = {}; //fake a navigator object for the lib",
-                    "var window = {}; //fake a window object for the lib",
-                    "eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
-                    "",
-                    "var header = {",
-                    "    \"typ\": \"JWT\",",
-                    "    \"alg\": \"RS512\",",
-                    "    \"kid\": \"test-rs512\"",
-                    "}",
-                    "",
-                    "var data = {",
-                    "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
-                    "    \"sub\": postman.getEnvironmentVariable(\"client_id\"),",
-                    "    \"exp\": Math.floor(Date.now() / 1000) + 300,",
-                    "    \"aud\": pm.variables.replaceIn(pm.request.url.getRaw()),",
-                    "    \"jti\": postman.getEnvironmentVariable(\"JTI_UNIQUE_ID\")",
-                    "};",
-                    "",
-                    "var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\");",
-                    "var sHeader = JSON.stringify(header);",
-                    "var sPayload = JSON.stringify(data);",
-                    "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
-                    "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
-                  ],
-                  "type": "text/javascript"
-                }
-              },
-              {
-                "listen": "test",
-                "script": {
-                  "id": "375c417e-20bd-40b3-a4e3-c14f2e8de884",
-                  "exec": [
-                    "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
-                    "var data = JSON.parse(responseBody);",
-                    "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
-                    "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
-                    "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
-                    "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('jti claim must be unique'); });",
-                    "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
-                  ],
-                  "type": "text/javascript"
-                }
-              }
-            ],
-            "protocolProfileBehavior": {
-              "disableBodyPruning": true
-            },
-            "request": {
-              "method": "POST",
-              "header": [],
-              "body": {
-                "mode": "urlencoded",
-                "urlencoded": [
-                  {
-                    "key": "client_id",
-                    "value": "{{client_id}}",
-                    "type": "text"
-                  },
-                  {
-                    "key": "client_assertion_type",
-                    "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-                    "type": "text"
-                  },
-                  {
-                    "key": "client_assertion",
-                    "value": "{{jwt_token}}",
-                    "type": "text"
-                  },
-                  {
-                    "key": "grant_type",
-                    "value": "client_credentials",
-                    "type": "text"
-                  }
-                ]
-              },
-              "url": {
-                "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-                "protocol": "https",
-                "host": [
-                  "{{base_url}}",
-                  "api",
-                  "service",
-                  "nhs",
-                  "uk"
+        {
+          "name": "Invalid JWT json payload",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "87295163-6fd4-4d6c-89ae-157434b609b9",
+                "exec": [
+                  "var navigator = {}; //fake a navigator object for the lib",
+                  "var window = {}; //fake a window object for the lib",
+                  "eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
+                  "",
+                  "var header = {",
+                  "    \"typ\": \"JWT\",",
+                  "    \"alg\": \"RS512\",",
+                  "    \"kid\": \"test-rs512\"",
+                  "}",
+                  "",
+                  "var data = {",
+                  "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
+                  "    \"sub\": postman.getEnvironmentVariable(\"client_id\"),",
+                  "    \"exp\": Math.floor(Date.now() / 1000) + 300,",
+                  "    \"aud\": pm.variables.replaceIn(pm.request.url.getRaw()),",
+                  "    \"jti\": null",
+                  "};",
+                  "",
+                  "var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\");",
+                  "var sHeader = JSON.stringify(header);",
+                  "var sPayload = JSON.stringify(data);",
+                  "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
+                  "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
                 ],
-                "path": [
-                  "{{root_path}}",
-                  "token"
-                ]
+                "type": "text/javascript"
               }
             },
-            "response": []
-          }
-      ]
+            {
+              "listen": "test",
+              "script": {
+                "id": "ae65e113-6c5d-438e-a11c-6739b4375f24",
+                "exec": [
+                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+                  "var data = JSON.parse(responseBody);",
+                  "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
+                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+                  "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('JSON object member with key \\\"jti\\\" has null value'); });",
+                  "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "client_id",
+                  "value": "{{client_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_assertion_type",
+                  "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+                  "type": "text"
+                },
+                {
+                  "key": "client_assertion",
+                  "value": "{{jwt_token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
+              "protocol": "https",
+              "host": [
+                "{{base_url}}",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "{{root_path}}",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid JWT json header",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "66bcfeb2-d24e-4af1-a4d6-c033cfa80838",
+                "exec": [
+                  "var navigator = {}; //fake a navigator object for the lib",
+                  "var window = {}; //fake a window object for the lib",
+                  "eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
+                  "",
+                  "var header = {",
+                  "    \"typ\": \"JWT\",",
+                  "    \"alg\": \"RS512\",",
+                  "    \"kid\": null",
+                  "}",
+                  "",
+                  "var data = {",
+                  "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
+                  "    \"sub\": postman.getEnvironmentVariable(\"client_id\"),",
+                  "    \"exp\": Math.floor(Date.now() / 1000) + 300,",
+                  "    \"aud\": pm.variables.replaceIn(pm.request.url.getRaw()),",
+                  "    \"jti\": \"\"+Math.floor(100000 + Math.random() * 900000)",
+                  "};",
+                  "",
+                  "var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\");",
+                  "var sHeader = JSON.stringify(header);",
+                  "var sPayload = JSON.stringify(data);",
+                  "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
+                  "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "9fb47254-4a8d-428e-9c20-0f577dfc1ee8",
+                "exec": [
+                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+                  "var data = JSON.parse(responseBody);",
+                  "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
+                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+                  "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('jti claim is required'); });",
+                  "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "client_id",
+                  "value": "{{client_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_assertion_type",
+                  "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+                  "type": "text"
+                },
+                {
+                  "key": "client_assertion",
+                  "value": "{{jwt_token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
+              "protocol": "https",
+              "host": [
+                "{{base_url}}",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "{{root_path}}",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Clashing JTI Unique Identifier",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "3460f3ef-12c8-4eff-857e-c5d355d9ca40",
+                "exec": [
+                  "var navigator = {}; //fake a navigator object for the lib",
+                  "var window = {}; //fake a window object for the lib",
+                  "eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
+                  "",
+                  "var header = {",
+                  "    \"typ\": \"JWT\",",
+                  "    \"alg\": \"RS512\",",
+                  "    \"kid\": \"test-rs512\"",
+                  "}",
+                  "",
+                  "var data = {",
+                  "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
+                  "    \"sub\": postman.getEnvironmentVariable(\"client_id\"),",
+                  "    \"exp\": Math.floor(Date.now() / 1000) + 300,",
+                  "    \"aud\": pm.variables.replaceIn(pm.request.url.getRaw()),",
+                  "    \"jti\": postman.getEnvironmentVariable(\"JTI_UNIQUE_ID\")",
+                  "};",
+                  "",
+                  "var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\");",
+                  "var sHeader = JSON.stringify(header);",
+                  "var sPayload = JSON.stringify(data);",
+                  "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
+                  "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "9727ffac-c875-41d4-877a-38b5e92f5dec",
+                "exec": [
+                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+                  "var data = JSON.parse(responseBody);",
+                  "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
+                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+                  "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('jti claim must be unique'); });",
+                  "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "client_id",
+                  "value": "{{client_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_assertion_type",
+                  "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+                  "type": "text"
+                },
+                {
+                  "key": "client_assertion",
+                  "value": "{{jwt_token}}",
+                  "type": "text"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
+              "protocol": "https",
+              "host": [
+                "{{base_url}}",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "{{root_path}}",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "protocolProfileBehavior": {}
     },
     {
       "name": "Authentication",
@@ -1408,7 +1744,21 @@
                 }
               ]
             },
-            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
+            "url": {
+              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
+              "protocol": "https",
+              "host": [
+                "{{base_url}}",
+                "api",
+                "service",
+                "nhs",
+                "uk"
+              ],
+              "path": [
+                "{{root_path}}",
+                "token"
+              ]
+            }
           },
           "response": []
         }
