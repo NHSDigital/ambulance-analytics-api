@@ -6,8 +6,7 @@
   "scripts": {
     "start": "npm run global && npm run test",
     "global": "node_modules/.bin/node e2e/globals.js",
-    "test": "node_modules/.bin/newman run e2e/ambulance-analytics-sandbox.json -e e2e/environments/deploy.$APIGEE_ENVIRONMENT.postman.json --globals e2e/deploy.globals.json --reporters junit",
-    "test-kid": "node_modules/.bin/newman run e2e/kid.postman_collection.json -e e2e/environments/kid.postman.json --reporters junit"
+    "test": "node_modules/.bin/newman run e2e/ambulance-analytics-sandbox.json -e e2e/environments/deploy.$APIGEE_ENVIRONMENT.postman.json --globals e2e/deploy.globals.json --reporters junit"
   },
   "author": "",
   "license": "(MIT OR OGL)",
