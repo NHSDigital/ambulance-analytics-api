@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "b8f88587-cd76-41e6-b31b-dd4a549709ea",
     "name": "Ambulance Analytics",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
   "item": [
     {
@@ -31,21 +31,7 @@
           "request": {
             "method": "GET",
             "header": [],
-            "url": {
-              "raw": "https://raw.githubusercontent.com/kjur/jsrsasign/master/jsrsasign-all-min.js",
-              "protocol": "https",
-              "host": [
-                "raw",
-                "githubusercontent",
-                "com"
-              ],
-              "path": [
-                "kjur",
-                "jsrsasign",
-                "master",
-                "jsrsasign-all-min.js"
-              ]
-            }
+            "url": "https://raw.githubusercontent.com/kjur/jsrsasign/master/jsrsasign-all-min.js"
           },
           "response": []
         }
@@ -73,12 +59,12 @@
                   "    \"kid\": \"test-rs512\"",
                   "}",
                   "",
-                  "var url = pm.variables.replaceIn(pm.request.url.getHost()+pm.request.url.getPath())",
+                  "var url = pm.variables.replaceIn(pm.request.url.getRaw())",
                   "var data = {",
                   "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
                   "    \"sub\": postman.getEnvironmentVariable(\"client_id\"),",
                   "    \"exp\": Math.floor(Date.now() / 1000) + 300,",
-                  "    \"aud\": `https://${url}`",
+                  "    \"aud\": url",
                   "};",
                   "",
                   "var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\");",
@@ -134,21 +120,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -179,21 +151,7 @@
                 "type": "text"
               }
             ],
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/submission",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "submission"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/submission"
           },
           "response": []
         }
@@ -276,21 +234,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -367,21 +311,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -458,21 +388,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         }
@@ -560,21 +476,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -600,7 +502,7 @@
                   "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
                   "    \"sub\": postman.getEnvironmentVariable(\"client_id\"),",
                   "    \"exp\": Math.floor(Date.now() / 1000) + 300,",
-                  "    \"aud\": \"www.example.com/token\"",
+                  "    \"aud\": \"https://example.com/token\"",
                   "};",
                   "",
                   "var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\");",
@@ -654,21 +556,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -749,21 +637,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -845,21 +719,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -940,21 +800,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         }
@@ -982,12 +828,11 @@
                   "    \"kid\": \"test-rs256\"",
                   "}",
                   "",
-                  "var url = pm.variables.replaceIn(pm.request.url.getHost()+pm.request.url.getPath())",
                   "var data = {",
                   "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
                   "    \"sub\": postman.getEnvironmentVariable(\"client_id\"),",
                   "    \"exp\": Math.floor(Date.now() / 1000) + 300,",
-                  "    \"aud\": `https://${url}`",
+                  "    \"aud\": pm.variables.replaceIn(pm.request.url.getRaw())",
                   "};",
                   "",
                   "var secret = postman.getEnvironmentVariable(\"RS256_PRIVATE_KEY\");",
@@ -1044,21 +889,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         }
