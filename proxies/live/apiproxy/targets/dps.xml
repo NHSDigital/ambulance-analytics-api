@@ -1,10 +1,6 @@
 <TargetEndpoint name="dps">
   <PreFlow>
     <Request>
-      <!-- <Step>
-        <Name>RaiseFault.MethodNotAllowed</Name>
-        <Condition>request.verb != "POST"</Condition>
-      </Step> -->
       <Step>
         <Name>AssignMessage.AddDatasetIdHeader</Name>
       </Step>
@@ -22,11 +18,19 @@
       <Step>
         <Name>AssignMessage.AddCors</Name>
       </Step>
+      <Step>
+        <Name>RaiseFault.DPSAPIKeyError</Name>
+        <Condition>(response.status.code = 401)</Condition>
+      </Step>
+      <Step>
+        <Name>ExtractVariables.ParseErrorMessage</Name>
+        <Condition>(response.status.code = 400)</Condition>
+      </Step>
     </Response>
   </PreFlow>
   <Flows>
     <Flow name="AccessTokenVerification">
-    <Condition>(proxy.pathsuffix MatchesPath "/foo") and (request.verb = "POST")</Condition>
+    <Condition>(proxy.pathsuffix MatchesPath "/submission") and (request.verb = "POST")</Condition>
       <Request>
         <Step>
           <Name>VerifyAccessToken</Name>
@@ -44,10 +48,11 @@
       <Response/>
     </Flow>
   </Flows>
+
   <HTTPTargetConnection>
     <LoadBalancer>
       <Server name="dps-submission-api"/>
     </LoadBalancer>
-    <Path>/ingest/dps</Path>
+    <Path>/v1/submission</Path>
   </HTTPTargetConnection>
 </TargetEndpoint>
