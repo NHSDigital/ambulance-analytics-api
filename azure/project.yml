@@ -2,6 +2,6 @@ variables:
   service_name: ambulance-analytics
   service_base_path: ambulance-analytics
   short_service_name: ambulance-analytics
-  product_display_name: Ambulance Analytics Api
-  product_description: Ambulance Analytics Api
+  product_display_name: Ambulance Analytics
+  product_description: ""
   spec_file: ambulance-analytics.json
