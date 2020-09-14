@@ -1504,10 +1504,10 @@
                 "exec": [
                   "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
-                  "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
+                  "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(401); });",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
                   "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
-                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('jti claim is required'); });",
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('Invalid JWS header: JSON object member with key \\\"kid\\\" has null value'); });",
                   "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
                 ],
                 "type": "text/javascript"
@@ -1761,7 +1761,7 @@
             }
           },
           "response": []
-        }                         
+        }
       ],
       "protocolProfileBehavior": {}
     },
@@ -1813,6 +1813,8 @@
                   "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
                   "pm.test(\"response is Method Not Allowed\", function(){ pm.response.to.have.status(405); });",
+                  "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('Request method must be POST, not GET')});",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
                 ],
                 "type": "text/javascript"
@@ -1822,31 +1824,6 @@
           "request": {
             "method": "GET",
             "header": [],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "client_id",
-                  "value": "{{client_id}}",
-                  "type": "text"
-                },
-                {
-                  "key": "client_assertion_type",
-                  "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-                  "type": "text"
-                },
-                {
-                  "key": "client_assertion",
-                  "value": "{{jwt_token}}",
-                  "type": "text"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials",
-                  "type": "text"
-                }
-              ]
-            },
             "url": {
               "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
               "protocol": "https",
@@ -1876,6 +1853,8 @@
                   "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
                   "var data = JSON.parse(responseBody);",
                   "pm.test(\"response is Method Not Allowed\", function(){ pm.response.to.have.status(405); });",
+                  "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('Request method must be POST, not GET')});",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
                 ],
                 "type": "text/javascript"
@@ -1911,8 +1890,6 @@
         }
       ],
       "protocolProfileBehavior": {}
-    }      
+    }
   ]
 }
-
-
