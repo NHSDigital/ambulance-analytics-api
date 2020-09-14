@@ -62,13 +62,12 @@
         </Step>
         <Step>
           <Name>DecodeJWT</Name>
-        </Step>      
+        </Step>
         <Step>
-          <Name>LookupCache.JWKS</Name>
           <Name>RaiseFault.InvalidExpiry</Name>
           <Condition>jwt.DecodeJWT.decoded.claim.exp = null</Condition>
         </Step>
-        <Step>        
+        <Step>
           <Name>RaiseFault.InvalidKid</Name>
           <Condition>jwt.DecodeJWT.decoded.header.kid = "" or jwt.DecodeJWT.decoded.header.kid = null</Condition>
         </Step>
