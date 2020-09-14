@@ -1043,7 +1043,7 @@
                   "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
                   "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
-                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('kid claim is required and cannot be empty validate JWT'); });",
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('jti claim is required'); });",
                   "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
                 ],
                 "type": "text/javascript"
@@ -1143,7 +1143,7 @@
                   "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
                   "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
                   "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
-                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('kid claim is required and cannot be empty validate JWT'); });",
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('jti claim is required'); });",
                   "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
                 ],
                 "type": "text/javascript"
@@ -1346,7 +1346,7 @@
                       "pm.test(\"response is Bad Request\", function(){ pm.response.to.have.status(400); });",
                       "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
                       "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
-                      "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('kid claim is required and cannot be empty validate JWT'); });",
+                      "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('jti claim must be unique'); });",
                       "pm.test(\"response JSON does not have access_token\", function(){ pm.expect(data).to.not.have.property('access_token'); });"
                     ],
                     "type": "text/javascript"

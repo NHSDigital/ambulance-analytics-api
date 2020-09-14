@@ -84,6 +84,20 @@
           <Condition>jwt.DecodeJWT.decoded.claim.aud = null or jwt.DecodeJWT.decoded.claim.aud = ""</Condition>
         </Step>
         <Step>
+          <Name>RaiseFault.MissingJTIClaim</Name>
+          <Condition>jwt.DecodeJWT.decoded.claim.jti = null or jwt.DecodeJWT.decoded.claim.jti = ""</Condition>
+        </Step>
+        <Step>
+          <Name>LookupCache.JTIClaim</Name>
+        </Step>
+        <Step>
+          <Name>RaiseFault.JTIValueExistsInCache</Name>
+          <Condition>JTICachedValue = jwt.DecodeJWT.decoded.claim.jti</Condition>
+        </Step>
+        <Step>
+          <Name>PopulateCache.JTIClaim</Name>
+        </Step>
+        <Step>
           <Name>VerifyAPIKey.FormParam</Name>
         </Step>
         <Step>
