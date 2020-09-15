@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LookupCache async="false" continueOnError="false" enabled="true" name="LookupCache.JTIClaim">
+    <DisplayName>LookupCache.JTIClaim</DisplayName>
+    <AssignTo>JTICachedValue</AssignTo>
+    <Scope>Application</Scope>
+    <CacheKey>
+      <Prefix>jti</Prefix>
+      <KeyFragment ref="request.formparam.client_id"/>
+      <KeyFragment ref="jwt.DecodeJWT.decoded.claim.jti"/>
+    </CacheKey>
+</LookupCache>

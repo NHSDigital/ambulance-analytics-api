@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.FailedToDecode">
+  <DisplayName>AssignMessage.FailedToDecode</DisplayName>
+  <Set>
+    <StatusCode>401</StatusCode>
+    <Payload contentType="application/json">{"error": "{escapeJSON(jwt.DecodeJWT.error)}"}</Payload>
+  </Set>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <AssignTo createNew="false" transport="http" type="response"/>
+</AssignMessage>
