@@ -74,6 +74,10 @@
           <Name>DecodeJWT</Name>
         </Step>
         <Step>
+          <Name>RaiseFault.ErrorDecodingJWT</Name>
+          <Condition>jwt.DecodeJWT.warning != null</Condition>
+        </Step>
+        <Step>
           <Name>RaiseFault.InvalidExpiry</Name>
           <Condition>jwt.DecodeJWT.decoded.claim.exp = null</Condition>
         </Step>
