@@ -74,6 +74,10 @@
           <Name>DecodeJWT</Name>
         </Step>
         <Step>
+          <Name>RaiseFault.WarningDecodingJWT</Name>
+          <Condition>jwt.DecodeJWT.warning != null</Condition>
+        </Step>
+        <Step>
           <Name>RaiseFault.ErrorDecodingJWT</Name>
           <Condition>jwt.DecodeJWT.warning != null</Condition>
         </Step>
