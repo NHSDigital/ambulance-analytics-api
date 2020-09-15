@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "071ac4e6-c683-462f-8f42-88759b1e41c1",
+    "_postman_id": "a4a1691a-e8bc-4e59-8eb9-61d614c82171",
     "name": "Ambulance Analytics",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
@@ -31,21 +31,7 @@
           "request": {
             "method": "GET",
             "header": [],
-            "url": {
-              "raw": "https://raw.githubusercontent.com/kjur/jsrsasign/master/jsrsasign-all-min.js",
-              "protocol": "https",
-              "host": [
-                "raw",
-                "githubusercontent",
-                "com"
-              ],
-              "path": [
-                "kjur",
-                "jsrsasign",
-                "master",
-                "jsrsasign-all-min.js"
-              ]
-            }
+            "url": "https://raw.githubusercontent.com/kjur/jsrsasign/master/jsrsasign-all-min.js"
           },
           "response": []
         }
@@ -136,21 +122,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -181,21 +153,7 @@
                 "type": "text"
               }
             ],
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/submission",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "submission"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/submission"
           },
           "response": []
         }
@@ -280,21 +238,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -373,21 +317,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -466,21 +396,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         }
@@ -569,21 +485,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -664,21 +566,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -761,21 +649,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -859,21 +733,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -956,21 +816,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -1053,21 +899,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -1151,21 +983,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -1248,21 +1066,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -1346,21 +1150,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -1444,21 +1234,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -1542,21 +1318,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -1640,21 +1402,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         }
@@ -1744,21 +1492,7 @@
                 }
               ]
             },
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         }
@@ -1824,21 +1558,7 @@
           "request": {
             "method": "GET",
             "header": [],
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "token"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/token"
           },
           "response": []
         },
@@ -1870,21 +1590,7 @@
                 "type": "text"
               }
             ],
-            "url": {
-              "raw": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/submission",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}",
-                "api",
-                "service",
-                "nhs",
-                "uk"
-              ],
-              "path": [
-                "{{root_path}}",
-                "submission"
-              ]
-            }
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/submission"
           },
           "response": []
         }
