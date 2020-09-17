@@ -12,6 +12,12 @@
       </Step>
       <Condition>(fault.name = "TokenExpired")</Condition>
     </FaultRule>
+    <FaultRule name="FailedToDecode">
+      <Step>
+        <Name>AssignMessage.FailedToDecode</Name>
+      </Step>
+      <Condition>(fault.name = "FailedToDecode")</Condition>
+    </FaultRule>
   </FaultRules>
   <PreFlow/>
   <Flows>
@@ -46,8 +52,12 @@
       <Condition>((proxy.pathsuffix MatchesPath "/_status")) and (request.verb = "GET")</Condition>
     </Flow>
     <Flow name="Flow-GenerateAccessToken">
-      <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
+      <Condition>(proxy.pathsuffix MatchesPath "/token")</Condition>
       <Request>
+        <Step>
+          <Name>RaiseFault.MethodNotAllowed</Name>
+          <Condition>request.verb != "POST"</Condition>
+        </Step>
         <Step>
           <Name>RaiseFault.MissingGrantType</Name>
           <Condition>request.formparam.grant_type != "client_credentials"</Condition>
@@ -64,10 +74,14 @@
           <Name>DecodeJWT</Name>
         </Step>
         <Step>
+          <Name>RaiseFault.WarningDecodingJWT</Name>
+          <Condition>jwt.DecodeJWT.warning != null</Condition>
+        </Step>
+        <Step>
           <Name>RaiseFault.InvalidExpiry</Name>
           <Condition>jwt.DecodeJWT.decoded.claim.exp = null</Condition>
         </Step>
-        <Step>        
+        <Step>
           <Name>RaiseFault.InvalidKid</Name>
           <Condition>jwt.DecodeJWT.decoded.header.kid = "" or jwt.DecodeJWT.decoded.header.kid = null</Condition>
         </Step>
@@ -78,6 +92,24 @@
         <Step>
           <Name>RaiseFault.IssOrSubMustBeEqual</Name>
           <Condition>jwt.DecodeJWT.decoded.claim.iss != jwt.DecodeJWT.decoded.claim.sub</Condition>
+        </Step>
+        <Step>
+          <Name>RaiseFault.MissingAudience</Name>
+          <Condition>jwt.DecodeJWT.decoded.claim.aud = null or jwt.DecodeJWT.decoded.claim.aud = ""</Condition>
+        </Step>
+        <Step>
+          <Name>RaiseFault.MissingJTIClaim</Name>
+          <Condition>jwt.DecodeJWT.decoded.claim.jti = null or jwt.DecodeJWT.decoded.claim.jti = ""</Condition>
+        </Step>
+        <Step>
+          <Name>LookupCache.JTIClaim</Name>
+        </Step>
+        <Step>
+          <Name>RaiseFault.JTIValueExistsInCache</Name>
+          <Condition>JTICachedValue = jwt.DecodeJWT.decoded.claim.jti</Condition>
+        </Step>
+        <Step>
+          <Name>PopulateCache.JTIClaim</Name>
         </Step>
         <Step>
           <Name>VerifyAPIKey.FormParam</Name>

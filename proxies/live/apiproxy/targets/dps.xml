@@ -1,13 +1,6 @@
 <TargetEndpoint name="dps">
   <PreFlow>
     <Request>
-      <!-- <Step>
-        <Name>RaiseFault.MethodNotAllowed</Name>
-        <Condition>request.verb != "POST"</Condition>
-      </Step> -->
-      <Step>
-        <Name>ExtractVariables.DatasetId</Name>
-      </Step>
       <Step>
         <Name>AssignMessage.AddDatasetIdHeader</Name>
       </Step>
@@ -33,16 +26,16 @@
         <Name>ExtractVariables.ParseErrorMessage</Name>
         <Condition>(response.status.code = 400)</Condition>
       </Step>
-      <Step>
-        <Name>RaiseFault.DPSMissingSubmissionPath</Name>
-        <Condition>(response.status.code = 400) and (error_message = "Missing x-dataset-id header")</Condition>
-      </Step>
     </Response>
   </PreFlow>
   <Flows>
     <Flow name="AccessTokenVerification">
-    <Condition>(proxy.pathsuffix MatchesPath "/submission") and (request.verb = "POST")</Condition>
+    <Condition>(proxy.pathsuffix MatchesPath "/submission")</Condition>
       <Request>
+        <Step>
+          <Name>RaiseFault.MethodNotAllowed</Name>
+          <Condition>request.verb != "POST"</Condition>
+        </Step>
         <Step>
           <Name>VerifyAccessToken</Name>
         </Step>
@@ -59,6 +52,7 @@
       <Response/>
     </Flow>
   </Flows>
+
   <HTTPTargetConnection>
     <LoadBalancer>
       <Server name="dps-submission-api"/>
