@@ -1,6 +1,12 @@
-parameters: []
+parameters:
+    - name: environment
 
 steps:
     - bash: |
-        echo "run postman tests $(JWT_PRIVATE_KEY)"
+        which docker
+        echo ${{ parameters.environment }}
+        if [ -d $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests ]; then
+          test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
+          echo "docker run -v ${test_dir}:/etc/newman -t postman/newman run ambulance_analytics.json --environment /etc/newman/environments/internal-dev.postman.json --reporters=cli --env-var "client_id=key" --env-var "RS256_PRIVATE_KEY=some_private_key" --env-var "RS512_PRIVATE_KEY=$(JWT_PRIVATE_KEY)" --env-var "base_url=int" --env-var "root_path=ambulance-analytics" --env-var "DEBUG=true"
+        fi
       displayName: 'Run Postman tests'
