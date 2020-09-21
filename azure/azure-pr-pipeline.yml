@@ -41,6 +41,6 @@ extends:
           post_deploy:
               - template: templates/tests.yml
                 parameters:
-                    environment: ${{ parameters.environment }}
+                    environment: internal-dev
         - environment: internal-dev-sandbox
           proxy_path: sandbox
