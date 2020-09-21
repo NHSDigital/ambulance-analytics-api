@@ -2,7 +2,5 @@ parameters: []
 
 steps:
     - bash: |
-        echo 'run postman tests'
-        - task: RunPostmanTestCollection
+        echo "run postman tests $(JWT_PRIVATE_KEY)"
       displayName: 'Run Postman tests'
-
