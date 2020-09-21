@@ -8,6 +8,7 @@ resources:
     - repository: common
       type: github
       name: NHSDigital/api-management-utils
+      ref: 'refs/heads/APM-00-AMB-266-add-jwks-private-key-secret'
       endpoint: NHSDigital
 
   pipelines:
@@ -37,5 +38,7 @@ extends:
     spec_file: ${{ variables.spec_file }}
     apigee_deployments:
         - environment: internal-dev
+          post_deploy:
+              - template: templates/tests.yml
         - environment: internal-dev-sandbox
           proxy_path: sandbox

@@ -1,0 +1,9 @@
+parameters: []
+
+steps:
+    - task: RunPostmanTestCollection
+      displayName: 'Run Postman tests'
+      name: postman_environment
+      bash: |
+          echo 'run postman tests'
+
