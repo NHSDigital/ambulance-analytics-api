@@ -40,9 +40,9 @@ extends:
         - environment: internal-dev
           post_deploy:
             - template: "azure/components/get-aws-secrets-and-ssm-params.yml@common"
-                parameters:
-                  secret_ids:
-                    - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_PRIVATE_KEY
+              parameters:
+                secret_ids:
+                  - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_PRIVATE_KEY
 
 #              - template: templates/tests.yml
 #                parameters:
