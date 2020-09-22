@@ -2,8 +2,16 @@ parameters:
     - name: environment
     - name: service_name
 
+resources:
+    repositories:
+        - repository: common
+          type: github
+          name: NHSDigital/api-management-utils
+          ref: 'refs/heads/APM-00-AMB-266-add-jwks-private-key-secret'
+          endpoint: NHSDigital
+
 steps:
-    - template: "../components/get-aws-secrets-and-ssm-params.yml@common"
+    - template: "azure/components/get-aws-secrets-and-ssm-params.yml@common"
       parameters:
         secret_ids:
           - ptl/azure-devops//${{ variables.service_name }}/${{ parameters.environment }}/JWT_PRIVATE_KEY
