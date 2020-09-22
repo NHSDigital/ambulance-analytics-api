@@ -9,7 +9,7 @@ steps:
 #          secret_ids:
 #              - ${{ parameters.aws_org_account }}/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_PRIVATE_KEY
 
-    -   template: "../azure/components/get-aws-secrets-and-ssm-params.yml"
+    - template: "components/get-aws-secrets-and-ssm-params.yml"
         parameters:
           secret_ids:
               - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_PRIVATE_KEY
