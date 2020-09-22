@@ -42,7 +42,7 @@ extends:
             - template: "azure/components/get-aws-secrets-and-ssm-params.yml@common"
               parameters:
                 secret_ids:
-                  - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_PRIVATE_KEY
+                  - ptl/azure-devops//${{ variables.service_name }}/internal-dev/JWT_PRIVATE_KEY
 
 #              - template: templates/tests.yml
 #                parameters:
