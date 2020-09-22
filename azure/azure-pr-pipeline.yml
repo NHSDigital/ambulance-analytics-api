@@ -39,9 +39,15 @@ extends:
     apigee_deployments:
         - environment: internal-dev
           post_deploy:
-              - template: templates/tests.yml
-                parameters:
-                    environment: internal-dev
-                    service_name: ${{ variables.service_name }}
+              steps:
+                - template: "azure/components/get-aws-secrets-and-ssm-params.yml@common"
+                    parameters:
+                      secret_ids:
+                        - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_PRIVATE_KEY
+
+#              - template: templates/tests.yml
+#                parameters:
+#                    environment: internal-dev
+#                    service_name: ${{ variables.service_name }}
         - environment: internal-dev-sandbox
           proxy_path: sandbox
