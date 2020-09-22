@@ -2,6 +2,10 @@ parameters:
     - name: environment
 
 steps:
+    - template: azure/components/get-aws-secrets-and-ssm-params.yml
+      parameters:
+          secret_ids:
+              - ${{ parameters.aws_org_account }}/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_PRIVATE_KEY
     - bash: |
         if [ -d $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests ]; then
           test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
