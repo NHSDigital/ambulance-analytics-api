@@ -3,16 +3,12 @@ parameters:
     - name: service_name
 
 steps:
-#    - template: "azure/components/set-facts.yml"
-#      parameters:
-#          service_name: ${{ parameters.service_name }}
-#          secret_ids:
-#              - ${{ parameters.aws_org_account }}/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_PRIVATE_KEY
+    - template: "../components/get-aws-secrets-and-ssm-params.yml@common"
+      parameters:
+        secret_ids:
+          - ptl/azure-devops//${{ variables.service_name }}/${{ parameters.environment }}/JWT_PRIVATE_KEY
+        config_ids: []
 
-    - template: "azure/components/get-aws-secrets-and-ssm-params.yml@common"
-        parameters:
-          secret_ids:
-              - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_PRIVATE_KEY
     - bash: |
         if [ -d $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests ]; then
           test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
