@@ -14,7 +14,7 @@ steps:
     - template: "azure/components/get-aws-secrets-and-ssm-params.yml@common"
       parameters:
         secret_ids:
-          - ptl/azure-devops//${{ variables.service_name }}/${{ parameters.environment }}/JWT_PRIVATE_KEY
+          - ptl/azure-devops//${{ parameters.service_name }}/${{ parameters.environment }}/JWT_PRIVATE_KEY
         config_ids: []
 
     - bash: |
