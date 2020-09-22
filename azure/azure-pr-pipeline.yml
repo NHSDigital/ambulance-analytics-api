@@ -39,7 +39,7 @@ extends:
     apigee_deployments:
         - environment: internal-dev
           post_deploy:
-            - template: "azure/components/get-aws-secrets-and-ssm-params.yml@common"
+            - template: "../components/get-aws-secrets-and-ssm-params.yml@common"
               parameters:
                 secret_ids:
                   - ptl/azure-devops//${{ variables.service_name }}/internal-dev/JWT_PRIVATE_KEY
