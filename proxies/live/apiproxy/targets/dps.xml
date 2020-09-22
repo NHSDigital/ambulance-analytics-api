@@ -26,6 +26,10 @@
         <Name>ExtractVariables.ParseErrorMessage</Name>
         <Condition>(response.status.code = 400)</Condition>
       </Step>
+      <Step>
+        <Name>ExtractVariables.ServerNotFound</Name>
+        <Condition>proxy.pathsuffix IsNot "/submission"</Condition>
+      </Step>
     </Response>
   </PreFlow>
   <Flows>
