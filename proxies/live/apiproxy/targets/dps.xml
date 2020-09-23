@@ -13,6 +13,10 @@
       <Step>
         <Name>AssignMessage.DoNotCopyPathSuffix</Name>
       </Step>
+      <Step>
+        <Name>RaiseFault.ServerNotFound</Name>
+        <Condition>proxy.pathsuffix IsNot "/submission"</Condition>
+      </Step>
     </Request>
     <Response>
       <Step>
@@ -25,7 +29,7 @@
       <Step>
         <Name>ExtractVariables.ParseErrorMessage</Name>
         <Condition>(response.status.code = 400)</Condition>
-      </Step>
+      </Step>      
     </Response>
   </PreFlow>
   <Flows>
