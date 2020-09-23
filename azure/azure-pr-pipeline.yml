@@ -62,7 +62,6 @@ extends:
               displayName: 'Run Postman tests'
 
             - task: PublishTestResults@2
-              displayName: 'Publish Test Results'
               inputs:
                   testResultsFiles: |
                       $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/newman/*.xml
