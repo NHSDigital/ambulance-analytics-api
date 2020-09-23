@@ -6,7 +6,8 @@ steps:
     - template: "azure/components/get-aws-secrets-and-ssm-params.yml@common"
       parameters:
         secret_ids:
-          - ptl/azure-devops//${{ parameters.service_name }}/${{ parameters.environment }}/JWT_PRIVATE_KEY
+          - ptl/azure-devops//${{ parameters.service_name }}/${{ parameters.environment }}/JWT_RS512_PRIVATE_KEY
+          - ptl/azure-devops//${{ parameters.service_name }}/${{ parameters.environment }}/JWT_RS256_PRIVATE_KEY
           - ptl/azure-devops//${{ parameters.service_name }}/${{ parameters.environment }}/CLIENT_ID
         config_ids: []
 
