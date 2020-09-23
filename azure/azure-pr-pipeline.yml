@@ -50,5 +50,6 @@ extends:
                       - ptl/azure-devops/${{ variables.service_name }}/internal-dev/CLIENT_ID
                   config_ids: []
 
+
         - environment: internal-dev-sandbox
           proxy_path: sandbox
