@@ -40,7 +40,7 @@ extends:
           post_deploy:
             - template: templates/tests.yml
               parameters:
-                environment: internal-dev
+                environment: 'internal-dev'
                 service_name: ${{ variables.service_name }}
         - environment: internal-dev-sandbox
           proxy_path: sandbox
