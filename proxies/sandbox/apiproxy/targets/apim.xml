@@ -3,9 +3,9 @@
         <Request>
         </Request>
         <Response>
-            <Step>
+            <!-- <Step>
                 <Name>AssignMessage.AddCors</Name>
-            </Step>
+            </Step> -->
         </Response>
     </PreFlow>
   <HTTPTargetConnection>
