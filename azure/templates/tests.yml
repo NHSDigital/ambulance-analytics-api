@@ -14,10 +14,9 @@ steps:
     - bash: |
         if [ -d $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests ]; then
           test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
-          newman_env="--env-var "client_id=$(CLIENT_ID)" --env-var "RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)" --env-var "RS512_PRIVATE_KEY=$(JWT_RS512_PRIVATE_KEY)" --env-var "base_url=${{ parameters.environment }}" --env-var "root_path=$(SERVICE_BASE_PATH)" --env-var "DEBUG=true""
-          echo $newman_env
-          echo "docker run -v ${test_dir}:/etc/newman -t postman/newman run ambulance_analytics.json --environment /etc/newman/environments/internal-dev.postman.json --reporters=cli,junit ${newman_env}"
-          docker run -v ${test_dir}:/etc/newman -t postman/newman run ambulance_analytics.json --environment /etc/newman/environments/internal-dev.postman.json --reporters=cli,junit $newman_env
+          echo "2 $(JWT_RS256_PRIVATE_KEY) 1 $(JWT_RS512_PRIVATE_KEY) c $(CLIENT_ID)"
+          echo docker run -v ${test_dir}:/etc/newman -t postman/newman run ambulance_analytics.json --environment /etc/newman/environments/internal-dev.postman.json --reporters=cli,junit --env-var "client_id=$(CLIENT_ID)" --env-var "RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)" --env-var "RS512_PRIVATE_KEY=$(JWT_RS512_PRIVATE_KEY)" --env-var "base_url=${{ parameters.environment }}" --env-var "root_path=$(SERVICE_BASE_PATH)" --env-var "DEBUG=true"
+          docker run -v ${test_dir}:/etc/newman -t postman/newman run ambulance_analytics.json --environment /etc/newman/environments/internal-dev.postman.json --reporters=cli,junit --env-var "client_id=$(CLIENT_ID)" --env-var "RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)" --env-var "RS512_PRIVATE_KEY=$(JWT_RS512_PRIVATE_KEY)" --env-var "base_url=${{ parameters.environment }}" --env-var "root_path=$(SERVICE_BASE_PATH)" --env-var "DEBUG=true"
         fi
       displayName: 'Run Postman tests'
 
