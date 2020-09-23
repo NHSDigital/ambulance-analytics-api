@@ -14,7 +14,7 @@ steps:
     - bash: |
         if [ -d $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests ]; then
           test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
-          newman_env="--env-var "client_id=key" --env-var "RS256_PRIVATE_KEY=some_private_key" --env-var "RS512_PRIVATE_KEY=$(JWT_PRIVATE_KEY)" --env-var "base_url=${{ parameters.environment }}" --env-var "root_path=ambulance-analytics" --env-var "DEBUG=true""
+          newman_env="--env-var "client_id=$(CLIENT_ID)" --env-var "RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)" --env-var "RS512_PRIVATE_KEY=$(JWT_RS512_PRIVATE_KEY)" --env-var "base_url=${{ parameters.environment }}" --env-var "root_path=ambulance-analytics" --env-var "DEBUG=true""
           docker run -v ${test_dir}:/etc/newman -t postman/newman run ambulance_analytics.json --environment /etc/newman/environments/internal-dev.postman.json --reporters=cli ${newman_env}
         fi
       displayName: 'Run Postman tests'
