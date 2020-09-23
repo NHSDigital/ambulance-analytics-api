@@ -1680,6 +1680,70 @@
             "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/submission"
           },
           "response": []
+        },
+        {
+          "name": "Incorrect Request Url for DPS Submission",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "37a70b78-83c0-48a3-baf9-8016ebad09af",
+                "exec": [
+                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+                  "var data = JSON.parse(responseBody);",
+                  "pm.test(\"response is Server Not Found\", function(){ pm.response.to.have.status(404); });",
+                  "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('Server Not Found')});",
+                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{ACCESS_TOKEN}}",
+                "type": "text"
+              }
+            ],
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}/test"
+          },
+          "response": []
+        },
+        {
+          "name": "Incorrect Request Url for DPS Submission (Only base path)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "37a70b78-83c0-48a3-baf9-8016ebad09af",
+                "exec": [
+                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+                  "var data = JSON.parse(responseBody);",
+                  "pm.test(\"response is Server Not Found\", function(){ pm.response.to.have.status(404); });",
+                  "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('Server Not Found')});",
+                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{ACCESS_TOKEN}}",
+                "type": "text"
+              }
+            ],
+            "url": "https://{{base_url}}.api.service.nhs.uk/{{root_path}}"
+          },
+          "response": []
         }
       ],
       "protocolProfileBehavior": {}

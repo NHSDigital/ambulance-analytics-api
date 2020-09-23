@@ -36,10 +36,14 @@ extends:
     enable_monitoring: true
     apigee_deployments:
         - environment: internal-dev
+          make_spec_visible: true
         - environment: internal-qa
+          make_spec_visible: true
         - environment: internal-qa-sandbox
           proxy_path: sandbox
+          make_spec_visible: true
         - environment: int
+          make_spec_visible: true
           depends_on:
               - internal_qa
               - internal_qa_sandbox
