@@ -38,9 +38,34 @@ extends:
     apigee_deployments:
         - environment: internal-dev
           post_deploy:
-            - template: templates/tests.yml
+#            - template: templates/tests.yml
+#              parameters:
+#                environment: 'internal-dev'
+#                service_name: ${{ variables.service_name }}
+            - template: "../components/get-aws-secrets-and-ssm-params.yml@common"
               parameters:
-                environment: 'internal-dev'
-                service_name: ${{ variables.service_name }}
+                  secret_ids:
+                      - ptl/azure-devops/${{ variables.service_name }}/internal-dev/JWT_RS512_PRIVATE_KEY
+                      - ptl/azure-devops/${{ variables.service_name }}/internal-dev/JWT_RS256_PRIVATE_KEY
+                      - ptl/azure-devops/${{ variables.service_name }}/internal-dev/CLIENT_ID
+                  config_ids: []
+
+            - bash: |
+                  if [ -d $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests ]; then
+                    test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
+                    echo docker run -v ${test_dir}:/etc/newman -t postman/newman run ambulance_analytics.json --reporters=cli,junit --env-var \"client_id=$(CLIENT_ID)\" --env-var \"RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)\" --env-var \"RS512_PRIVATE_KEY=$(JWT_RS512_PRIVATE_KEY)\" --env-var \"base_url=${{ parameters.environment }}\" --env-var \"root_path=$(SERVICE_BASE_PATH)\" --env-var \"DEBUG=true\"
+                    docker run -v ${test_dir}:/etc/newman -t postman/newman run ambulance_analytics.json --reporters=cli,junit \
+                    --env-var \"client_id=$(CLIENT_ID)\" --env-var \"RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)\" \
+                    --env-var \"RS512_PRIVATE_KEY=$(JWT_RS512_PRIVATE_KEY)\" --env-var \"base_url=${{ parameters.environment }}\" \
+                    --env-var \"root_path=$(SERVICE_BASE_PATH)\" --env-var \"DEBUG=true\"
+                  fi
+              displayName: 'Run Postman tests'
+
+            - task: PublishTestResults@2
+              displayName: 'Publish Test Results'
+              inputs:
+                  testResultsFiles: |
+                      $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/newman/*.xml
+                  failTaskOnFailedTests: true
         - environment: internal-dev-sandbox
           proxy_path: sandbox
