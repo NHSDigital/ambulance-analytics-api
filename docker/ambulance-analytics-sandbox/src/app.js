@@ -14,7 +14,18 @@ const init = async () => {
         relativeTo: Path.join(__dirname, 'mocks'),
       },
     },
-  })
+  });
+
+  server.route({
+    method: '*',
+    path: '/{any*}',
+    handler: function (request, h) {
+        const errorResponse = {
+          error: 'Server Not Found'
+        }
+        return h.response(errorResponse).code(404);
+    }
+  });
 
   // Binding some variables to allow for persistence on the server.
   server.bind({
