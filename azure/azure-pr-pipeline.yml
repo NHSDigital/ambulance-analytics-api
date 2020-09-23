@@ -50,16 +50,5 @@ extends:
                       - ptl/azure-devops/${{ variables.service_name }}/internal-dev/CLIENT_ID
                   config_ids: []
 
-            - bash: |
-                  if [ -d $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests ]; then
-                    test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
-                    echo docker run -v ${test_dir}:/etc/newman -t postman/newman run ambulance_analytics.json --reporters=cli,junit --env-var \"client_id=$(CLIENT_ID)\" --env-var \"RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)\" --env-var \"RS512_PRIVATE_KEY=$(JWT_RS512_PRIVATE_KEY)\" --env-var \"base_url=internal-dev\" --env-var \"root_path=$(SERVICE_BASE_PATH)\" --env-var \"DEBUG=true\"
-                    docker run -v ${test_dir}:/etc/newman -t postman/newman run ambulance_analytics.json --reporters=cli,junit \
-                    --env-var \"client_id=$(CLIENT_ID)\" --env-var \"RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)\" \
-                    --env-var \"RS512_PRIVATE_KEY=$(JWT_RS512_PRIVATE_KEY)\" --env-var \"base_url=internal-dev\" \
-                    --env-var \"root_path=$(SERVICE_BASE_PATH)\" --env-var \"DEBUG=true\"
-                  fi
-              displayName: 'Run Postman tests'
-
         - environment: internal-dev-sandbox
           proxy_path: sandbox
