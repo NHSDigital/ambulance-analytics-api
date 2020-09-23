@@ -61,10 +61,5 @@ extends:
                   fi
               displayName: 'Run Postman tests'
 
-            - task: PublishTestResults@2
-              inputs:
-                  testResultsFiles: |
-                      $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/newman/*.xml
-                  failTaskOnFailedTests: true
         - environment: internal-dev-sandbox
           proxy_path: sandbox
