@@ -38,17 +38,17 @@ extends:
     apigee_deployments:
         - environment: internal-dev
           post_deploy:
-#            - template: templates/tests.yml
-#              parameters:
-#                environment: 'internal-dev'
-#                service_name: ${{ variables.service_name }}
-            - template: "../components/get-aws-secrets-and-ssm-params.yml@common"
+            - template: templates/tests.yml
               parameters:
-                  secret_ids:
-                      - ptl/azure-devops/${{ variables.service_name }}/internal-dev/JWT_RS512_PRIVATE_KEY
-                      - ptl/azure-devops/${{ variables.service_name }}/internal-dev/JWT_RS256_PRIVATE_KEY
-                      - ptl/azure-devops/${{ variables.service_name }}/internal-dev/CLIENT_ID
-                  config_ids: []
+                environment: 'internal-dev'
+                service_name: ${{ variables.service_name }}
+#            - template: "../components/get-aws-secrets-and-ssm-params.yml@common"
+#              parameters:
+#                  secret_ids:
+#                      - ptl/azure-devops/${{ variables.service_name }}/internal-dev/JWT_RS512_PRIVATE_KEY
+#                      - ptl/azure-devops/${{ variables.service_name }}/internal-dev/JWT_RS256_PRIVATE_KEY
+#                      - ptl/azure-devops/${{ variables.service_name }}/internal-dev/CLIENT_ID
+#                  config_ids: []
 
 
         - environment: internal-dev-sandbox
