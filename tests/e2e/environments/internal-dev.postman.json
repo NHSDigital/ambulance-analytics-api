@@ -4,12 +4,12 @@
 	"values": [
 		{
 			"key": "RS256_PRIVATE_KEY",
-			"value": "-----BEGIN RSA PRIVATE KEY-----\n-----END RSA PRIVATE KEY-----",
+			"value": "$JWT_RS256_PRIVATE_KEY",
 			"enabled": true
 		},
 		{
 			"key": "RS512_PRIVATE_KEY",
-			"value": "-----BEGIN RSA PRIVATE KEY-----\n-----END RSA PRIVATE KEY-----",
+			"value": "$JWT_RS512_PRIVATE_KEY",
 			"enabled": true
 		},
 		{
@@ -24,17 +24,17 @@
 		},
 		{
 			"key": "client_id",
-			"value": "",
+			"value": "$CLIENT_ID",
 			"enabled": true
 		},
 		{
-			"key": "base_host",
+			"key": "base_url",
 			"value": "internal-dev",
 			"enabled": true
 		},
 		{
 			"key": "root_path",
-			"value": "ambulance-analytics",
+			"value": "ambulance-analytics-pr-68",
 			"enabled": true
 		}
 	],

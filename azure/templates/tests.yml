@@ -15,18 +15,19 @@ steps:
         if [ -d $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests ]; then
           test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
 
-          echo "$(JWT_RS512_PRIVATE_KEY)" >> JWT_RS512_PRIVATE_KEY
-          echo "$(JWT_RS256_PRIVATE_KEY)" >> JWT_RS256_PRIVATE_KEY
-
           echo docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --reporters=cli,junit \
-          --global-var \"base_url=internal-dev\" \
-          --global-var \"root_path=ambulance-analytics-pr-68\" --global-var \"DEBUG=true\" \
-          --global-var \"client_id=$(CLIENT_ID)\" --global-var \"RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)\" --global-var \"RS512_PRIVATE_KEY=$(JWT_RS512_PRIVATE_KEY)\"
+          --env-var \"base_url=internal-dev\" \
+          --env-var \"root_path=ambulance-analytics-pr-68\" --env-var \"DEBUG=true\" \
+          --env-var \"client_id=$(CLIENT_ID)\" --env-var \"RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)\" --env-var \"RS512_PRIVATE_KEY=$(JWT_RS512_PRIVATE_KEY)\"
+
+          TEST_FUN=$(echo $TEST_FUN | sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g') envsubst < test.json > output.json
+
+
 
           docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --reporters=cli,junit \
-          --global-var \"base_url=internal-dev\" \
-          --global-var \"root_path=ambulance-analytics-pr-68\" --global-var \"DEBUG=true\" \
-          --global-var \"client_id=$(CLIENT_ID)\" --global-var \"RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)\" --global-var \"RS512_PRIVATE_KEY=$(JWT_RS512_PRIVATE_KEY)\"
+          --env-var \"base_url=internal-dev\" \
+          --env-var \"root_path=ambulance-analytics-pr-68\" --env-var \"DEBUG=true\" \
+          --env-var \"client_id=$(CLIENT_ID)\" --env-var \"RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)\" --env-var \"RS512_PRIVATE_KEY=$(JWT_RS512_PRIVATE_KEY)\"
         fi
       displayName: 'Run Postman tests'
 
