@@ -14,14 +14,18 @@ steps:
     - bash: |
         if [ -d $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests ]; then
           test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
+          echo $JWT_RS256_PRIVATE_KEY > $test_dir/test-256.key
+          echo $JWT_RS512_PRIVATE_KEY > $test_dir/test-512.key
 
-          JWT_RS256_PRIVATE_KEY=$(echo $JWT_RS256_PRIVATE_KEY | sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g')
-          JWT_RS512_PRIVATE_KEY=$(echo $JWT_RS512_PRIVATE_KEY | sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g')
+          docker run -v $test_dir:/usr/src/app -w /usr/src/app node:alpine sh -c "npm install && npm run test:release $CLIENT_ID ambulance-analytics-pr-68 internal-dev"
 
-          envsubst < $test_dir/environments/internal-dev.postman.json > $test_dir/environments/prefilled.internal-dev.postman.json
+          #JWT_RS256_PRIVATE_KEY=$(echo $JWT_RS256_PRIVATE_KEY | sed -z 's/ /\\n/g')
+          #JWT_RS512_PRIVATE_KEY=$(echo $JWT_RS512_PRIVATE_KEY | sed -z 's/ /\\n/g')
 
-          echo docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment /etc/newman/environments/prefilled.internal-dev.postman.json --reporters=cli,junit
-          docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment /etc/newman/environments/prefilled.internal-dev.postman.json --reporters=cli,junit
+          #envsubst < $test_dir/environments/internal-dev.postman.json > $test_dir/environments/prefilled.internal-dev.postman.json
+
+          #echo docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment /etc/newman/environments/prefilled.internal-dev.postman.json --reporters=cli,junit
+          #docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment /etc/newman/environments/prefilled.internal-dev.postman.json --reporters=cli,junit
         fi
       displayName: 'Run Postman tests'
 
@@ -29,5 +33,5 @@ steps:
       displayName: 'Publish Test Results'
       inputs:
           testResultsFiles: |
-              $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/newman/*.xml
+              $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/test-report.xml
           failTaskOnFailedTests: true
