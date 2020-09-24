@@ -30,7 +30,7 @@ steps:
           postman/newman:5-ubuntu run ambulance_analytics.json --reporters=cli,junit \
           --global-var \"base_url=internal-dev\" \
           --global-var \"root_path=ambulance-analytics-pr-68\" --global-var \"DEBUG=true\" \
-          --global-var \"client_id=$(CLIENT_ID)\" --global-var \"RS256_PRIVATE_KEY=$(cat JWT_RS256_PRIVATE_KEY)\" --global-var \"RS512_PRIVATE_KEY=$(cat JWT_RS512_PRIVATE_KEY)\"
+          --global-var \"client_id=$(CLIENT_ID)\" --global-var \"RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)\" --global-var \"RS512_PRIVATE_KEY=$(JWT_RS512_PRIVATE_KEY)\"
         fi
       displayName: 'Run Postman tests'
 
