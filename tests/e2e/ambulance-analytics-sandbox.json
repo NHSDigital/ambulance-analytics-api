@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "Ambulance - Server Not Found Incorrect Url",
+			"name": "Ambulance - File not found Incorrect Url",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -23,7 +23,7 @@
 					"script": {
 						"id": "02bdfdda-5792-4340-b16e-1e21596feb71",
 						"exec": [
-							"pm.test(\"Returns status code 404 Server Not Found\", () => {",
+							"pm.test(\"Returns status code 404 File not found\", () => {",
 							"    pm.response.to.have.status(404);",
 							"});",
 							""

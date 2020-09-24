@@ -21,7 +21,7 @@ const init = async () => {
     path: '/{any*}',
     handler: function (request, h) {
         const errorResponse = {
-          error: 'Server Not Found'
+          error: 'File not found'
         }
         return h.response(errorResponse).code(404);
     }
