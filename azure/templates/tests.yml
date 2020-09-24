@@ -13,7 +13,9 @@ steps:
 
     - bash: |
         if [ -d $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests ]; then
-          test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
+          #test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
+
+          test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests"
           echo $JWT_RS256_PRIVATE_KEY > $test_dir/test-256.key
           echo $JWT_RS512_PRIVATE_KEY > $test_dir/test-512.key
 
