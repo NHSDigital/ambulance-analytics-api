@@ -4,7 +4,8 @@
     <FaultResponse>
         <Set>
             <StatusCode>405</StatusCode>
-            <ReasonPhrase>Request method must be POST, not {request.method}</ReasonPhrase>
+            <ReasonPhrase>Method not allowed</ReasonPhrase>
+            <Payload contentType="application/json">{"error": "Request method must be POST, not {request.verb}"}</Payload>
         </Set>
     </FaultResponse>
 </RaiseFault>
