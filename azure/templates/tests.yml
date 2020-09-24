@@ -20,8 +20,8 @@ steps:
 
           envsubst < $test_dir/environments/internal-dev.postman.json > $test_dir/environments/internal-dev.postman.json
 
-          echo "docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment $test_dir/environments/internal-dev.postman.json --reporters=cli,junit"
-          docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment $test_dir/environments/internal-dev.postman.json --reporters=cli,junit
+          echo docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment /etc/newman/environments/internal-dev.postman.json --reporters=cli,junit
+          docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment /etc/newman/environments/internal-dev.postman.json --reporters=cli,junit
         fi
       displayName: 'Run Postman tests'
 
