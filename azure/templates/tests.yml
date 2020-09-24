@@ -18,10 +18,10 @@ steps:
           JWT_RS256_PRIVATE_KEY=$(echo $JWT_RS256_PRIVATE_KEY | sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g')
           JWT_RS512_PRIVATE_KEY=$(echo $JWT_RS512_PRIVATE_KEY | sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g')
 
-          envsubst < $test_dir/environments/internal-dev.postman.json > $test_dir/environments/internal-dev.postman.json
+          envsubst < $test_dir/environments/internal-dev.postman.json > $test_dir/environments/prefilled.internal-dev.postman.json
 
-          echo docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment /etc/newman/environments/internal-dev.postman.json --reporters=cli,junit
-          docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment /etc/newman/environments/internal-dev.postman.json --reporters=cli,junit
+          echo docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment /etc/newman/environments/prefilled.internal-dev.postman.json --reporters=cli,junit
+          docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment /etc/newman/environments/prefilled.internal-dev.postman.json --reporters=cli,junit
         fi
       displayName: 'Run Postman tests'
 
