@@ -1,18 +1,19 @@
 {
-  "name": "hello-world-tests",
+  "name": "ambulance-analytics-tests",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "npm run global && npm run test",
     "global": "node_modules/.bin/node e2e/globals.js",
-    "test": "node_modules/.bin/newman run e2e/ambulance-analytics-sandbox.json -e e2e/environments/deploy.$APIGEE_ENVIRONMENT.postman.json --globals e2e/deploy.globals.json --reporters junit"
+    "test": "node_modules/.bin/newman run e2e/ambulance-analytics-sandbox.json -e e2e/environments/deploy.$APIGEE_ENVIRONMENT.postman.json --globals e2e/deploy.globals.json --reporters junit",
+    "test:release": "node_modules/.bin/node e2e/globals.js"
   },
   "author": "",
   "license": "(MIT OR OGL)",
   "dependencies": {
+    "docopt": "^0.6.2",
     "newman": "^5.0.0",
-    "node": "^13.12.0",
-    "puppeteer": "^2.1.1"
+    "node": "^13.12.0"
   }
 }

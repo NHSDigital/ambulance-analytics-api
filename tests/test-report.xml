@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Ambulance Analytics" tests="22" time="0.339">
+  <testsuite name="Init Test Suite / INIT: Load Crypto Library for RS512" id="49d2a231-9073-489f-a9a5-ac8b8509d01c" timestamp="2020-09-24T12:04:47.717Z" tests="4" failures="0" errors="0" time="0.339">
+    <testcase name="response is Ok" time="0.339" classname="AmbulanceAnalytics"/>
+    <testcase name="response has body" time="0.339" classname="AmbulanceAnalytics"/>
+    <testcase name="global variable contains response" time="0.339" classname="AmbulanceAnalytics"/>
+  </testsuite>
+  <testsuite name="Happy Path Tests / Unattended Access Token Request" id="ff173468-ece7-4794-8285-51648a4503c9" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="Happy Path Tests / Data Submission" id="e36e5e5b-96e9-4626-8397-2ad4ebcaceaa" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="2" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="Required Fields / Missing Grant Type" id="937318c2-571c-4e6c-a6e4-4768a2319f46" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="Required Fields / Missing Client ID" id="05606111-146e-4a7d-b559-acb0b66d17ac" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="Required Fields / Missing Client Assertion Type" id="54bf63c3-1c8e-4abe-92c5-50800fdec0cf" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="JWT Validation / Missing Audience" id="b80814f9-385d-4cea-a8aa-e6f7dd562586" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="JWT Validation / Wrong Audience" id="b97e25e5-4cb0-4f98-b079-20c0198b1bd2" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="JWT Validation / Missing Issuer or Subject claims" id="f9eadaf9-d56e-421e-8356-96c1a128d2ea" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="JWT Validation / Issuer and Subject claims are not equal" id="e138a218-3af2-4a61-8c18-7955e69c7167" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="JWT Validation / Missing Expiry" id="dfe54ce1-bb7f-4e50-844d-27626c87cb28" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="JWT Validation / Token Expired" id="fd8ef2a8-47eb-422a-a80f-7686843f678e" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="JWT Validation / Missing KID" id="628395f6-2786-4fb8-a855-6cd1cfe1e91d" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="JWT Validation / KID is Empty" id="43d04321-0c4c-4af3-9cf4-245b45bbf411" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="JWT Validation / Missing JTI" id="24861e84-8adc-4819-a3a8-b207d8ab21d3" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="JWT Validation / JTI is Empty" id="f2be80f2-dca3-4f49-bd06-b9a507849e25" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="JWT Validation / Invalid JWT json payload" id="1f8bef70-024a-4c51-b1a6-92768a8fd0bd" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="JWT Validation / Invalid JWT json header" id="8a2479d7-5587-4b72-a93e-5c74b50a1437" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="JWT Validation / Clashing JTI Unique Identifier" id="434f9194-e588-465f-af8a-188cb9dc7af4" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="Authentication / Unsupported Encryption Algorithm (RS256)" id="7e0f9ca1-ff52-4fcb-9632-db963f87bdc6" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="Request Validation / Incorrect Request Method Token Endpoint" id="014347be-759c-4346-b0b4-787ced178f23" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="3" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+prerequestScriptError: undefined
+---
+]]></system-err>
+  </testsuite>
+  <testsuite name="Request Validation / Incorrect Request Method DPS Endpoint" id="3a88d758-340b-4faf-bd71-f2a52c7d2587" timestamp="2020-09-24T12:04:47.717Z" tests="0" failures="0" errors="2" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: getaddrinfo ENOTFOUND {{base_url}}.api.service.nhs.uk
+    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:66:26)
+
+---
+testScriptError: Unexpected token u in JSON at position 0
+---
+]]></system-err>
+  </testsuite>
+</testsuites>
