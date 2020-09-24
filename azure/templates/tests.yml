@@ -21,9 +21,9 @@ steps:
           --env-var \"client_id=$(CLIENT_ID)\" --env-var \"RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)\"
 
           docker run -v ${test_dir}:/etc/newman -t postman/newman run ambulance_analytics.json --reporters=cli,junit \
-          --env-var \"RS512_PRIVATE_KEY=$(JWT_RS512_PRIVATE_KEY)\" --env-var \"base_url=ambulance-analytics\" \
+           --env-var \"base_url=ambulance-analytics\" \
           --env-var \"root_path=ambulance-analytics-pr-68\" --env-var \"DEBUG=true\" \
-          --env-var \"client_id=$(CLIENT_ID)\" --env-var \"RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)\"
+          --env-var \"client_id=$(CLIENT_ID)\" --env-var \"RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)\" --env-var \"RS512_PRIVATE_KEY=$(JWT_RS512_PRIVATE_KEY)\"
         fi
       displayName: 'Run Postman tests'
 
