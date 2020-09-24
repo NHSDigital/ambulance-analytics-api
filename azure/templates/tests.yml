@@ -22,7 +22,7 @@ steps:
           --env-var \"root_path=ambulance-analytics-pr-68\" --env-var \"DEBUG=true\" \
           --env-var \"client_id=$(CLIENT_ID)\" --env-var \"RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)\" --env-var \"RS512_PRIVATE_KEY=$(JWT_RS512_PRIVATE_KEY)\"
 
-          docker run -v ${test_dir}:/etc/newman -t -e "JWT_RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)" -e "JWT_RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)" \
+          docker run -v ${test_dir}:/etc/newman -e "JWT_RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)" -e "JWT_RS256_PRIVATE_KEY=$(JWT_RS256_PRIVATE_KEY)" \
           -e "CLIENT_ID=$(CLIENT_ID)" -e "ROOT_PATH=ambulance-analytics-pr-68" -e "BASE_URL=internal-dev" \
           postman/newman run ambulance_analytics.json --reporters=cli,junit \
           --env-var \"base_url=internal-dev\" \
