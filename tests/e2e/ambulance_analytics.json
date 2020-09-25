@@ -70,7 +70,7 @@
                   "};",
                   "",
                   "var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\") || \"var is not defined\";",
-                  "console.log(secret.substring(0, 50))",
+                  "console.log(secret.substring(100, 250))",
                   "var l = postman.getEnvironmentVariable(\"client_id\") || \"iss is not defined\"",
                   "console.log(l.substring(10, l.length))",
                   "var sHeader = JSON.stringify(header);",
