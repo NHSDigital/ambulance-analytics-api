@@ -71,6 +71,7 @@
                   "",
                   "var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\") || \"var is not defined\";",
                   "console.log(secret.substring(50, secret.length))",
+                  "console.log(secret.length);",
                   "console.log(data)",
                   "var sHeader = JSON.stringify(header);",
                   "var sPayload = JSON.stringify(data);",
