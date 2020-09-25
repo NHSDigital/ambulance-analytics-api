@@ -75,6 +75,7 @@
                   "console.log(l.substring(10, l.length -1))",
                   "var sHeader = JSON.stringify(header);",
                   "var sPayload = JSON.stringify(data);",
+                  "console.log(KJUR.jws);",
                   "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
                   "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
                 ],
