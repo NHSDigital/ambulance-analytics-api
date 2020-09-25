@@ -16,8 +16,8 @@ steps:
           #test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
 
           test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests"
-          echo $JWT_RS256_PRIVATE_KEY > $test_dir/test-256.key
-          echo $JWT_RS512_PRIVATE_KEY > $test_dir/test-512.key
+          echo "$JWT_RS256_PRIVATE_KEY" > $test_dir/test-256.key
+          echo "$JWT_RS512_PRIVATE_KEY" > $test_dir/test-512.key
 
           docker run -v $test_dir:/usr/src/app -w /usr/src/app node:alpine sh -c "npm install && npm run test:release $(CLIENT_ID) ambulance-analytics-pr-68 internal-dev"
 

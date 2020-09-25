@@ -1,2 +1,5 @@
 e2e/deploy.globals.json
 e2e/environments/deploy.*
+e2e/environments/prefilled.*
+test-report.xml
+newenv.json

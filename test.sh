@@ -6,7 +6,7 @@ JWT_RS512_PRIVATE_KEY=$(cat test-512.key)
 export JWT_RS256_PRIVATE_KEY
 
 #echo $JWT_RS256_PRIVATE_KEY
-echo $JWT_RS512_PRIVATE_KEY
+echo $JWT_RS512_PRIVATE_KEY > first
 
 #export JWT_RS256_PRIVATE_KEY=$(echo $JWT_RS256_PRIVATE_KEY | gsed -z 's/\n/\\n/g')
 JWT_RS512_PRIVATE_KEY=$(echo $JWT_RS512_PRIVATE_KEY | gsed -z '2,$s/ /\\n/g')

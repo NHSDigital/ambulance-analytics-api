@@ -16,7 +16,7 @@ const docopt = require('docopt').docopt;
 
 function main(args) {
   const environment = overwriteEnvironment(args);
-  run(environment);
+  // run(environment);
 }
 
 function overwriteEnvironment(args) {
@@ -31,21 +31,36 @@ function overwriteEnvironment(args) {
   const values = environment["values"]
 
   const findAndOverride = (arr, key, value) => arr.filter(v => v.key === key).map(v => ({...v, value}))[0]
+  const convertSpaceToNewline = (key) => {
+    const begin = "-----BEGIN RSA PRIVATE KEY-----";
+    const end = "-----END RSA PRIVATE KEY-----";
+
+    const data = key.substring(
+      key.lastIndexOf(begin) + begin.length,
+      key.lastIndexOf(end)
+    )
+
+    const reg =/ /gi;
+
+    return  `${begin}\n${data.replace(reg, '\n')}\n${end}`;
+  };
 
   const newValues = [
-    findAndOverride(values, "RS256_PRIVATE_KEY", rs256Key),
-    findAndOverride(values, "RS512_PRIVATE_KEY", rs512Key),
+    findAndOverride(values, "RS256_PRIVATE_KEY", convertSpaceToNewline(rs256Key)),
+    findAndOverride(values, "RS512_PRIVATE_KEY", convertSpaceToNewline(rs512Key)),
     findAndOverride(values, "client_id", client_id),
     findAndOverride(values, "base_url", base_url),
     findAndOverride(values, "root_path", root_path),
   ]
 
   environment['values'] = newValues
+  fs.writeFileSync('newenv.json', JSON.stringify(environment));
 
   return environment
 }
 
 function run(environment) {
+  // const baseEnvironment = path.resolve('e2e/environments/internal-dev.postman.json');
   const collectionPath = path.resolve(`e2e/ambulance_analytics.json`)
   const collection = JSON.parse(fs.readFileSync(collectionPath).toString())
 
@@ -57,6 +72,7 @@ function run(environment) {
           export: './test-report.xml',
         },
       },
+      // environment: baseEnvironment,
       environment
     },
   )

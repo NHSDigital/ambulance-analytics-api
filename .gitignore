@@ -10,6 +10,7 @@ venv/
 .terraform
 tools/files
 test-256.key
+*.key
 test-512.key
 
 # utils directory will be clone during pipeline.
