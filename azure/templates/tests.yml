@@ -20,9 +20,12 @@ steps:
               JWT_RS256_PRIVATE_KEY="$(JWT_RS256_PRIVATE_KEY)"
               JWT_RS512_PRIVATE_KEY="$(JWT_RS512_PRIVATE_KEY)"
               export CLIENT_ID="$(CLIENT_ID)"
+              echo "$JWT_RS512_PRIVATE_KEY" | wc
 
-              #JWT_RS256_PRIVATE_KEY=$(echo "$JWT_RS256_PRIVATE_KEY" | sed -z 's/\n/\\n/g')
-              #JWT_RS512_PRIVATE_KEY=$(echo "$JWT_RS512_PRIVATE_KEY" | sed -z 's/\n/\\n/g')
+              JWT_RS256_PRIVATE_KEY=$(echo "$JWT_RS256_PRIVATE_KEY" | sed -z 's/\n/\\n/g')
+              JWT_RS512_PRIVATE_KEY=$(echo "$JWT_RS512_PRIVATE_KEY" | sed -z 's/\n/\\n/g')
+
+              echo "$JWT_RS512_PRIVATE_KEY" | wc
 
               export JWT_RS256_PRIVATE_KEY
               export JWT_RS512_PRIVATE_KEY
