@@ -29,12 +29,12 @@
 		},
 		{
 			"key": "base_url",
-			"value": "internal-dev",
+			"value": "$BASE_URL",
 			"enabled": true
 		},
 		{
 			"key": "root_path",
-			"value": "ambulance-analytics-pr-68",
+			"value": "$ROOT_PATH",
 			"enabled": true
 		}
 	],

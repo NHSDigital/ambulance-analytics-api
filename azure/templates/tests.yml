@@ -14,6 +14,8 @@ steps:
     - bash: |
           if [ -d $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests ]; then
               test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
+              export BASE_URL="${{ prameters.environment }}"
+              export ROOT_PATH="$(SERVICE_BASE_PATH)"
 
               JWT_RS256_PRIVATE_KEY="$(JWT_RS256_PRIVATE_KEY)"
               JWT_RS512_PRIVATE_KEY="$(JWT_RS512_PRIVATE_KEY)"
@@ -24,6 +26,7 @@ steps:
 
               export JWT_RS256_PRIVATE_KEY
               export JWT_RS512_PRIVATE_KEY
+
               envsubst < $test_dir/environments/internal-dev.postman.json > $test_dir/environments/prefilled.internal-dev.postman.json
 
               echo $JWT_RS256_PRIVATE_KEY
