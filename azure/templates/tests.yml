@@ -14,7 +14,7 @@ steps:
     - bash: |
           if [ -d $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests ]; then
               test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
-              export BASE_URL="${{ prameters.environment }}"
+              export BASE_URL="${{ parameters.environment }}"
               export ROOT_PATH="$(SERVICE_BASE_PATH)"
 
               JWT_RS256_PRIVATE_KEY="$(JWT_RS256_PRIVATE_KEY)"
