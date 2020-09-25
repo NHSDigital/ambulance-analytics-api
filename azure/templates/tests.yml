@@ -15,8 +15,8 @@ steps:
           if [ -d $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests ]; then
               test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
 
-              JWT_RS256_PRIVATE_KEY=$(echo "$JWT_RS256_PRIVATE_KEY" | sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g')
-              JWT_RS512_PRIVATE_KEY=$(echo "$JWT_RS512_PRIVATE_KEY" | sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g')
+              JWT_RS256_PRIVATE_KEY=$(echo "$JWT_RS256_PRIVATE_KEY" | sed -z 's/\n/\\n/g')
+              JWT_RS512_PRIVATE_KEY=$(echo "$JWT_RS512_PRIVATE_KEY" | sed -z 's/\n/\\n/g')
 
               envsubst < $test_dir/environments/internal-dev.postman.json > $test_dir/environments/prefilled.internal-dev.postman.json
 
