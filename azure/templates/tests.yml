@@ -27,7 +27,7 @@ steps:
               envsubst < $test_dir/environments/internal-dev.postman.json > $test_dir/environments/prefilled.internal-dev.postman.json
 
               echo $JWT_RS256_PRIVATE_KEY
-              cat $test_dir/environments/prefilled.internal-dev.postman.json
+              cat $test_dir/environments/prefilled.internal-dev.postman.json | jq .
 
               echo docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment /etc/newman/environments/prefilled.internal-dev.postman.json --reporters=cli,junit
               docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment /etc/newman/environments/prefilled.internal-dev.postman.json --reporters=cli,junit

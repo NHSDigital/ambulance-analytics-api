@@ -1,6 +1,6 @@
 {
 	"id": "6d45aef4-8664-443f-9211-188c962c0810",
-	"name": "local",
+	"name": "ambulance internal-dev",
 	"values": [
 		{
 			"key": "RS256_PRIVATE_KEY",
