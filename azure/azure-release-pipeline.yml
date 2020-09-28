@@ -44,11 +44,6 @@ extends:
                 service_name: ${{ variables.service_name }}
         - environment: internal-qa
           make_spec_visible: true
-          post_deploy:
-            - template: templates/tests.yml
-              parameters:
-                environment: 'internal-qa'
-                service_name: ${{ variables.service_name }}
         - environment: internal-qa-sandbox
           proxy_path: sandbox
           make_spec_visible: true
