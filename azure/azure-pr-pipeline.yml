@@ -36,6 +36,11 @@ extends:
     product_description: ${{ variables.product_description }}
     spec_file: ${{ variables.spec_file }}
     apigee_deployments:
-        - environment: internal-dev
-        - environment: internal-dev-sandbox
-          proxy_path: sandbox
+      - environment: internal-dev
+        post_deploy:
+          - template: templates/tests.yml
+            parameters:
+              environment: 'internal-dev'
+              service_name: ${{ variables.service_name }}
+      - environment: internal-dev-sandbox
+        proxy_path: sandbox
