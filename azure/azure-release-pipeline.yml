@@ -37,8 +37,18 @@ extends:
     apigee_deployments:
         - environment: internal-dev
           make_spec_visible: true
+          post_deploy:
+            - template: templates/tests.yml
+              parameters:
+                environment: 'internal-dev'
+                service_name: ${{ variables.service_name }}
         - environment: internal-qa
           make_spec_visible: true
+          post_deploy:
+            - template: templates/tests.yml
+              parameters:
+                environment: 'internal-qa'
+                service_name: ${{ variables.service_name }}
         - environment: internal-qa-sandbox
           proxy_path: sandbox
           make_spec_visible: true
@@ -47,6 +57,11 @@ extends:
           depends_on:
               - internal_qa
               - internal_qa_sandbox
+          post_deploy:
+            - template: templates/tests.yml
+              parameters:
+                environment: 'int'
+                service_name: ${{ variables.service_name }}
         - environment: sandbox
           proxy_path: sandbox
           depends_on:
