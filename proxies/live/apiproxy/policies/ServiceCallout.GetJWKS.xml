@@ -6,6 +6,7 @@
     <Request>
         <Set>
             <Verb>GET</Verb>
+            <Path>{sc_urlPath}</Path>
         </Set>
         <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
     </Request>
