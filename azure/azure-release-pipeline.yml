@@ -42,6 +42,7 @@ extends:
               parameters:
                 environment: 'internal-dev'
                 service_name: ${{ variables.service_name }}
+
         - environment: internal-qa
           make_spec_visible: true
           post_deploy:
