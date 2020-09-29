@@ -38,7 +38,7 @@ extends:
     apigee_deployments:
       - environment: internal-dev
         post_deploy:
-          - template: templates/tests.yml
+          - template: templates/smoke-tests.yml
             parameters:
               environment: 'internal-dev'
               service_name: ${{ variables.service_name }}
