@@ -118,6 +118,9 @@
           <Name>AssignMessage.AddIdAndSecret</Name>
         </Step>
         <Step>
+          <Name>JS.SetServiceCalloutUrl</Name>
+        </Step>
+        <Step>
           <Name>ServiceCallout.GetJWKS</Name>
         </Step>
         <Step>
