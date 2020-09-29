@@ -14,6 +14,6 @@
         <SSLInfo>
             <Enabled>true</Enabled>
         </SSLInfo>
-        <URL>https://raw.githubusercontent.com/{verifyapikey.VerifyAPIKey.FormParam.jwks-resource-path}</URL>
+        <URL>https://{verifyapikey.VerifyAPIKey.FormParam.jwks-resource-url}</URL>
     </HTTPTargetConnection>
 </ServiceCallout>
