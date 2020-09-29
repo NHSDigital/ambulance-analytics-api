@@ -1,7 +1,6 @@
-const postDatasetId = require('./post-dataset-id')
-const getStatus = require('./get-status')
-const badRequest = require('./bad-request')
+const postAmbulanceData = require('./postAmbulanceData')
+const getStatus = require('./getStatus')
 
-const routes = [].concat(postDatasetId, getStatus, badRequest)
+const routes = [].concat(postAmbulanceData, getStatus)
 
 module.exports = routes

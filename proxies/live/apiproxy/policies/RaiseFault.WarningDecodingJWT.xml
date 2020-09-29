@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<RaiseFault async="false" continueOnError="false" enabled="true" name="RaiseFault.InvalidKid">
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RaiseFault.WarningDecodingJWT">
     <FaultResponse>
         <Set>
-            <Payload contentType="application/json">{"error": "kid claim is required and cannot be empty validate JWT"}</Payload>
+            <Payload contentType="application/json">{"error": "{escapeJSON(jwt.DecodeJWT.warning)}"}</Payload>
             <StatusCode>400</StatusCode>
             <ReasonPhrase>Bad Request</ReasonPhrase>
         </Set>

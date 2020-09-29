@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "Ambulance - Bad request if dataset-id missing",
+			"name": "Ambulance - File not found Incorrect Url",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -23,8 +23,8 @@
 					"script": {
 						"id": "02bdfdda-5792-4340-b16e-1e21596feb71",
 						"exec": [
-							"pm.test(\"Returns status code 400 Bad Request\", () => {",
-							"    pm.response.to.have.status(400);",
+							"pm.test(\"Returns status code 404 File not found\", () => {",
+							"    pm.response.to.have.status(404);",
 							"});",
 							""
 						],
@@ -93,17 +93,11 @@
 					}
 				],
 				"url": {
-					"raw": "https://int.api.service.nhs.uk/ambulance-analytics/_status",
-					"protocol": "https",
+					"raw": "{{base_url}}/_status",
 					"host": [
-						"int",
-						"api",
-						"service",
-						"nhs",
-						"uk"
+						"{{base_url}}"
 					],
 					"path": [
-						"ambulance-analytics",
 						"_status"
 					]
 				}
@@ -111,7 +105,7 @@
 			"response": []
 		},
 		{
-			"name": "Ambulance - dataset-id",
+			"name": "Ambulance - Happy Path",
 			"event": [
 				{
 					"listen": "test",
@@ -131,12 +125,44 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/my-dataset-id",
+					"raw": "{{base_url}}/submission",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"my-dataset-id"
+						"submission"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ambulance - 405 Method Not Allowed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "28a3216d-762f-4018-9ac9-6a6ab5e0e82f",
+						"exec": [
+							"pm.test(\"Returns status code 405 Method Not Allowed\", () => {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/submission",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"submission"
 					]
 				}
 			},
