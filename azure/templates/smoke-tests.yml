@@ -3,6 +3,9 @@ parameters:
     - name: service_name
 
 steps:
+    - bash: |
+          echo "hello"
+
     - template: "azure/components/get-aws-secrets-and-ssm-params.yml@common"
       parameters:
           secret_ids:
