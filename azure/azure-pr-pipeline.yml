@@ -8,7 +8,6 @@ resources:
     - repository: common
       type: github
       name: NHSDigital/api-management-utils
-      ref: 'refs/heads/AMB-325-enable-multiple-post-deploy-tasks'
       endpoint: NHSDigital
 
   pipelines:
