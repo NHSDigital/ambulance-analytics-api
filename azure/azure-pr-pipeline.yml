@@ -8,6 +8,7 @@ resources:
     - repository: common
       type: github
       name: NHSDigital/api-management-utils
+      ref: 'refs/heads/AMB-325-enable-multiple-post-deploy-tasks'
       endpoint: NHSDigital
 
   pipelines:
@@ -38,13 +39,11 @@ extends:
     apigee_deployments:
       - environment: internal-dev
         post_deploy:
-          - 
-            template: templates/tests.yml
+          - template: templates/tests.yml
             parameters:
               environment: 'internal-dev'
               service_name: ${{ variables.service_name }}
-          - 
-            template: templates/smoke-tests.yml
+          - template: templates/smoke-tests.yml
             parameters:
                 environment: 'internal-dev'
                 service_name: ${{ variables.service_name }}
