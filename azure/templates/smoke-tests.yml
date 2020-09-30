@@ -1,6 +1,7 @@
 parameters:
     - name: environment
     - name: service_name
+    - name: base_url
 
 steps:
     - template: "azure/components/get-aws-secrets-and-ssm-params.yml@common"
@@ -15,7 +16,7 @@ steps:
           if [ -d $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests ]; then
               test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
 
-              export BASE_URL="${{ parameters.environment }}"
+              export BASE_URL="${{ parameters.base_url }}"
               export ROOT_PATH="$(SERVICE_BASE_PATH)"
               export CLIENT_ID="$(CLIENT_ID)"
               export JWT_RS256_PRIVATE_KEY=$(echo "$(JWT_RS256_PRIVATE_KEY)" | base64 -d | sed -z 's/\n/\\n/g')

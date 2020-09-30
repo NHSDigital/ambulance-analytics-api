@@ -42,5 +42,6 @@ extends:
             parameters:
               environment: 'internal-dev'
               service_name: ${{ variables.service_name }}
+              base_url: 'internal-dev.api.service.nhs.uk'
       - environment: internal-dev-sandbox
         proxy_path: sandbox

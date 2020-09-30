@@ -42,6 +42,7 @@ extends:
               parameters:
                 environment: 'internal-dev'
                 service_name: ${{ variables.service_name }}
+                base_url: 'internal-dev.api.service.nhs.uk'
         - environment: internal-qa
           make_spec_visible: true
         - environment: internal-qa-sandbox
@@ -57,6 +58,7 @@ extends:
               parameters:
                 environment: 'int'
                 service_name: ${{ variables.service_name }}
+                base_url: 'int.api.service.nhs.uk'
         - environment: sandbox
           proxy_path: sandbox
           depends_on:
@@ -73,3 +75,4 @@ extends:
 #                parameters:
 #                    environment: 'prod'
 #                    service_name: ${{ variables.service_name }}
+#                    base_url: 'api.service.nhs.uk'
