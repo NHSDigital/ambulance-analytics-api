@@ -64,15 +64,15 @@ extends:
           depends_on:
               - internal_qa
               - internal_qa_sandbox
-#        - environment: prod
-#          proxy_path: prod #TODO what should it be?
-#          make_spec_visible: true
-#          depends_on:
-#              - int
-#              - sandbox
-#          post_deploy:
-#              - template: templates/smoke-tests.yml
-#                parameters:
-#                    environment: 'prod'
-#                    service_name: ${{ variables.service_name }}
-#                    base_url: 'api.service.nhs.uk'
+        - environment: prod
+          proxy_path: prod
+          make_spec_visible: true
+          depends_on:
+              - int
+              - sandbox
+          post_deploy:
+              - template: templates/smoke-tests.yml
+                parameters:
+                    environment: 'prod'
+                    service_name: ${{ variables.service_name }}
+                    base_url: 'api.service.nhs.uk'
