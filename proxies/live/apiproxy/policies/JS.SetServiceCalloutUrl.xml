@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Javascript async="false" continueOnError="false" enabled="true" timeLimit="200" name="JS.SetServiceCalloutUrl">
+    <DisplayName>JS.SetServiceCalloutUrl</DisplayName>
+    <Properties/>
+    <ResourceURL>jsc://setServiceCalloutUrl.js</ResourceURL>
+</Javascript>

@@ -6,6 +6,7 @@
     <Request>
         <Set>
             <Verb>GET</Verb>
+            <Path>{sc_urlPath}</Path>
         </Set>
         <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
     </Request>
@@ -14,6 +15,6 @@
         <SSLInfo>
             <Enabled>true</Enabled>
         </SSLInfo>
-        <URL>https://raw.githubusercontent.com/{verifyapikey.VerifyAPIKey.FormParam.jwks-resource-path}</URL>
+        <URL>https://this.will.get.set.via.js.policy</URL>
     </HTTPTargetConnection>
 </ServiceCallout>
