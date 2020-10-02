@@ -65,7 +65,7 @@ extends:
               - internal_qa
               - internal_qa_sandbox
         - environment: prod
-          proxy_path: prod
+          proxy_path: live
           make_spec_visible: true
           depends_on:
               - int
