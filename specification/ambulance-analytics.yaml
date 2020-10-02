@@ -24,8 +24,8 @@ info:
     This API is in [beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
      * we might make breaking changes, but only if we can't avoid it, and we'll give advance notice
      * we can't guarantee availability or performance
-    
-    This API is currently available for sandbox testing and integration testing, but not for production use.
+
+    This API is currently available for sandbox testing, integration testing and production use. However, availability is currently limited to a small number of ambulance trusts in England.
     
     To see our roadmap, or to suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=ambulance-analytics&deleted=0#controls).
     
