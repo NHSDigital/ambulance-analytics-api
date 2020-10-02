@@ -21,7 +21,9 @@ info:
     The [Messaging Exchange for Social care and Health (MESH)](https://meshapi.docs.apiary.io/#) API will also be required for delivering messages and files to registered recipients.
     
     ## API status and roadmap
-    This API is in [alpha](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status)- expect further breaking changes. 
+    This API is in [beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
+     * we might make breaking changes, but only if we can't avoid it, and we'll give advance notice
+     * we can't guarantee availability or performance
     
     This API is currently available for sandbox testing and integration testing, but not for production use.
     
@@ -62,7 +64,7 @@ info:
     Create a Key Identifier (KID), a unique name to identify the key pair in use. This KID will be used to refer to the key pair when constructing and posting the JWT.
     
     ### Register a Public Key with API Management
-    Email api.management@nhs.net with your **KID** and your **public key** as an attachment. The unattended access public key management process is currently not self-service, however we do aim to provide this in the future as part of our product roadmap.
+    Email [API Management](mailto://api.management@nhs.net) with your **KID** and your **public key** as an attachment. The unattended access public key management process is currently not self-service, however we do aim to provide this in the future as part of our [product roadmap](https://nhs-digital-api-management.featureupvote.com/suggestions/107454/application-registration-selfservice).
     
     Your public key will be associated with your test app in the environment of your choice. You will receive an email once this has been completed successfully. Now use your KID and private key to sign your JWT requests.
     
@@ -80,13 +82,12 @@ info:
     	  "typ": "JWT",
     	  "kid": "test"
     	}
-    
-    | Field          | Description                         | Type	|
-    | -------------     | -----------------------------------------| -----------------------------------------|
-    | alg   | The algorithm (alg) used to generate the private key used to sign the JWT. In this case, RS512. | String |
-    | typ   | The token type (typ) is JWT. | String |
-    | kid   | The Key Identifier (kid) used to select the public key to use to verify the signature of the JWT. If a trust has multiple public/private key pairs, this will be used to select the appropriate public key. For testing on the INT environment, we recommend “test” as an appropriate KID value. | String |
-    
+
+    | Filed | Description                                                                                                                                                                                                                                                                                      | Type   |
+    |-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------|
+    | alg   | The algorithm (alg) used to generate the private key used to sign the JWT. In this case, RS512.                                                                                                                                                                                                  | string |
+    | typ   | The token type (typ) is JWT.                                                                                                                                                                                                                                                                     | string |
+    | kid   | The Key Identifier (kid) used to select the public key to use to verify the signature of the JWT. If a trust has multiple public/private key pairs, this will be used to select the appropriate public key. For testing on the INT environment, we recommend “test” as an appropriate KID value. | string |
     
     #### Payload
     The payload consists of the following mandatory claims encoded as a JSON structure:
@@ -99,15 +100,14 @@ info:
     	  "Jti": "<unique-per-request-id>",
     	  "Exp": <current-time-plus-5mins-from-jwt-creation>
     	}
-    
-    | Field          | Description                         | Type	| Notes |
-    | -------------     | -----------------------------------------| -----------------------------------------|-----------------------------------------|
-    | iss   | The issuer claim (iss) should be set to the test app API key. | String | |
-    | sub   | The subject claim (sub) should be set to the test app API key. | String | |
-    | aud   | The audience claim (aud) should be set to [INT environment](https://int.api.service.nhs.uk/ambulance-analytics/token) and [PROD environment](https://api.service.nhs.uk/ambulance-analytics/token) URLs. | String | This URL will be different for the production environment, so make sure this can be changed easily when deploying client softwares to access different API Management environments. |
-    | jti   | A unique JWT identifier (jti), which can be used to prevent reuse of the JWT. These JWTs **must** only be used once. This can take the form of a unique integer or GUID. | String | |
-    | exp   | Expiration time (exp) on or after which the ID Token **will not** be accepted for processing. The only acceptable time range is 5 minutes from token created time. | Number | Exp is a Numeric Time value, which is defined as the number of seconds (not milliseconds) since epoch (e.g. A UNIX timestamp). |
-    
+
+    | Field | Description                                                                                                                                                                                              | Type   | Notes                                                                                                                                                                               |
+    |-------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | iss   | The issuer claim (iss) should be set to the test app API key.                                                                                                                                            | string |                                                                                                                                                                                     |
+    | sub   | The subject claim (sub) should be set to the test app API key.                                                                                                                                           |        |                                                                                                                                                                                     |
+    | aud   | The audience claim (aud) should be set to [INT environment](https://int.api.service.nhs.uk/ambulance-analytics/token) and [PROD environment](https://api.service.nhs.uk/ambulance-analytics/token) URLs. | string | This URL will be different for the production environment, so make sure this can be changed easily when deploying client softwares to access different API Management environments. |
+    | jti   | A unique JWT identifier (jti), which can be used to prevent reuse of the JWT. These JWTs **must** only be used once. This can take the form of a unique integer or GUID.                                 | string |                                                                                                                                                                                     |
+    | exp   | Expiration time (exp) on or after which the ID Token **will not** be accepted for processing. The only acceptable time range is 5 minutes from token created time.                                       | number | Exp is a Numeric Time value, which is defined as the number of seconds (not milliseconds) since epoch (e.g. A UNIX timestamp).                                                      |
     
     #### The Signature
     The signature consists of the private key signed contents of the header and payload.
@@ -129,22 +129,22 @@ info:
     The response consists of a JSON structure, the most important aspect being the “access_token” key. To submit the data into DPS, use this OAuth 2.0 access token in subsequent requests to the /submission endpoint. The request fields are detailed below.
     
      
-    | Field  | Description                     | Type   |
-    | ----------------- | --------------------------------| -------|
-    | client_id   | The client identifier should be set to the test app API key. | String |
-    | client_assertion_type | This must be the value “urn:ietf:params:oauth:client-assertion-type:jwt-bearer”.| String |
-    | client_assertion   | This must be set to the value of the generated JWT token. | String |
-    | grant_type   | This must be the value “client_credentials”. | String |
+    | Field                 | Description                                                                      | Type   |
+    | --------------------- | -------------------------------------------------------------------------------- | -------|
+    | client_id             | The client identifier should be set to the test app API key.                     | String |
+    | client_assertion_type | This must be the value “urn:ietf:params:oauth:client-assertion-type:jwt-bearer”. | String |
+    | client_assertion      | This must be set to the value of the generated JWT token.                        | String |
+    | grant_type            | This must be the value “client_credentials”.                                     | String |
     
     ### Using the access token to submit data into DPS
     Once you have received the ”access_token”, you can make data submissions to DPS via POST request to the /submission endpoint, with the authorisation header set to bearer and the access token.
     
     ## Environments and testing
-    | Purpose           | URL                                                            |
-    | -------------     | -----------------------------------------                      |
-    | Sandbox           | `https://sandbox.api.service.nhs.uk/ambulance-analytics`       |
-    | Integration test  | `https://int.api.service.nhs.uk/ambulance-analytics`           |
-    | Production (Available when the API is in beta)         | `https://api.service.nhs.uk/ambulance-analytics`               |
+    | Purpose          | URL                                                       |
+    | ---------------- | --------------------------------------------------------- |
+    | Sandbox          | `https://sandbox.api.service.nhs.uk/ambulance-analytics`  |
+    | Integration test | `https://int.api.service.nhs.uk/ambulance-analytics`      |
+    | Production       | `https://api.service.nhs.uk/ambulance-analytics`          |
     
     ### Sandbox testing
     Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
@@ -180,7 +180,7 @@ tags:
 paths:
   /submission:
     post:
-      summary: Post Ambulance Analytics data.
+      summary: Post Ambulance Analytics data
       operationId: postData
       description: |
         Use this endpoint to post data into DPS, successful calls will return 200 with an empty JSON body. This endpoint does not validate the posted payload, it will only acknowledge receipt of the payload. See the overview page to understand how this API works in more detail.
