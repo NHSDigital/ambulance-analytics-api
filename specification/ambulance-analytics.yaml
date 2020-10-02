@@ -82,7 +82,7 @@ info:
     	  "kid": "test"
     	}
 
-    | Filed | Description                                                                                                                                                                                                                                                                                      | Type   |
+    | Field | Description                                                                                                                                                                                                                                                                                      | Type   |
     |-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------|
     | alg   | The algorithm (alg) used to generate the private key used to sign the JWT. In this case, RS512.                                                                                                                                                                                                  | string |
     | typ   | The token type (typ) is JWT.                                                                                                                                                                                                                                                                     | string |
