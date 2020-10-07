@@ -173,7 +173,9 @@ info:
   contact:
     name: API Management Support
     email: api.management@nhs.net
-servers: []
+servers:
+  - url: 'https://sandbox.api.service.nhs.uk/ambulance-analytics'
+    description: Sandbox environment.
 tags:
   - name: Ambulance Analytics Api
 paths:
