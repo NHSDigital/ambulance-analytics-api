@@ -93,11 +93,11 @@ info:
     
     ##### Example:
     	{
-    	  "Iss": "<test-app-api-key>",
-    	  "Sub": "<test-app-api-key>",
-    	  "Aud": "https://int.api.service.nhs.uk/ambulance-analytics/token",
-    	  "Jti": "<unique-per-request-id>",
-    	  "Exp": <current-time-plus-5mins-from-jwt-creation>
+    	  "iss": "<test-app-api-key>",
+    	  "sub": "<test-app-api-key>",
+    	  "aud": "https://int.api.service.nhs.uk/ambulance-analytics/token",
+    	  "jti": "<unique-per-request-id>",
+    	  "exp": <current-time-plus-5mins-from-jwt-creation>
     	}
 
     | Field | Description                                                                                                                                                                                                            | Type   | Notes                                                                                                                                                                                       |
