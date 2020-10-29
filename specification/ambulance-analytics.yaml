@@ -4,7 +4,7 @@ info:
   title: Ambulance Analytics - FHIR API
   description: |
     ## Overview
-    Use this API to submit ambulance call centre data to the national electronic database. This data is stored by the Data Processing Service (DPS) for analysis and review by NHS England and local ambulance trusts.
+    Use this API to submit ambulance call centre data to the national electronic database. This data is stored by our Data Processing Service (DPS) for analysis and review by NHS England and local ambulance trusts.
     
     You can:
       - post ambulance response records individually or in batches
@@ -39,14 +39,15 @@ info:
     which is built on FHIR Release 4. Read the specification for the [message payload](https://simplifier.net/guide/FHIRImplementationGuideTemplateambulance/Overview).
     
     ## Network access
-    This API is available on the internet. For more details, see [Network access for APIs](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis).
+    This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network). For more details, see [Network access for APIs](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis).
     
     ## Security and authorisation
-    ### Authentication
     
+    This API is application-restricted - we authenticate the calling application but not the end user.In particular, it uses signed JWT authentication -you authenticate your application by sending a signed JSON web token (JWT) to our OAuth 2.0 authorisation server.For more details see Application-restricted RESTful APIs - signed JWT authentication.
+    
+    ### Detailed integration instructions
     This API follows the OAuth 2.0 protocol, the authentication method (unattended access) is designed for authentication without a user being present. You can authenticate by sending a JSON Web Token (JWT) token signed with a private key with the RS512 algorithm.
-    
-    ### Authorisation
+
     Once the target server receives the JWT token it will lookup for a set of public keys from either a URL or store. The target server will then check each public key until it finds one that matches.
     
     The current flow to use this API is:
@@ -152,7 +153,7 @@ info:
     - is stateless, so it does not actually persist any updates
     - is open access, so does not allow you to test authorisation
     
-    For more details on sandbox testing, or to try out the sandbox using our "Try this API" feature.
+    For more details on sandbox testing, or to try out the sandbox using our "Try this API" feature, see the documentation for each endpoint.
     
     ### Integration testing
     Our [integration test environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing):
@@ -184,10 +185,10 @@ paths:
       summary: Post Ambulance Analytics data
       operationId: postData
       description: |
-        Use this endpoint to post data into DPS, successful calls will return 200 with an empty JSON body. This endpoint does not validate the posted payload, it will only acknowledge receipt of the payload. See the overview page to understand how this API works in more detail.
+        Use this endpoint to post data into DPS, successful calls will return 200 with an empty JSON body. This endpoint does not validate the posted payload, it only acknowledges receipt of the payload. See the overview page to understand how this API works in more detail. For details on the request payload data structure, see the [FHIR implementation guide](https://simplifier.net/guide/FHIRImplementationGuideTemplateambulance/Bundle-example).
       responses:
         '200':
-          description: Successful response.
+          description: Data received and sent to DPS.
           content:
             application/json:
               schema:
