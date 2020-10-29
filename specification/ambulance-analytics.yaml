@@ -124,14 +124,13 @@ info:
          POST /ambulance-analytics/token HTTP/1.1
          Host: int.api.service.nhs.uk
          Content-Type: application/x-www-form-urlencoded
-         client_id=<test-app-api-key>&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=<jwt_token>&grant_type=client_credentials
+         client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=<jwt_token>&grant_type=client_credentials
     
     The response consists of a JSON structure, the most important aspect being the “access_token” key. To submit the data into DPS, use this OAuth 2.0 access token in subsequent requests to the /submission endpoint. The request fields are detailed below.
     
      
     | Field                 | Description                                                                      | Type   |
     | --------------------- | -------------------------------------------------------------------------------- | -------|
-    | client_id             | The client identifier should be set to the test app API key.                     | String |
     | client_assertion_type | This must be the value “urn:ietf:params:oauth:client-assertion-type:jwt-bearer”. | String |
     | client_assertion      | This must be set to the value of the generated JWT token.                        | String |
     | grant_type            | This must be the value “client_credentials”.                                     | String |
