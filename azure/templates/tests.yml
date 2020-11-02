@@ -11,6 +11,7 @@ steps:
               - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_RS256_PRIVATE_KEY
               - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/CLIENT_ID
           config_ids: []
+          secret_file_ids: []
 
     - bash: |
           if [ -d $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests ]; then
