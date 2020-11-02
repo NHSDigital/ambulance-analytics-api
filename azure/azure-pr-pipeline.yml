@@ -8,6 +8,7 @@ resources:
     - repository: common
       type: github
       name: NHSDigital/api-management-utils
+      ref: APM-000-AMB-339-Fixing-secrets-directory-issue
       endpoint: NHSDigital
 
   pipelines:
