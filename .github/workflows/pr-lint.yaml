@@ -12,7 +12,6 @@ jobs:
         run: echo ::set-env name=TICKET_NAME::$(echo ${{ github.event.pull_request.head.ref }} | grep -i -o 'amb-[0-9]\+' | tr '[:lower:]' '[:upper:]')
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-
       - name: Comment on PR
         if: contains(github.event.pull_request.head.ref, 'amb-') || contains(github.event.pull_request.head.ref, 'AMB-')
         uses: unsplash/comment-on-pr@master
