@@ -156,6 +156,41 @@
             "url": "https://{{base_url}}/{{root_path}}/submission"
           },
           "response": []
+        },
+        {
+          "name": "_ping",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "b1d732ef-19cc-4de4-8e70-6b5df1ae4df6",
+                "exec": [
+                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+                  "var data = JSON.parse(responseBody);",
+                  "pm.test(\"response is Successful\", function(){ pm.response.to.have.status(200); });",
+                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+                  "pm.test(\"response is Successful\", function(){ pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\"); });"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://{{base_url}}/{{root_path}}/_ping",
+              "protocol": "https",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "{{root_path}}",
+                "_ping"
+              ]
+            }
+          },
+          "response": []
         }
       ],
       "protocolProfileBehavior": {}
