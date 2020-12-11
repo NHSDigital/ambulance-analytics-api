@@ -4,29 +4,42 @@ info:
   title: Ambulance Analytics - FHIR API
   description: | 
     ## Overview
-    Use this API to submit ambulance call centre data, this is compiled from [Electronic Patient Record](https://transformation.sth.nhs.uk/programme/epr/) (EPR) and Computer Aided Dispatch (CAD) to the national electronic database. This data is stored by our Data Processing Service (DPS) for analysis and review by NHS England and local ambulance trusts.
+    Ambulance analytics data is information relating to emergency calls (999, 111 and others), received at an Emergency Operations Centre (EOC) and processed into a Computer Aided Despatch (CAD) system, including:
+      - call details
+      - response details - including response times and episode outcome times patient
+      - contact details - including patient demographics, patient response details, patient information, injury information, patient assessment, medication, observations, diagnoses, conveying outcome, safeguarding and public health information
 
     You can:
-      - post ambulance response records individually or in batches
+      - post ambulance analytics data individually or in batches
 
     You cannot:
       - read any of the records stored in DPS
 
-    This is a representation of how this API fits into the solution.
+    The API is asynchronous - to receive error notifications, you need to use [MESH](https://digital.nhs.uk/services/message-exchange-for-social-care-and-health-mesh). The following diagram illustrates the end-to-end process:
 
     ![Ambulance Overview](https://github.com/NHSDigital/ambulance-analytics-api/blob/master/specification/diagrams/AmbulanceOverview.png?raw=true)
+    ![Ambulance Overview](https://github.com/NHSDigital/ambulance-analytics-api/blob/AMB-474-AA-API-comments-from-tony/specification/diagrams/APIAsynchE2eProcess.PNG)
 
+    The following describes the end-to-end process:
+    1. the Ambulance Trust System sends the ambulance analytics data to the Ambulance Analytics API
+    2. the Ambulance Analytics API forwards the ambulance analytics data to our Data Processing System (DPS)
+    3. if there is an error, DPS sends an error notification to MESH
+    4. the Ambulance Trust System retrieves the error notification from MESH
+    5. an Analytics User views ambulance analytics data in our NHS Digital Analytics Dashboards
+    6. the NHS Digital Analytics Dashboards get the ambulance analytics data from DPS
+    
     ## Legal Use
     This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
+
+    ## Related APIs
+    Use [Messaging Exchange for Social care and Health (MESH)](https://meshapi.docs.apiary.io/) to receive error notifications from DPS for this API
 
     ## API status and roadmap
     This API is in [private beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning: 
       * we might make breaking changes, but only if we can't avoid it, and we'll give advance notice 
       * we can't guarantee availability or performance 
-      * only available to a small group of ambulance trusts in England
+      * it is available for production use, but only to a small group of ambulance trusts in England
     
-    This API is currently available for sandbox testing, integration testing and production use.
-
     To see our roadmap, or to suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=ambulance-analytics&deleted=0#controls).
     
     If you have any other queries, please [contact us](https://digital.nhs.uk/developer/help-and-support).
@@ -35,7 +48,7 @@ info:
     This API uses HTTP POST to submit data. 
     
     The data payload conforms to the [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#fhir) global standard for health care data exchange. 
-    Specifically, it is aligned with [FHIR UK Core](https://digital.nhs.uk/services/fhir-uk-core), which is built on FHIR Release 4. Read the specification for the [message payload](https://simplifier.net/guide/FHIRImplementationGuideTemplateambulance/Overview).
+    Specifically, it is aligned with [FHIR UK Core](https://digital.nhs.uk/services/fhir-uk-core), which is built on FHIR Release 4. To see the FHIR message payload, see the [Ambulance Data Set FHIR Implementation Guide](https://simplifier.net/guide/FHIRImplementationGuideTemplateambulance/DesignOverview2)
     
     ## Network access
     This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network). 
@@ -185,7 +198,8 @@ paths:
       summary: Post Ambulance Analytics data
       operationId: postData
       description: |
-        Use this endpoint to post data into DPS, successful calls will return 200 with a `message`. This endpoint does not validate the posted payload, it only acknowledges receipt of the payload. See the overview section to understand how this API works. 
+        ## Overview
+        Use this endpoint to submit ambulance analytics data to DPS. This endpoint does not validate the submitted payload, it only acknowledges receipt of the payload.
         See the [FHIR implementation guide](https://simplifier.net/guide/FHIRImplementationGuideTemplateambulance/Bundle-example) for how to structure the payload data.
       responses:
         '200':
