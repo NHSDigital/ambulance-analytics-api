@@ -4,7 +4,7 @@ info:
   title: Ambulance Analytics - FHIR API
   description: | 
     ## Overview
-    Use this API to submit ambulance analytics data to our Data Processing Service (DPS) so that it can be made available for analysis and review by NHS England and ambulance trusts
+    Use this API to submit ambulance analytics data to our Data Processing Service (DPS) so that it can be made available for analysis and review by NHS England and ambulance trusts.
     
     Ambulance analytics data is information relating to emergency calls (999, 111 and others), received at an Emergency Operations Centre (EOC) and processed into a Computer Aided Despatch (CAD) system, including:
       - call details
