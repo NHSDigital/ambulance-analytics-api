@@ -4,20 +4,21 @@ parameters:
     - name: base_url
 
 steps:
- - template: "azure/components/aws-assume-role.yml@common"
-   parameters:
-    role: "auto-ops"
-    profile: "apm_ptl"
+    - template: "azure/components/aws-assume-role.yml@common"
+      parameters:
+        role: "auto-ops"
+        profile: "apm_ptl"
 
- - template: "azure/components/get-aws-secrets-and-ssm-params.yml@common"
-   parameters:
-    secret_ids:
-     - prod/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_RS512_PRIVATE_KEY
-     - prod/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/CLIENT_ID
-    config_ids: []
+    - template: "azure/components/get-aws-secrets-and-ssm-params.yml@common"
+      parameters:
+          secret_ids:
+              - prod/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_RS512_PRIVATE_KEY
+              - prod/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_RS256_PRIVATE_KEY
+              - prod/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/CLIENT_ID
+          config_ids: []
 
- - bash: |
-    if [ -d $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests ]; then
+    - bash: |
+          if [ -d $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests ]; then
               test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
 
               export BASE_URL="${{ parameters.base_url }}"
@@ -32,11 +33,11 @@ steps:
                   --folder "Init Test Suite" --folder "Happy Path Tests" \
                   --environment /etc/newman/environments/prefilled.internal-dev.postman.json --reporters=cli,junit
           fi
-   displayName: 'Run Postman Smoke Tests'
+      displayName: 'Run Postman Smoke Tests'
 
- - task: PublishTestResults@2
-   displayName: 'Publish Smoke Test Results'
-   inputs:
-       testResultsFiles: |
-           $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e/newman/*.xml
-       failTaskOnFailedTests: true
+    - task: PublishTestResults@2
+      displayName: 'Publish Smoke Test Results'
+      inputs:
+          testResultsFiles: |
+              $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e/newman/*.xml
+          failTaskOnFailedTests: true
