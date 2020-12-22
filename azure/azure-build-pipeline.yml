@@ -17,6 +17,7 @@ resources:
     - repository: common
       type: github
       name: NHSDigital/api-management-utils
+      ref: refs/heads/mm-apm-1351-aws-build-agents
       endpoint: NHSDigital
 
 variables:
@@ -34,3 +35,4 @@ extends:
         - bash: "make test"
           displayName: run tests
           workingDirectory: "${{ variables.service_name }}"
+
