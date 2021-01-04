@@ -30,6 +30,8 @@ steps:
 
               envsubst < $test_dir/environments/internal-dev.postman.json > $test_dir/environments/prefilled.internal-dev.postman.json
 
+              mkdir -p "${test_dir}/newman"
+
               docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment /etc/newman/environments/prefilled.internal-dev.postman.json --reporters=cli,junit
           fi
       displayName: 'Run Postman tests'
