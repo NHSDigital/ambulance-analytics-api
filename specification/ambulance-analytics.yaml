@@ -49,7 +49,7 @@ info:
     This API uses HTTP POST to submit data. 
     
     The data payload conforms to the [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#fhir) global standard for health care data exchange. 
-    Specifically, it is aligned with [FHIR UK Core](https://digital.nhs.uk/services/fhir-uk-core), which is built on FHIR Release 4. To see the FHIR message payload, see the [Ambulance Data Set FHIR Implementation Guide](https://simplifier.net/guide/FHIRImplementationGuideTemplateambulance/DesignOverview2)
+    Specifically, it is aligned with [FHIR UK Core](https://digital.nhs.uk/services/fhir-uk-core), which is built on FHIR Release 4. To see the FHIR message payload, see the [Ambulance Data Set FHIR Implementation Guide](https://simplifier.net/Ambulance/~guides)
     
     ## Network access
     This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network). 
@@ -201,7 +201,7 @@ paths:
       description: |
         ## Overview
         Use this endpoint to submit ambulance analytics data to DPS. This endpoint does not validate the submitted payload, it only acknowledges receipt of the payload.
-        See the [FHIR implementation guide](https://simplifier.net/guide/FHIRImplementationGuideTemplateambulance/Bundle-example) for how to structure the payload data.
+        See the [FHIR implementation guide](https://simplifier.net/Ambulance/~guides) for how to structure the payload data.
       responses:
         '200':
           description: Data received and sent to DPS.
