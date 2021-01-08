@@ -136,6 +136,13 @@
       <Response/>
     </Flow>
   </Flows>
+  <PostClientFlow name="PostClientFlow">
+    <Response>
+      <Step>
+        <Name>FlowCallout.LogToSplunk</Name>
+      </Step>
+    </Response>
+  </PostClientFlow>
   <HTTPProxyConnection>
     <BasePath>{{ SERVICE_BASE_PATH }}</BasePath>
     <VirtualHost>secure</VirtualHost>
