@@ -8,7 +8,7 @@ resources:
     - repository: common
       type: github
       name: NHSDigital/api-management-utils
-      ref: refs/heads/edge
+      ref: refs/heads/APM-00-AMB-468-add-disable_status_monitoring
       endpoint: NHSDigital
 
   pipelines:
@@ -35,6 +35,7 @@ extends:
     product_description: ${{ variables.product_description }}
     spec_file: ${{ variables.spec_file }}
     enable_monitoring: true
+    disable_status: true
     apigee_deployments:
         - environment: internal-dev
           make_spec_visible: true
