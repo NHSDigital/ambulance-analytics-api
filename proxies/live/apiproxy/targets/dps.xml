@@ -15,7 +15,7 @@
       </Step>
       <Step>
         <Name>RaiseFault.ServerNotFound</Name>
-        <Condition>proxy.pathsuffix IsNot "/submission"</Condition>
+        <Condition>(proxy.pathsuffix IsNot "/submission") or (proxy.pathsuffix IsNot "/_status")</Condition>
       </Step>
     </Request>
     <Response>
