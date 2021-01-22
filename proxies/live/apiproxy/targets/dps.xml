@@ -15,7 +15,7 @@
       </Step>
       <Step>
         <Name>RaiseFault.ServerNotFound</Name>
-        <Condition>(proxy.pathsuffix IsNot "/submission") or (proxy.pathsuffix IsNot "/_status")</Condition>
+        <Condition>(proxy.pathsuffix IsNot "/submission") and (proxy.pathsuffix IsNot "/_status")</Condition>
       </Step>
     </Request>
     <Response>
@@ -55,6 +55,9 @@
           <Condition>private.apigee.status-endpoint-api-key NotEquals request.header.apikey</Condition>
           <Name>RaiseFault.403Forbidden</Name>
         </Step>
+        <Step>
+          <Name>AssignMessage.ChangeMethod</Name>
+        </Step>
       </Request>
       <Response>
         <Step>
@@ -64,7 +67,7 @@
           <Name>AssignMessage.SetStatusResponse</Name>
         </Step>
       </Response>
-      <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
+      <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "POST") or (request.verb = "HEAD"))</Condition>
     </Flow>
   </Flows>
 
