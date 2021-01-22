@@ -29,7 +29,7 @@
       <Step>
         <Name>ExtractVariables.ParseErrorMessage</Name>
         <Condition>(response.status.code = 400)</Condition>
-      </Step>      
+      </Step>
     </Response>
   </PreFlow>
   <Flows>
@@ -46,14 +46,25 @@
       </Request>
       <Response/>
     </Flow>
-    <Flow name="SwitchStatusMethod">
-    <Condition>((proxy.pathsuffix MatchesPath "/_status")) and (request.verb = "GET")</Condition>
+    <Flow name="Status">
       <Request>
         <Step>
-          <Name>AssignMessage.ChangeMethod</Name>
+          <Name>KeyValueMapOperations.GetSharedSecureVariables</Name>
+        </Step>
+        <Step>
+          <Condition>private.apigee.status-endpoint-api-key NotEquals request.header.apikey</Condition>
+          <Name>RaiseFault.403Forbidden</Name>
         </Step>
       </Request>
-      <Response/>
+      <Response>
+        <Step>
+          <Name>JavaScript.SetStatusResponse</Name>
+        </Step>
+        <Step>
+          <Name>AssignMessage.SetStatusResponse</Name>
+        </Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
     </Flow>
   </Flows>
 
