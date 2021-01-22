@@ -58,7 +58,7 @@
       </Request>
       <Response>
         <Step>
-          <Name>JavaScript.SetStatusResponse</Name>
+          <Name>JS.SetStatusResponse</Name>
         </Step>
         <Step>
           <Name>AssignMessage.SetStatusResponse</Name>
