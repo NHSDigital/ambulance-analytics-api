@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ProxyEndpoint name="default">
   <FaultRules>
     <FaultRule name="UnsupportedJWTAlgorithm">
@@ -19,11 +20,11 @@
       <Condition>(fault.name = "FailedToDecode")</Condition>
     </FaultRule>
   </FaultRules>
-  <PreFlow/>
+  <PreFlow />
   <Flows>
     <Flow name="AddPayloadToPing">
-      <Description/>
-      <Request/>
+      <Description />
+      <Request />
       <Response>
         <Step>
           <Name>AssignMessage.AddPayloadToPing</Name>
@@ -32,8 +33,32 @@
       <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))
       </Condition>
     </Flow>
+    <Flow name="StatusEndpoint">
+      <Description />
+      <Request>
+        <Step>
+          <Name>KeyValueMapOperations.GetSecureVariables</Name>
+        </Step>
+        <Step>
+          <Condition>private.apigee.status-endpoint-api-key NotEquals request.header.apikey</Condition>
+          <Name>RaiseFault.401Unauthorized</Name>
+        </Step>
+        <Step>
+          <Name>KeyValueMap.GetVariables</Name>
+        </Step>
+        <Step>
+          <Name>ServiceCallout.CallHealthcheckEndpoint</Name>
+        </Step>
+      </Request>
+      <Response>
+        <Step>
+          <Name>JS.SetStatusResponse</Name>
+        </Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
+    </Flow>
     <Flow name="OptionsPreFlight">
-      <Request/>
+      <Request />
       <Response>
         <Step>
           <Name>AssignMessage.AddCors</Name>
@@ -124,7 +149,7 @@
           <Name>GenerateAccessToken</Name>
         </Step>
       </Request>
-      <Response/>
+      <Response />
     </Flow>
   </Flows>
   <PostClientFlow name="PostClientFlow">
@@ -145,6 +170,10 @@
   <RouteRule name="NoRoutePing">
     <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))
     </Condition>
+  </RouteRule>
+  <RouteRule name="NoRouteStatus">
+    <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))
+</Condition>
   </RouteRule>
   <RouteRule name="dps">
     <TargetEndpoint>dps</TargetEndpoint>
