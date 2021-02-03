@@ -44,6 +44,9 @@
           <Name>RaiseFault.401Unauthorized</Name>
         </Step>
         <Step>
+          <Name>KeyValueMap.GetVariables</Name>
+        </Step>
+        <Step>
           <Name>ServiceCallout.CallHealthcheckEndpoint</Name>
         </Step>
       </Request>
@@ -171,7 +174,7 @@
   <RouteRule name="NoRouteStatus">
     <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))
 </Condition>
-</RouteRule>
+  </RouteRule>
   <RouteRule name="dps">
     <TargetEndpoint>dps</TargetEndpoint>
   </RouteRule>

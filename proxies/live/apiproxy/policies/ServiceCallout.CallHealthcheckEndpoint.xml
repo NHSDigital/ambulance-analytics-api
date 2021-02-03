@@ -3,6 +3,15 @@
     <DisplayName>ServiceCallout.CallHealthcheckEndpoint</DisplayName>
     <Properties />
     <Request clearPayload="true" variable="healthcheckRequest">
+        <Set>
+            <Verb>GET</Verb>
+        </Set>
+        <Add>
+            <Headers>
+                <Header name="x-dataset-id">ambulance</Header>
+                <Header name="X-API-Key">{private.dpsApiKey}</Header>
+            </Headers>
+        </Add>
         <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
     </Request>
     <Response>healthcheckResponse</Response>
@@ -10,7 +19,7 @@
         <LoadBalancer>
             <Server name="dps-submission-api" />
         </LoadBalancer>
-        <Path>/v1/submission</Path>
+        <Path>/_status</Path>
     </HTTPTargetConnection>
     <Timeout>20000</Timeout>
 </ServiceCallout>
