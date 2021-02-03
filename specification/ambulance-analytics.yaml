@@ -2,10 +2,10 @@ openapi: 3.0.0
 info:
   version: v1.0.98-alpha
   title: Ambulance Analytics - FHIR API
-  description: | 
+  description: |
     ## Overview
     Use this API to submit ambulance analytics data to our Data Processing Service (DPS) so that it can be made available for analysis and review by NHS England and ambulance trusts.
-    
+
     Ambulance analytics data is information relating to emergency calls (999, 111 and others), received at an Emergency Operations Centre (EOC) and processed into a Computer Aided Despatch (CAD) system, including:
       - call details
       - response details - including response times and episode outcome times patient
@@ -28,7 +28,7 @@ info:
     4. the Ambulance Trust System retrieves the error notification from MESH
     5. an Analytics User views ambulance analytics data in our NHS Digital Analytics Dashboards
     6. the NHS Digital Analytics Dashboards get the ambulance analytics data from DPS
-    
+
     ## Legal Use
     This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
 
@@ -36,37 +36,37 @@ info:
     Use [Messaging Exchange for Social care and Health (MESH)](https://meshapi.docs.apiary.io/) to receive error notifications from DPS for this API
 
     ## API status and roadmap
-    This API is in [private beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning: 
-      * we might make breaking changes, but only if we can't avoid it, and we'll give advance notice 
-      * we can't guarantee availability or performance 
+    This API is in [private beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
+      * we might make breaking changes, but only if we can't avoid it, and we'll give advance notice
+      * we can't guarantee availability or performance
       * it is available for production use, but only to a small group of ambulance trusts in England
-    
+
     To see our roadmap, or to suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=ambulance-analytics&deleted=0#controls).
-    
+
     If you have any other queries, please [contact us](https://digital.nhs.uk/developer/help-and-support).
-    
+
     ## Technology
-    This API uses HTTP POST to submit data. 
-    
-    The data payload conforms to the [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#fhir) global standard for health care data exchange. 
+    This API uses HTTP POST to submit data.
+
+    The data payload conforms to the [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#fhir) global standard for health care data exchange.
     Specifically, it is aligned with [FHIR UK Core](https://digital.nhs.uk/services/fhir-uk-core), which is built on FHIR Release 4. To see the FHIR message payload, see the [Ambulance Data Set FHIR Implementation Guide](https://simplifier.net/Ambulance/~guides)
-    
+
     ## Network access
-    This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network). 
-    
+    This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network).
+
     For more details, see [Network access for APIs](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis).
-    
+
     ## Security and authorisation
     This API is [application-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis) - we authenticate the calling application but not the end user.
     In particular, it uses signed JWT authentication - you authenticate your application by sending a signed JSON web token (JWT) to our OAuth 2.0 authorisation server.
     For more details see [Application-restricted RESTful APIs - signed JWT authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication).
-    
+
     ### Detailed integration instructions
     This API follows the OAuth 2.0 protocol, the authentication method (unattended access) is designed for authentication without a user being present. You can authenticate by sending a JSON Web Token (JWT) token signed with a private key with the RS512 algorithm.
     Once the target server receives the JWT token it will lookup for a set of public keys from either a URL or store. The target server will then check each public key until it finds one that matches.
     The current flow to use this API is:
     - POST request with a signed JWT token and other required headers to the /token endpoint
-    - POST request with the access token in the Authorisation header to the /submission endpoint
+    - POST request with the access token in the Authorisation header to the /$process-message endpoint
 
     ### Generate a Private/Public Key Pair
     Run the following commands on the command prompt to generate a private/public key pair on a UNIX system (Linux, MacOS):
@@ -131,7 +131,7 @@ info:
 
     For more details see [generating a JWT Token](https://jwt.io/).
 
-    
+
     ### Submit the access token request
     The access token request consists of a Hypertext Transfer Protocol Secure (HTTPS) request to the following endpoint, along with the x-www-form-urlencoded body consisting of four fields:
 
@@ -140,9 +140,9 @@ info:
         Content-Type: application/x-www-form-urlencoded
         client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=<jwt_token>&grant_type=client_credentials
 
-    The response consists of a JSON structure, the most important aspect being the “access_token” key. To submit the data into DPS, use this OAuth 2.0 access token in subsequent requests to the /submission endpoint. The request fields are detailed below.
+    The response consists of a JSON structure, the most important aspect being the “access_token” key. To submit the data into DPS, use this OAuth 2.0 access token in subsequent requests to the /$process-message endpoint. The request fields are detailed below.
 
-    
+
     | Field                 | Description                                                                      | Type   |
     | --------------------- | -------------------------------------------------------------------------------- | -------|
     | client_assertion_type | This must be the value “urn:ietf:params:oauth:client-assertion-type:jwt-bearer”. | String |
@@ -150,7 +150,7 @@ info:
     | grant_type            | This must be the value “client_credentials”.                                     | String |
 
     ### Using the access token to submit data into DPS
-    Once you have received the ”access_token”, you can make data submissions to DPS via POST request to the /submission endpoint, with the authorisation header set to bearer and the access token.
+    Once you have received the ”access_token”, you can make data submissions to DPS via POST request to the /$process-message endpoint, with the authorisation header set to bearer and the access token.
 
     ## Environments and testing
     | Purpose          | URL                                                       |
@@ -194,7 +194,7 @@ servers:
 tags:
   - name: Ambulance Analytics Api
 paths:
-  /submission:
+  /$process-message:
     post:
       summary: Submit ambulance analytics data
       operationId: postData
