@@ -75,6 +75,6 @@
     <LoadBalancer>
       <Server name="dps-submission-api"/>
     </LoadBalancer>
-    <Path>/v1/$process-message</Path>
+    <Path>/v1/submission</Path>
   </HTTPTargetConnection>
 </TargetEndpoint>
