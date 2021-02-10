@@ -13,40 +13,40 @@ var healthcheck_service_request_has_failed = context.getVariable("servicecallout
 
 var healthcheck_service_status = "fail";
 
-if (healthcheck_service_response_code / 100 == 2) {
+if(healthcheck_service_response_code/ 100 == 2){
   healthcheck_service_status = "pass";
 }
 
 timeout = "false";
 
-if (healthcheck_service_response_code === null && healthcheck_service_request_has_failed) {
+if(healthcheck_service_response_code === null && healthcheck_service_request_has_failed){
   timeout = "true";
 }
 
 var healthcheck_service = {
-  "healthcheckService:status": [
+  "healthcheckService:status" : [
     {
       "status": healthcheck_service_status,
-      "timeout": timeout,
-      "responseCode": healthcheck_service_response_code,
+      "timeout" : timeout,
+      "responseCode" : healthcheck_service_response_code,
       "outcome": healthcheck_service_response,
-      "links": { "self": healthcheck_service_request_url }
+      "links" : {"self": healthcheck_service_request_url}
     }]
 };
 
 var apigee_status = "pass";
 
-if (healthcheck_service_status != "pass") {
+if(healthcheck_service_status != "pass"){
   apigee_status = "fail";
 }
 
 var response = {
-  "status": apigee_status,
-  "version": version,
-  "revision": apiproxy_revision,
-  "releaseId": releaseId,
+  "status" : apigee_status,
+  "version" : version ,
+  "revision" : apiproxy_revision,
+  "releaseId" : releaseId,
   "commitId": commitId,
-  "checks": healthcheck_service
+  "checks" : healthcheck_service
 };
 
 context.setVariable("status.response", JSON.stringify(response));
