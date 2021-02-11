@@ -1,4 +1,4 @@
-var urlvalue = context.getVariable('verifyapikey.VerifyAPIKey.FormParam.jwks-resource-url');
+var urlvalue = context.getVariable('verifyapikey.VerifyAPIKey.FormParam.identity-service-jwks');
 var re = new RegExp('^(https?:\/\/[^/]+)(\/.*)$');
 var match = re.exec(urlvalue);
 if (match) {
