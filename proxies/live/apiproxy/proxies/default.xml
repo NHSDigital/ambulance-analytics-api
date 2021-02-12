@@ -1,25 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ProxyEndpoint name="default">
-  <FaultRules>
-    <FaultRule name="UnsupportedJWTAlgorithm">
-      <Step>
-        <Name>AssignMessage.UnsupportedJWTAlgorithm</Name>
-      </Step>
-      <Condition>(fault.name = "AlgorithmMismatch")</Condition>
-    </FaultRule>
-    <FaultRule name="ExpiredJWT">
-      <Step>
-        <Name>AssignMessage.ExpiredJWT</Name>
-      </Step>
-      <Condition>(fault.name = "TokenExpired")</Condition>
-    </FaultRule>
-    <FaultRule name="FailedToDecode">
-      <Step>
-        <Name>AssignMessage.FailedToDecode</Name>
-      </Step>
-      <Condition>(fault.name = "FailedToDecode")</Condition>
-    </FaultRule>
-  </FaultRules>
   <PreFlow />
   <Flows>
     <Flow name="AddPayloadToPing">
@@ -66,90 +46,6 @@
       </Response>
       <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null
       </Condition>
-    </Flow>
-    <Flow name="Flow-GenerateAccessToken">
-      <Condition>(proxy.pathsuffix MatchesPath "/token")</Condition>
-      <Request>
-        <Step>
-          <Name>RaiseFault.MethodNotAllowed</Name>
-          <Condition>request.verb != "POST"</Condition>
-        </Step>
-        <Step>
-          <Name>RaiseFault.MissingGrantType</Name>
-          <Condition>request.formparam.grant_type != "client_credentials"</Condition>
-        </Step>
-        <Step>
-          <Name>RaiseFault.MissingClientID</Name>
-          <Condition>request.formparam.client_id = null or request.formparam.client_id = ""</Condition>
-        </Step>
-        <Step>
-          <Name>RaiseFault.MissingClientAssertionType</Name>
-          <Condition>request.formparam.client_assertion_type != "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"</Condition>
-        </Step>
-        <Step>
-          <Name>DecodeJWT</Name>
-        </Step>
-        <Step>
-          <Name>RaiseFault.WarningDecodingJWT</Name>
-          <Condition>jwt.DecodeJWT.warning != null</Condition>
-        </Step>
-        <Step>
-          <Name>RaiseFault.InvalidExpiry</Name>
-          <Condition>jwt.DecodeJWT.decoded.claim.exp = null</Condition>
-        </Step>
-        <Step>
-          <Name>RaiseFault.InvalidKid</Name>
-          <Condition>jwt.DecodeJWT.decoded.header.kid = "" or jwt.DecodeJWT.decoded.header.kid = null</Condition>
-        </Step>
-        <Step>
-          <Name>RaiseFault.MissingIssOrSub</Name>
-          <Condition>(jwt.DecodeJWT.decoded.claim.iss = null or jwt.DecodeJWT.decoded.claim.iss = "") or (jwt.DecodeJWT.decoded.claim.sub = null or jwt.DecodeJWT.decoded.claim.sub = "")</Condition>
-        </Step>
-        <Step>
-          <Name>RaiseFault.IssOrSubMustBeEqual</Name>
-          <Condition>jwt.DecodeJWT.decoded.claim.iss != jwt.DecodeJWT.decoded.claim.sub</Condition>
-        </Step>
-        <Step>
-          <Name>RaiseFault.MissingAudience</Name>
-          <Condition>jwt.DecodeJWT.decoded.claim.aud = null or jwt.DecodeJWT.decoded.claim.aud = ""</Condition>
-        </Step>
-        <Step>
-          <Name>RaiseFault.MissingJTIClaim</Name>
-          <Condition>jwt.DecodeJWT.decoded.claim.jti = null or jwt.DecodeJWT.decoded.claim.jti = ""</Condition>
-        </Step>
-        <Step>
-          <Name>LookupCache.JTIClaim</Name>
-        </Step>
-        <Step>
-          <Name>RaiseFault.JTIValueExistsInCache</Name>
-          <Condition>JTICachedValue = jwt.DecodeJWT.decoded.claim.jti</Condition>
-        </Step>
-        <Step>
-          <Name>PopulateCache.JTIClaim</Name>
-        </Step>
-        <Step>
-          <Name>VerifyAPIKey.FormParam</Name>
-        </Step>
-        <Step>
-          <Name>AssignMessage.AddIdAndSecret</Name>
-        </Step>
-        <Step>
-          <Name>JS.SetServiceCalloutUrl</Name>
-        </Step>
-        <Step>
-          <Name>ServiceCallout.GetJWKS</Name>
-        </Step>
-        <Step>
-          <Name>ExtractVariables.ParseJWKS</Name>
-        </Step>
-        <Step>
-          <Name>VerifyJWT.JWKS</Name>
-        </Step>
-        <Step>
-          <Name>GenerateAccessToken</Name>
-        </Step>
-      </Request>
-      <Response />
     </Flow>
   </Flows>
   <PostClientFlow name="PostClientFlow">
