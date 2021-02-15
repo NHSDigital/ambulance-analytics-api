@@ -3,11 +3,6 @@
 	"name": "all-environments",
 	"values": [
 		{
-			"key": "RS256_PRIVATE_KEY",
-			"value": "$JWT_RS256_PRIVATE_KEY",
-			"enabled": true
-		},
-		{
 			"key": "RS512_PRIVATE_KEY",
 			"value": "$JWT_RS512_PRIVATE_KEY",
 			"enabled": true
@@ -35,6 +30,11 @@
 		{
 			"key": "root_path",
 			"value": "$ROOT_PATH",
+			"enabled": true
+		},
+		{
+			"key": "token_url",
+			"value": "$TOKEN_URL",
 			"enabled": true
 		}
 	],
