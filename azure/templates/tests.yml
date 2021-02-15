@@ -11,7 +11,7 @@ steps:
               export BASE_URL="${{ parameters.base_url }}"
               export ROOT_PATH="$(SERVICE_BASE_PATH)"
               export CLIENT_ID="$(JWT_TESTING_API_KEY)"
-              export TOKEN_URL=https://$(parameters.environment).api.service.nhs.uk/oauth2/token
+              export TOKEN_URL=https://${{ parameters.environment }}.api.service.nhs.uk/oauth2/token
               export JWT_RS512_PRIVATE_KEY=$(echo "$(JWT_TESTING_PRIVATE_KEY)" | base64 -d | sed -z 's/\n/\\n/g')
 
               envsubst < $test_dir/environments/internal-dev.postman.json > $test_dir/environments/prefilled.internal-dev.postman.json
