@@ -45,9 +45,6 @@ extends:
                 environment: 'internal-dev'
                 service_name: ${{ variables.service_name }}
                 base_url: 'internal-dev.api.service.nhs.uk'
-                secret_ids:
-                  - ptl/azure-devops/${{ variables.service_name }}/internal-dev/JWT_RS512_PRIVATE_KEY
-                  - ptl/azure-devops/${{ variables.service_name }}/internal-dev/CLIENT_ID
         - environment: internal-qa
           make_spec_visible: true
         - environment: internal-qa-sandbox
@@ -64,9 +61,6 @@ extends:
                 environment: 'int'
                 service_name: ${{ variables.service_name }}
                 base_url: 'int.api.service.nhs.uk'
-                secret_ids:
-                 - ptl/azure-devops/${{ variables.service_name }}/int/JWT_RS512_PRIVATE_KEY
-                 - ptl/azure-devops/${{ variables.service_name }}/int/CLIENT_ID
         - environment: sandbox
           proxy_path: sandbox
           depends_on:
@@ -84,6 +78,3 @@ extends:
                     environment: 'prod'
                     service_name: ${{ variables.service_name }}
                     base_url: 'api.service.nhs.uk'
-                    secret_ids:
-                      - ptl/azure-devops/${{ variables.service_name }}/prod/JWT_RS512_PRIVATE_KEY
-                      - ptl/azure-devops/${{ variables.service_name }}/prod/CLIENT_ID

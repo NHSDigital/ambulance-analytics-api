@@ -39,9 +39,6 @@ extends:
     apigee_deployments:
       - environment: internal-dev
         parameters:
-          secret_ids:
-            - ptl/azure-devops/${{ variables.service_name }}/internal-dev/JWT_RS512_PRIVATE_KEY
-            - ptl/azure-devops/${{ variables.service_name }}/internal-dev/CLIENT_ID
         post_deploy:
           - template: templates/tests.yml
             parameters:
