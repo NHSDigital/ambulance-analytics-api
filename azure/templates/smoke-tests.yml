@@ -4,28 +4,15 @@ parameters:
     - name: base_url
 
 steps:
-    - template: "azure/components/aws-assume-role.yml@common"
-      parameters:
-        role: "auto-ops"
-        profile: "apm_ptl"
-
-    - template: "azure/components/get-aws-secrets-and-ssm-params.yml@common"
-      parameters:
-          secret_ids:
-              - prod/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_RS512_PRIVATE_KEY
-              - prod/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_RS256_PRIVATE_KEY
-              - prod/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/CLIENT_ID
-          config_ids: []
-
     - bash: |
           if [ -d $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests ]; then
               test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
 
               export BASE_URL="${{ parameters.base_url }}"
               export ROOT_PATH="$(SERVICE_BASE_PATH)"
-              export CLIENT_ID="$(CLIENT_ID)"
-              export JWT_RS256_PRIVATE_KEY=$(echo "$(JWT_RS256_PRIVATE_KEY)" | base64 -d | sed -z 's/\n/\\n/g')
-              export JWT_RS512_PRIVATE_KEY=$(echo "$(JWT_RS512_PRIVATE_KEY)" | base64 -d | sed -z 's/\n/\\n/g')
+              export CLIENT_ID="$(JWT_TESTING_API_KEY)"
+              export TOKEN_URL=https://${{ parameters.environment }}.api.service.nhs.uk/oauth2/token
+              export JWT_RS512_PRIVATE_KEY=$(cat "$(Pipeline.Workspace)/secrets/$(JWT_TESTING_PRIVATE_KEY)" | sed -z 's/\n/\\n/g')
 
               envsubst < $test_dir/environments/internal-dev.postman.json > $test_dir/environments/prefilled.internal-dev.postman.json
 
