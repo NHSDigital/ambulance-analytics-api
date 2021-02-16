@@ -31,9 +31,8 @@ extends:
   template: azure/common/apigee-deployment.yml@common
   parameters:
     secret_ids:
-      - ptl/app-credentials/jwt_testing/non-prod/JWT_TESTING_API_KEY
-    secret_file_ids:
-      - ptl/app-credentials/jwt_testing/non-prod/JWT_TESTING_PRIVATE_KEY
+      - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_RS512_PRIVATE_KEY
+      - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/CLIENT_ID
     service_name: ${{ variables.service_name }}
     service_base_path: ${{ variables.service_base_path }}
     short_service_name: ${{ variables.short_service_name }}
