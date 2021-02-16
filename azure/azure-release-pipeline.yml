@@ -28,9 +28,6 @@ variables:
 extends:
   template: azure/common/apigee-deployment.yml@common
   parameters:
-   secret_ids:
-    - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_RS512_PRIVATE_KEY
-    - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/CLIENT_ID
     service_name: ${{ variables.service_name }}
     short_service_name: ${{ variables.short_service_name }}
     service_base_path: ${{ variables.service_base_path }}
@@ -48,6 +45,9 @@ extends:
                 environment: 'internal-dev'
                 service_name: ${{ variables.service_name }}
                 base_url: 'internal-dev.api.service.nhs.uk'
+                secret_ids:
+                  - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_RS512_PRIVATE_KEY
+                  - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/CLIENT_ID
         - environment: internal-qa
           make_spec_visible: true
         - environment: internal-qa-sandbox
@@ -64,6 +64,9 @@ extends:
                 environment: 'int'
                 service_name: ${{ variables.service_name }}
                 base_url: 'int.api.service.nhs.uk'
+                secret_ids:
+                 - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_RS512_PRIVATE_KEY
+                 - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/CLIENT_ID
         - environment: sandbox
           proxy_path: sandbox
           depends_on:
