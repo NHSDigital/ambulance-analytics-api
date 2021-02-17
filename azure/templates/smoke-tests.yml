@@ -32,11 +32,11 @@ steps:
                   --folder "Init Test Suite" --folder "Happy Path Tests" \
                   --environment /etc/newman/environments/prefilled.internal-dev.postman.json --reporters=cli,junit
           fi
-      displayName: 'Run Postman Smoke Tests'
+   displayName: 'Run Postman Smoke Tests'
 
-    - task: PublishTestResults@2
-      displayName: 'Publish Smoke Test Results'
-      inputs:
-          testResultsFiles: |
-              $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e/newman/*.xml
-          failTaskOnFailedTests: true
+ - task: PublishTestResults@2
+   displayName: 'Publish Smoke Test Results'
+   inputs:
+       testResultsFiles: |
+           $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e/newman/*.xml
+       failTaskOnFailedTests: true
