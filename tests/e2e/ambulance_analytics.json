@@ -67,7 +67,7 @@
                   "var header = {",
                   "    \"typ\": \"JWT\",",
                   "    \"alg\": \"RS512\",",
-                  "    \"kid\": \"test-1\"",
+                  "    \"kid\": \"test-rs512\"",
                   "}",
                   "",
                   "postman.setEnvironmentVariable(\"JTI_UNIQUE_ID\", \"\"+Math.floor(100000 + Math.random() * 900000));",
