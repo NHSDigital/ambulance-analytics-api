@@ -38,7 +38,6 @@ extends:
     spec_file: ${{ variables.spec_file }}
     apigee_deployments:
       - environment: internal-dev
-        parameters:
         post_deploy:
           - template: templates/tests.yml
             parameters:
