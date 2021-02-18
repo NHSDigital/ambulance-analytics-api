@@ -57,108 +57,16 @@ info:
     For more details, see [Network access for APIs](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis).
 
     ## Security and authorisation
-    This API is [application-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis) - we authenticate the calling application but not the end user.
-    In particular, it uses signed JWT authentication - you authenticate your application by sending a signed JSON web token (JWT) to our OAuth 2.0 authorisation server.
-    For more details see [Application-restricted RESTful APIs - signed JWT authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication).
+    ### Application-restricted access
+    This access mode is [application-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis),
+    meaning we authenticate the calling application but not the end user.
 
-    ### Detailed integration instructions
-    This API follows the OAuth 2.0 protocol, the authentication method (unattended access) is designed for authentication without a user being present. You can authenticate by sending a JSON Web Token (JWT) token signed with a private key with the RS512 algorithm.
-    Once the target server receives the JWT token it will lookup for a set of public keys from either a URL or store. The target server will then check each public key until it finds one that matches.
-    The current flow to use this API is:
-    - POST request with a signed JWT token and other required headers to the /token endpoint
-    - POST request with the access token in the Authorisation header to the /submission endpoint
+    You can use this access mode as follows:
+    * unattended (end user not present), for example as part of a back end process to check NHS numbers for data flowing from one system to another
+    * attended (end user present) - in which case, you must ensure the end user is authenticated and suitably authorised locally by the calling application
 
-    ### Generate a Private/Public Key Pair
-    Run the following commands on the command prompt to generate a private/public key pair on a UNIX system (Linux, MacOS):
-
-        ssh-keygen -t rsa -b 4096 -m PEM -f jwtRS512.key
-        openssl rsa -in jwtRS512.key -pubout -outform PEM -out jwtRS512.key.pub
-    The resulting files, jwtRS512.key and jwtRS512.key.pub are the private and public keys, respectively.
-
-    Create a Key Identifier (KID), a unique name to identify the key pair in use. This KID will be used to refer to the key pair when constructing and posting the JWT.
-
-    ### Register a Public Key with API Management
-    Email [API Management](mailto://api.management@nhs.net) with your **KID** and your **public key** as an attachment. The unattended access public key management process is currently not self-service, however we do aim to provide this in the future as part of our [product roadmap](https://nhs-digital-api-management.featureupvote.com/suggestions/107454/application-registration-selfservice).
-
-    Your public key will be associated with your test app in the environment of your choice. You will receive an email once this has been completed successfully. Now use your KID and private key to sign your JWT requests.
-
-    ### Generate a JWT and sign it
-    A JWT is a token that consists of three parts: a header, a payload and a signature. The header details the algorithm and token type. The payload consists of data (detailed below) and the signature is used to verify the token itself. More details on [generating a JWT Token](https://jwt.io/).
-
-    **Note:** We strongly recommend that you use a library to generate your JWT tokens, as this can be a complicated process to perform by hand.
-
-    #### Header
-    The header for the JWT details the authentication and token type used. The algorithm used is RS512, matching the algorithm used to generate the private/public key pair.
-
-    ##### Example:
-    	{
-    	  "alg": "RS512",
-    	  "typ": "JWT",
-    	  "kid": "test"
-    	}
-
-    | Field | Description                                                                                                                                                                                                                                                                                                 | Type   |
-    |-------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------|
-    | alg   | The algorithm (alg) used to generate the private key used to sign the JWT. In this case, RS512.                                                                                                                                                                                                             | string |
-    | typ   | The token type (typ) is JWT.                                                                                                                                                                                                                                                                                | string |
-    | kid   | The Key Identifier (kid) used to select the public key to use to verify the signature of the JWT. If a trust has multiple public/private key pairs, this will be used to select the appropriate public key. For testing on the INT environment, we recommend “test” as an appropriate KID value.            | string |
-
-    #### Payload
-    The payload consists of the following mandatory claims encoded as a JSON structure:
-
-    ##### Example:
-    	{
-    	  "iss": "<test-app-api-key>",
-    	  "sub": "<test-app-api-key>",
-    	  "aud": "https://int.api.service.nhs.uk/ambulance-analytics/token",
-    	  "jti": "<unique-per-request-id>",
-    	  "exp": <current-time-plus-5mins-from-jwt-creation>
-    	}
-
-    | Field | Description                                                                                                                                                                                                            | Type   | Notes                                                                                                                                                                                       |
-    |-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | iss   | The issuer claim (iss) should be set to the test app API key.                                                                                                                                                          | string |                                                                                                                                                                                             |
-    | sub   | The subject claim (sub) should be set to the test app API key.                                                                                                                                                         | string |                                                                                                                                                                                             |
-    | aud   | The audience claim (aud) should be set to the correct environment URL (see Environments and testing below).                                                                                                            | string | This URL will be different for the production environment, so make sure this can be changed easily when deploying client softwares to access different API Management environments.         |
-    | jti   | A unique JWT identifier (jti), which can be used to prevent reuse of the JWT. These JWTs **must** only be used once. This can take the form of a unique integer or GUID.                                               | string |                                                                                                                                                                                             |
-    | exp   | Expiration time (exp) on or after which the ID Token **will not** be accepted for processing. The only acceptable time range is 5 minutes from token created time.                                                     | number | Exp is a Numeric Time value, which is defined as the number of seconds (not milliseconds) since epoch (e.g. A UNIX timestamp).                                                              |
-
-    #### The Signature
-    The signature consists of the private key signed contents of the header and payload.
-
-    #### Assemble the JWT
-    The JWT consists of the base64 encoded header (separated by a period), the base64 encoded payload (separated by a period), followed by the base64 encoded signature.
-
-    For more details see [generating a JWT Token](https://jwt.io/).
-
-
-    ### Submit the access token request
-    The access token request consists of a Hypertext Transfer Protocol Secure (HTTPS) request to the following endpoint, along with the x-www-form-urlencoded body consisting of four fields:
-
-        POST /ambulance-analytics/token HTTP/1.1
-        Host: int.api.service.nhs.uk
-        Content-Type: application/x-www-form-urlencoded
-        client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer&client_assertion=<jwt_token>&grant_type=client_credentials&client_id=<client_id>
-
-    The response consists of a JSON structure, the most important aspect being the “access_token” key. To submit the data into DPS, use this OAuth 2.0 access token in subsequent requests to the /submission endpoint. The request fields are detailed below.
-
-
-    | Field                 | Description                                                                          | Type   |
-    | --------------------- | ------------------------------------------------------------------------------------ | ------ |
-    | client_assertion_type | This must be the value “urn:ietf:params:oauth:client-assertion-type:jwt-bearer”.     | String |
-    | client_assertion      | This must be set to the value of the generated JWT token.                            | String |
-    | grant_type            | This must be the value “client_credentials”.                                         | String |
-    | client_id             | This must be set to the test app API key. Same as `iss` and `sub` in the jwt token.  | String |
-
-    ### Using the access token to submit data into DPS
-    Once you have received the ”access_token”, you can make data submissions to DPS via POST request to the /submission endpoint, with the authorisation header set to bearer and the access token.
-
-    ## Environments and testing
-    | Purpose          | URL                                                       |
-    | ---------------- | --------------------------------------------------------- |
-    | Sandbox          | `https://sandbox.api.service.nhs.uk/ambulance-analytics`  |
-    | Integration test | `https://int.api.service.nhs.uk/ambulance-analytics`      |
-    | Production       | `https://api.service.nhs.uk/ambulance-analytics`          |
+    To use this access mode, use the following security pattern:
+    * [Application-restricted RESTful API - signed JWT authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)
 
     ### Sandbox testing
     Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
