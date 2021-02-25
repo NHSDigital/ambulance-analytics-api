@@ -4,4 +4,4 @@ variables:
   short_service_name: amb-data-submit
   product_display_name: Ambulance Data Submission
   product_description: " "
-  spec_file: ambulance-analytics.json
+  spec_file: ambulance-data-submission.json
