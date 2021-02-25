@@ -36,7 +36,7 @@ serve: update-examples
 
 generate-examples: publish
 	mkdir -p build/examples
-	poetry run python scripts/generate_examples.py build/ambulance-analytics.json build/examples
+	poetry run python scripts/generate_examples.py build/ambulance-data-submission.json build/examples
 
 update-examples: generate-examples
 	make publish
