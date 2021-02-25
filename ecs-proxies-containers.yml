@@ -1,5 +1,5 @@
 docker_containers:
 
-    - name: ambulance-analytics
+    - name: ambulance-data-submission
       dockerfile: "docker/ambulance-analytics-sandbox/Dockerfile"
       path: "docker/ambulance-analytics-sandbox"
