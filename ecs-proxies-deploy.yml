@@ -5,7 +5,7 @@
 
 docker_service:
 
-    - name: ambulance-analytics
+    - name: ambulance-data-submission
       expose: true
       environment:
         - name: NODE_ENV

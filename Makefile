@@ -7,7 +7,7 @@ install-python:
 
 install-node:
 	npm install
-	cd docker/ambulance-analytics-sandbox && npm install
+	cd docker/ambulance-data-submission-sandbox && npm install
 
 install-hooks:
 	cp scripts/pre-commit .git/hooks/pre-commit
@@ -17,7 +17,7 @@ test:
 
 lint:
 	npm run lint
-	cd docker/ambulance-analytics-sandbox && npm run lint && cd ..
+	cd docker/ambulance-data-submission-sandbox && npm run lint && cd ..
 	poetry run flake8
 
 
@@ -36,7 +36,7 @@ serve: update-examples
 
 generate-examples: publish
 	mkdir -p build/examples
-	poetry run python scripts/generate_examples.py build/ambulance-analytics.json build/examples
+	poetry run python scripts/generate_examples.py build/ambulance-data-submission.json build/examples
 
 update-examples: generate-examples
 	make publish
@@ -55,7 +55,7 @@ format:
 	poetry run black **/*.py
 
 sandbox: update-examples
-	cd docker/ambulance-analytics-sandbox && npm run start
+	cd docker/ambulance-data-submission-sandbox && npm run start
 
 build-proxy:
 	scripts/build_proxy.sh

@@ -12,9 +12,9 @@ steps:
     - template: "azure/components/get-aws-secrets-and-ssm-params.yml@common"
       parameters:
           secret_ids:
-              - prod/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_RS512_PRIVATE_KEY
-              - prod/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_RS256_PRIVATE_KEY
-              - prod/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/CLIENT_ID
+              - prod/azure-devops/ambulance-analytics/${{ parameters.environment }}/JWT_RS512_PRIVATE_KEY
+              - prod/azure-devops/ambulance-analytics/${{ parameters.environment }}/JWT_RS256_PRIVATE_KEY
+              - prod/azure-devops/ambulance-analytics/${{ parameters.environment }}/CLIENT_ID
           config_ids: []
 
     - bash: |
@@ -29,7 +29,7 @@ steps:
 
               envsubst < $test_dir/environments/internal-dev.postman.json > $test_dir/environments/prefilled.internal-dev.postman.json
 
-              docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json \
+              docker run -v ${test_dir}:/etc/newman postman/newman run ambulance-data-submission.json \
                   --folder "Init Test Suite" --folder "Happy Path Tests" \
                   --environment /etc/newman/environments/prefilled.internal-dev.postman.json --reporters=cli,junit
           fi
