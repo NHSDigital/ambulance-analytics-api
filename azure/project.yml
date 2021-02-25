@@ -5,3 +5,4 @@ variables:
   product_display_name: Ambulance Data Submission
   product_description: " "
   spec_file: ambulance-analytics.json
+  service_id: ambulance-data
