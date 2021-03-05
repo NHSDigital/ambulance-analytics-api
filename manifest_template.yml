@@ -26,9 +26,9 @@ apigee:
   environments:
 
 {% for ENV in APIGEE_ENVIRONMENTS %}
-{% set TITLE = 'Ambulance Analytics (' + ENV.display_name + ')' %}
+{% set TITLE = 'Ambulance Data Submission (' + ENV.display_name + ')' %}
 {% set PORTAL_VISIBILITY = not ENV.name.endswith("sandbox") %}
-{% set DESCRIPTION = 'Ambulance Analytics - ' + ENV.display_name | lower + ' environment' %}
+{% set DESCRIPTION = 'Ambulance Data Submission - ' + ENV.display_name | lower + ' environment' %}
 {% set NAME = 'ambulance-analytics-' + ENV.name %}
   - name: {{ ENV.name }}
     products:
