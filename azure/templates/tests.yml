@@ -25,7 +25,11 @@ steps:
               export BASE_URL="${{ parameters.base_url }}"
               export ROOT_PATH="$(SERVICE_BASE_PATH)"
               export CLIENT_ID="$(CLIENT_ID)"
-              export JWT_RS256_PRIVATE_KEY=$(echo "$(JWT_RS256_PRIVATE_KEY)" | base64 -d | sed -z 's/\n/\\n/g')
+              if [ "${{ parameters.environment }}" = "prod" ]; then
+                export TOKEN_URL=https://api.service.nhs.uk/oauth2/token
+              else
+                export TOKEN_URL=https://${{ parameters.environment }}.api.service.nhs.uk/oauth2/token
+              fi
               export JWT_RS512_PRIVATE_KEY=$(echo "$(JWT_RS512_PRIVATE_KEY)" | base64 -d | sed -z 's/\n/\\n/g')
 
               envsubst < $test_dir/environments/internal-dev.postman.json > $test_dir/environments/prefilled.internal-dev.postman.json
