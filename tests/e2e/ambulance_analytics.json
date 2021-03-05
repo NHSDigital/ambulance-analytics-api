@@ -168,17 +168,7 @@
                 "type": "text"
               }
             ],
-            "url": {
-              "raw": "https://{{base_url}}/{{root_path}}/submission",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "{{root_path}}",
-                "submission"
-              ]
-            }
+            "url": "https://{{base_url}}/{{root_path}}/$process-message"
           },
           "response": []
         },

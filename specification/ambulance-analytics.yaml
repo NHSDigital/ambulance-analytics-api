@@ -1,10 +1,10 @@
 openapi: 3.0.0
 info:
   version: v1.0.98-alpha
-  title: Ambulance Analytics - FHIR API
+  title: Ambulance Data Submission - FHIR API
   description: |
     ## Overview
-    Use this API to submit ambulance analytics data to our Data Processing Service (DPS) so that it can be made available for analysis and review by NHS England and ambulance trusts.
+    Use this API to submit ambulance data to our Data Processing Service (DPS) so that it can be made available for analysis and review by NHS England and ambulance trusts.
 
     Ambulance analytics data is information relating to emergency calls (999, 111 and others), received at an Emergency Operations Centre (EOC) and processed into a Computer Aided Despatch (CAD) system, including:
       - call details
@@ -22,8 +22,8 @@ info:
     ![Ambulance Overview](https://github.com/NHSDigital/ambulance-analytics-api/blob/master/specification/diagrams/APIAsynchE2eProcess.PNG?raw=true)
 
     The following describes the end-to-end process:
-    1. the Ambulance Trust System sends the ambulance analytics data to the Ambulance Analytics API
-    2. the Ambulance Analytics API forwards the ambulance analytics data to our Data Processing System (DPS)
+    1. the Ambulance Trust System sends the ambulance analytics data to the Ambulance Data Submission API
+    2. the Ambulance Data Submission API forwards the ambulance analytics data to our Data Processing System (DPS)
     3. if there is an error, DPS sends an error notification to MESH
     4. the Ambulance Trust System retrieves the error notification from MESH
     5. an Analytics User views ambulance analytics data in our NHS Digital Analytics Dashboards
@@ -88,7 +88,7 @@ info:
 
     When following the SCAL process, note that:
 
-    * In step 8: you need to review and complete the Ambulance Analytics API risk log to show that you have understood and mitigated the various risks. You might be asked to provide some evidence to prove that controls have been put in place. You’ll find the risk log embedded within the Ambulance Analytics API tab in the SCAL.
+    * In step 8: you need to review and complete the Ambulance Data Submission API risk log to show that you have understood and mitigated the various risks. You might be asked to provide some evidence to prove that controls have been put in place. You’ll find the risk log embedded within the Ambulance Data Submission API tab in the SCAL.
     * In step 10: when you complete the Service Desk Registration Form, send it to [api.management@nhs.net](mailto:api.management@nhs.net).
     * In step 11: submit your completed SCAL to [api.management@nhs.net](mailto:api.management@nhs.net).
     * In step 14: to request production access, contact us at [api.management@nhs.net](mailto:api.management@nhs.net).
@@ -97,18 +97,18 @@ info:
     name: API Management Support
     email: api.management@nhs.net
 servers:
-  - url: 'https://sandbox.api.service.nhs.uk/ambulance-analytics'
+  - url: 'https://sandbox.api.service.nhs.uk/ambulance-data-submission'
     description: Sandbox environment.
 tags:
-  - name: Ambulance Analytics Api
+  - name: Ambulance Data Submission Api
 paths:
-  /submission:
+  /$process-message:
     post:
-      summary: Submit ambulance analytics data
+      summary: Submit Ambulance Data
       operationId: postData
       description: |
         ## Overview
-        Use this endpoint to submit ambulance analytics data to DPS. This endpoint does not validate the submitted payload, it only acknowledges receipt of the payload.
+        Use this endpoint to submit ambulance data to DPS. This endpoint does not validate the submitted payload, it only acknowledges receipt of the payload.
         See the [FHIR implementation guide](https://simplifier.net/Ambulance/~guides) for how to structure the payload data.
       responses:
         '200':

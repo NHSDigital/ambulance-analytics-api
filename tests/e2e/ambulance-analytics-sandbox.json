@@ -125,12 +125,12 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/submission",
+					"raw": "{{base_url}}/$process-message",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"submission"
+						"$process-message"
 					]
 				}
 			},
@@ -157,12 +157,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/submission",
+					"raw": "{{base_url}}/$process-message",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"submission"
+						"$process-message"
 					]
 				}
 			},
