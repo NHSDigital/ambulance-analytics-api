@@ -1,11 +1,11 @@
 module.exports = [
   /**
-   * POST to /submission
+   * POST to /$process-message
    * If submissionResponse.json file exists in `mock` directory then that will be the response otherwise, 404
    */
   {
     method: '*',
-    path: '/submission',
+    path: '/$process-message',
     handler: (request, h) => {
       if (request.raw.req.method !== 'POST') {
         const responseMessage = {
