@@ -239,14 +239,14 @@
               }
             ],
             "url": {
-              "raw": "https://{{base_url}}/{{root_path}}/submission",
+              "raw": "https://{{base_url}}/{{root_path}}/$process-message",
               "protocol": "https",
               "host": [
                 "{{base_url}}"
               ],
               "path": [
                 "{{root_path}}",
-                "submission"
+                "$process-message"
               ]
             }
           },
