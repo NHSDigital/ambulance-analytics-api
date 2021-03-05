@@ -246,7 +246,7 @@
               ],
               "path": [
                 "{{root_path}}",
-                "submission"
+                "$process-message"
               ]
             }
           },
