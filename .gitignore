@@ -5,6 +5,7 @@ build/
 public/
 newman/
 venv/
+.vscode/
 .venv/
 .idea
 .terraform
