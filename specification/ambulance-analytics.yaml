@@ -29,7 +29,7 @@ info:
     5. an Analytics User views ambulance analytics data in our NHS Digital Analytics Dashboards
     6. the NHS Digital Analytics Dashboards get the ambulance analytics data from DPS
 
-    ## Legal Use
+    ## Who can use this API
     This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
 
     ## Related APIs
