@@ -63,6 +63,7 @@
                   "var navigator = {}; //fake a navigator object for the lib",
                   "var window = {}; //fake a window object for the lib",
                   "eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
+                  "const fs = require('fs');",
                   "",
                   "var header = {",
                   "    \"typ\": \"JWT\",",
