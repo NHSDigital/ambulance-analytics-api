@@ -63,7 +63,6 @@
                   "var navigator = {}; //fake a navigator object for the lib",
                   "var window = {}; //fake a window object for the lib",
                   "eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
-                  "const fs = require('fs');",
                   "",
                   "var header = {",
                   "    \"typ\": \"JWT\",",
@@ -82,10 +81,9 @@
                   "};",
                   "",
                   "var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\");",
-                  "var key = JSON.parse(fs.readFileSync('secret'));",
                   "var sHeader = JSON.stringify(header);",
                   "var sPayload = JSON.stringify(data);",
-                  "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, key);",
+                  "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
                   "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
                 ],
                 "type": "text/javascript"
