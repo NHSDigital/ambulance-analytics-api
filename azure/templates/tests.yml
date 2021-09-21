@@ -24,6 +24,7 @@ steps:
               test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/tests/e2e"
 
               export BASE_URL="${{ parameters.base_url }}"
+              export ENVIRONMENT="${{ parameters.environment }}"
               export ROOT_PATH="$(SERVICE_BASE_PATH)"
               export CLIENT_ID="$(CLIENT_ID)"
               if [ "${{ parameters.environment }}" = "prod" ]; then

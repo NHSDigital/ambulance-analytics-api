@@ -61,6 +61,7 @@
               "script": {
                 "exec": [
                   "var env=postman.getGlobalVariable(\"apigeeEnv\")",
+                  "console.log(\"Hello there!\")",
                   "console.log(env)",
                   "var navigator = {}; //fake a navigator object for the lib",
                   "var window = {}; //fake a window object for the lib",

@@ -5,6 +5,11 @@
       "key": "apikey",
       "value": "dummy_application_restricted_apikey",
       "enabled": true
+    },
+    {
+      "key": "apigeeEnv",
+      "value": "$ENVIRONMENT",
+      "enabled": true
     }
   ],
   "name": "Tests globals values",
