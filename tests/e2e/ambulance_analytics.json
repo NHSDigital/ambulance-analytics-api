@@ -60,6 +60,8 @@
               "listen": "prerequest",
               "script": {
                 "exec": [
+                  "var env=postman.getGlobalVariable(\"apigeeEnv\")",
+                  "console.log(env)",
                   "var navigator = {}; //fake a navigator object for the lib",
                   "var window = {}; //fake a window object for the lib",
                   "eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
