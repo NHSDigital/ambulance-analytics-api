@@ -14,6 +14,7 @@ steps:
           secret_ids:              
               - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_RS256_PRIVATE_KEY
               - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/CLIENT_ID
+              - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_RS512_PRIVATE_KEY
           config_ids: []
           secret_file_ids: 
               - ptl/app-credentials/jwt_testing/non-prod/JWT_TESTING_PRIVATE_KEY
@@ -30,7 +31,11 @@ steps:
               else
                 export TOKEN_URL=https://${{ parameters.environment }}.api.service.nhs.uk/oauth2/token
               fi
-              export JWT_RS512_PRIVATE_KEY="$(tr -d '\n' < $(Pipeline.Workspace)/secrets/$(JWT_TESTING_PRIVATE_KEY))"
+              if [ "${{ parameters.environment }}" = "int" ]; then
+                export JWT_RS512_PRIVATE_KEY=$(echo "$(JWT_RS512_PRIVATE_KEY)" | base64 -d | sed -z 's/\n/\\n/g')
+              else
+                export JWT_RS512_PRIVATE_KEY="$(tr -d '\n' < $(Pipeline.Workspace)/secrets/$(JWT_TESTING_PRIVATE_KEY))"
+              fi
 
               envsubst < $test_dir/environments/internal-dev.postman.json > $test_dir/environments/prefilled.internal-dev.postman.json
 
