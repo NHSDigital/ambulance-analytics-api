@@ -31,7 +31,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "https://raw.githubusercontent.com/NHSDigital/ambulance-analytics-api/AMB-847-Fix-broken-deployment/tests/e2e/environments/jsrsasign-all-min.js",
+              "raw": "https://raw.githubusercontent.com/kjur/jsrsasign/master/jsrsasign-all-min.js",
               "protocol": "https",
               "host": [
                 "raw",
