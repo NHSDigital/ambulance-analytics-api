@@ -30,7 +30,7 @@ steps:
               else
                 export TOKEN_URL=https://${{ parameters.environment }}.api.service.nhs.uk/oauth2/token
               fi
-              export JWT_RS512_PRIVATE_KEY="cat $(Pipeline.Workspace)/secrets/$(JWT_TESTING_PRIVATE_KEY)"
+              export JWT_RS512_PRIVATE_KEY="$(cat $(Pipeline.Workspace)/secrets/$(JWT_TESTING_PRIVATE_KEY))"
               echo here we are
               echo "$JWT_RS512_PRIVATE_KEY"
 
