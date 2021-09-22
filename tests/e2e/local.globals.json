@@ -8,7 +8,7 @@
     },
     {
       "key": "apigeeEnv",
-      "value": "$ENVIRONMENT",
+      "value": "This is a test",
       "enabled": true
     }
   ],
