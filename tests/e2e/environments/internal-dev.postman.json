@@ -8,11 +8,6 @@
 			"enabled": true
 		},
 		{
-			"key": "apigeeEnv",
-			"value": "This is a test",
-			"enabled": true
-		},
-		{
 			"key": "ACCESS_TOKEN",
 			"value": "",
 			"enabled": true

@@ -60,9 +60,6 @@
               "listen": "prerequest",
               "script": {
                 "exec": [
-                  "var env=postman.getGlobalVariable(\"apigeeEnv\")",
-                  "console.log(\"Hello there!\")",
-                  "console.log(env)",
                   "var navigator = {}; //fake a navigator object for the lib",
                   "var window = {}; //fake a window object for the lib",
                   "eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
@@ -70,7 +67,7 @@
                   "var header = {",
                   "    \"typ\": \"JWT\",",
                   "    \"alg\": \"RS512\",",
-                  "    \"kid\": \"test-1\"",
+                  "    \"kid\": \"test-rs512\"",
                   "}",
                   "",
                   "postman.setEnvironmentVariable(\"JTI_UNIQUE_ID\", \"\"+Math.floor(100000 + Math.random() * 900000));",
