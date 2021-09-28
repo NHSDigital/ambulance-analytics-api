@@ -22,12 +22,12 @@ info:
     ![Ambulance Overview](https://github.com/NHSDigital/ambulance-analytics-api/blob/master/specification/diagrams/ADSOverview.svg?raw=true)
 
     The following describes the end-to-end process:
-    1. the Ambulance Trust System sends the ambulance data to the Ambulance Data Submission API
-    2. the Ambulance Data Submission API forwards the ambulance data to our Data Processing System (DPS)
-    3. if there is an error, DPS sends an error notification to MESH
-    4. the Ambulance Trust System retrieves the error notification from MESH
-    5. an Analytics User views ambulance data in our NHS Digital Analytics Dashboards
-    6. the NHS Digital Ambulance Data Submission Dashboards get the ambulance data from DPS
+    1. The ambulance trust system sends the ambulance data to the Ambulance Data Submission API.
+    2. The Ambulance Data Submission (ADS) API forwards the ambulance data to our Data Processing System (DPS).
+    3. If there is an error, DPS sends an error notification to MESH.
+    4. The ambulance trust system retrieves the error notification from MESH.
+    5. An ADS User views the ambulance data in our NHS Digital ADS Dashboards.
+    6. The NHS Digital ADS Dashboards get the ambulance data from DPS.
 
     ## Who can use this API
     This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
@@ -89,7 +89,7 @@ info:
 
     When following the SCAL process, note that:
 
-    * In step 8: you need to review and complete the Ambulance Data Submission API risk log to show that you have understood and mitigated the various risks. You might be asked to provide some evidence to prove that controls have been put in place. You’ll find the risk log embedded within the Ambulance Data Submission API tab in the SCAL.
+    * In step 8: you need to review and complete the ADS API risk log to show that you have understood and mitigated the various risks. You might be asked to provide some evidence to prove that controls have been put in place. You’ll find the risk log embedded within the ADS API tab in the SCAL.
     * In step 10: when you complete the Service Desk Registration Form, send it to [api.management@nhs.net](mailto:api.management@nhs.net).
     * In step 11: submit your completed SCAL to [api.management@nhs.net](mailto:api.management@nhs.net).
     * In step 14: to request production access, contact us at [api.management@nhs.net](mailto:api.management@nhs.net).
@@ -108,7 +108,7 @@ paths:
       description: |
         ## Overview
         Use this endpoint to submit ambulance data to DPS. 
-        ### Request
+        ## Request
         This endpoint does not validate the submitted payload, it only acknowledges receipt of the payload.
         See the [FHIR implementation guide](https://simplifier.net/Ambulance/~guides) for how to structure the payload data.
       responses:
@@ -118,10 +118,10 @@ paths:
             application/json:
               schema:
                 type: object
-                description: The submission ID for the message you sent.                
                 properties:
                   message:
                     type: string
+                    description: The submission ID for the message you sent.                
               examples:
                 Example:
                   value:
