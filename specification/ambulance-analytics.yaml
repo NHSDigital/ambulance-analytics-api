@@ -100,8 +100,6 @@ info:
 servers:
   - url: 'https://sandbox.api.service.nhs.uk/ambulance-data-submission'
     description: Sandbox environment.
-tags:
-  - name: Ambulance Data Submission Api
 paths:
   /$process-message:
     post:
@@ -125,8 +123,6 @@ paths:
                 Example:
                   value:
                     message: 6eeec54e-3d39-4bc4-a1d9-57615d258fpq
-      tags:
-        - Post ambulance data
       parameters: []
     parameters: []
 components:
