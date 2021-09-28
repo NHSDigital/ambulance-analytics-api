@@ -19,8 +19,8 @@ info:
 
     The API is asynchronous - to receive error notifications, you need to use [MESH](https://digital.nhs.uk/services/message-exchange-for-social-care-and-health-mesh). The following diagram illustrates the end-to-end process:
 
-    ![Ambulance Overview](https://github.com/NHSDigital/ambulance-analytics-api/blob/master/specification/diagrams/ADSOverview.png?raw=true)
-    ![Ambulance Overview](https://github.com/NHSDigital/ambulance-analytics-api/blob/master/specification/diagrams/ADSOverview.svg?raw=true)
+    ![Ambulance Overview](https://raw.githubusercontent.com/NHSDigital/ambulance-analytics-api/AMB-850-rename-ambulance-analytics-to-ambulance-data-submittion/specification/diagrams/ADSOverview.png?raw=true)
+    ![Ambulance Overview](https://raw.githubusercontent.com/NHSDigital/ambulance-analytics-api/AMB-850-rename-ambulance-analytics-to-ambulance-data-submittion/specification/diagrams/ADSOverview.svg?raw=true)
 
     The following describes the end-to-end process:
     1. the Ambulance Trust System sends the ambulance data to the Ambulance Data Submission API
