@@ -6,13 +6,13 @@ info:
     ## Overview
     Use this API to submit ambulance data to our Data Processing Service (DPS) so that it can be made available for analysis and review by NHS England and ambulance trusts.
 
-    Ambulance analytics data is information relating to emergency calls (999, 111 and others), received at an Emergency Operations Centre (EOC) and processed into a Computer Aided Despatch (CAD) system, including:
+    Ambulance data is information relating to emergency calls (999, 111 and others), received at an Emergency Operations Centre (EOC) and processed into a Computer Aided Despatch (CAD) system, including:
       - call details
       - response details - including response times and episode outcome times patient
       - contact details - including patient demographics, patient response details, patient information, injury information, patient assessment, medication, observations, diagnoses, conveying outcome, safeguarding and public health information
 
     You can:
-      - post ambulance analytics data individually or in batches
+      - post ambulance data individually or in batches
 
     You cannot:
       - read any of the records stored in DPS
@@ -22,24 +22,24 @@ info:
     ![Ambulance Overview](https://github.com/NHSDigital/ambulance-analytics-api/blob/master/specification/diagrams/APIAsynchE2eProcess.PNG?raw=true)
 
     The following describes the end-to-end process:
-    1. the Ambulance Trust System sends the ambulance analytics data to the Ambulance Data Submission API
-    2. the Ambulance Data Submission API forwards the ambulance analytics data to our Data Processing System (DPS)
+    1. the Ambulance Trust System sends the ambulance data to the Ambulance Data Submission API
+    2. the Ambulance Data Submission API forwards the ambulance data to our Data Processing System (DPS)
     3. if there is an error, DPS sends an error notification to MESH
     4. the Ambulance Trust System retrieves the error notification from MESH
-    5. an Analytics User views ambulance analytics data in our NHS Digital Analytics Dashboards
-    6. the NHS Digital Analytics Dashboards get the ambulance analytics data from DPS
+    5. an Analytics User views ambulance data in our NHS Digital Analytics Dashboards
+    6. the NHS Digital Ambulance Data Submission Dashboards get the ambulance data from DPS
 
     ## Who can use this API
     This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
 
     ## Related APIs
-    Use [Messaging Exchange for Social care and Health (MESH)](https://meshapi.docs.apiary.io/) to receive error notifications from DPS for this API
+    The following API is also related to this API:
+    [Messaging Exchange for Social care and Health (MESH)](https://meshapi.docs.apiary.io/) - use this API to receive error notifications from DPS
 
     ## API status and roadmap
     This API is in [private beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
-      * we might make breaking changes, but only if we can't avoid it, and we'll give advance notice
-      * we can't guarantee availability or performance
       * it is available for production use, but only to a small group of ambulance trusts in England
+      * we might make breaking changes, but only if we can not avoid it, and we will give an advance notice
 
     To see our roadmap, or to suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=ambulance-analytics&deleted=0#controls).
 
@@ -62,7 +62,7 @@ info:
     meaning we authenticate the calling application but not the end user.
 
     You can use this access mode as follows:
-    * unattended (end user not present), for example as part of a back end process to check NHS numbers for data flowing from one system to another
+    * unattended (end user not present), for example periodically submit ambulance data from ambulance trust systems to DPS
 
     To use this access mode, use the following security pattern:
     * [Application-restricted RESTful API - signed JWT authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)
@@ -79,6 +79,7 @@ info:
     ### Integration testing
     Our [integration test environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing):
     - is for formal integration testing
+    - is for receiving data quality reports of test data
 
     ## Onboarding
 
