@@ -118,6 +118,7 @@ paths:
             application/json:
               schema:
                 type: object
+                description: The submission ID for the message you sent.                
                 properties:
                   message:
                     type: string
