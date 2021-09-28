@@ -107,7 +107,9 @@ paths:
       operationId: postData
       description: |
         ## Overview
-        Use this endpoint to submit ambulance data to DPS. This endpoint does not validate the submitted payload, it only acknowledges receipt of the payload.
+        Use this endpoint to submit ambulance data to DPS. 
+        ### Request
+        This endpoint does not validate the submitted payload, it only acknowledges receipt of the payload.
         See the [FHIR implementation guide](https://simplifier.net/Ambulance/~guides) for how to structure the payload data.
       responses:
         '200':
