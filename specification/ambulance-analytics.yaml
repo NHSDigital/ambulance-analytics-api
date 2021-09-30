@@ -6,40 +6,39 @@ info:
     ## Overview
     Use this API to submit ambulance data to our Data Processing Service (DPS) so that it can be made available for analysis and review by NHS England and ambulance trusts.
 
-    Ambulance analytics data is information relating to emergency calls (999, 111 and others), received at an Emergency Operations Centre (EOC) and processed into a Computer Aided Despatch (CAD) system, including:
+    Ambulance data is information relating to emergency calls (999, 111 and others), received at an Emergency Operations Centre (EOC) and processed into a Computer Aided Despatch (CAD) system, including:
       - call details
       - response details - including response times and episode outcome times patient
       - contact details - including patient demographics, patient response details, patient information, injury information, patient assessment, medication, observations, diagnoses, conveying outcome, safeguarding and public health information
 
     You can:
-      - post ambulance analytics data individually or in batches
+      - post ambulance data individually or in batches
 
     You cannot:
       - read any of the records stored in DPS
 
     The API is asynchronous - to receive error notifications, you need to use [MESH](https://digital.nhs.uk/services/message-exchange-for-social-care-and-health-mesh). The following diagram illustrates the end-to-end process:
 
-    ![Ambulance Overview](https://github.com/NHSDigital/ambulance-analytics-api/blob/master/specification/diagrams/APIAsynchE2eProcess.PNG?raw=true)
+    ![Ambulance Overview](https://github.com/NHSDigital/ambulance-analytics-api/blob/master/specification/diagrams/ADSOverview.svg?raw=true)
 
     The following describes the end-to-end process:
-    1. the Ambulance Trust System sends the ambulance analytics data to the Ambulance Data Submission API
-    2. the Ambulance Data Submission API forwards the ambulance analytics data to our Data Processing System (DPS)
-    3. if there is an error, DPS sends an error notification to MESH
-    4. the Ambulance Trust System retrieves the error notification from MESH
-    5. an Analytics User views ambulance analytics data in our NHS Digital Analytics Dashboards
-    6. the NHS Digital Analytics Dashboards get the ambulance analytics data from DPS
+    1. The ambulance trust system sends the ambulance data to the Ambulance Data Submission API.
+    2. The Ambulance Data Submission (ADS) API forwards the ambulance data to our Data Processing System (DPS).
+    3. If there is an error, DPS sends an error notification to MESH.
+    4. The ambulance trust system retrieves the error notification from MESH.
+    5. An ADS User views the ambulance data in our NHS Digital ADS Dashboards.
+    6. The NHS Digital ADS Dashboards get the ambulance data from DPS.
 
     ## Who can use this API
     This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
 
     ## Related APIs
-    Use [Messaging Exchange for Social care and Health (MESH)](https://meshapi.docs.apiary.io/) to receive error notifications from DPS for this API
+    Use [Messaging Exchange for Social care and Health (MESH)](https://meshapi.docs.apiary.io/) to receive error notifications from DPS for this API.
 
     ## API status and roadmap
-    This API is in [private beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
-      * we might make breaking changes, but only if we can't avoid it, and we'll give advance notice
-      * we can't guarantee availability or performance
+    This API is in [Beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
       * it is available for production use, but only to a small group of ambulance trusts in England
+      * we might make breaking changes, but only if we can not avoid it, and we will give an advance notice
 
     To see our roadmap, or to suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=ambulance-analytics&deleted=0#controls).
 
@@ -62,7 +61,7 @@ info:
     meaning we authenticate the calling application but not the end user.
 
     You can use this access mode as follows:
-    * unattended (end user not present), for example as part of a back end process to check NHS numbers for data flowing from one system to another
+    * unattended (end user not present), for example periodically submit ambulance data from ambulance trust systems to DPS
 
     To use this access mode, use the following security pattern:
     * [Application-restricted RESTful API - signed JWT authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)
@@ -79,6 +78,7 @@ info:
     ### Integration testing
     Our [integration test environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing):
     - is for formal integration testing
+    - is for receiving data quality reports of test data
 
     ## Onboarding
 
@@ -88,7 +88,7 @@ info:
 
     When following the SCAL process, note that:
 
-    * In step 8: you need to review and complete the Ambulance Data Submission API risk log to show that you have understood and mitigated the various risks. You might be asked to provide some evidence to prove that controls have been put in place. You’ll find the risk log embedded within the Ambulance Data Submission API tab in the SCAL.
+    * In step 8: you need to review and complete the ADS API risk log to show that you have understood and mitigated the various risks. You might be asked to provide some evidence to prove that controls have been put in place. You’ll find the risk log embedded within the ADS API tab in the SCAL.
     * In step 10: when you complete the Service Desk Registration Form, send it to [api.management@nhs.net](mailto:api.management@nhs.net).
     * In step 11: submit your completed SCAL to [api.management@nhs.net](mailto:api.management@nhs.net).
     * In step 14: to request production access, contact us at [api.management@nhs.net](mailto:api.management@nhs.net).
@@ -99,8 +99,6 @@ info:
 servers:
   - url: 'https://sandbox.api.service.nhs.uk/ambulance-data-submission'
     description: Sandbox environment.
-tags:
-  - name: Ambulance Data Submission Api
 paths:
   /$process-message:
     post:
@@ -108,7 +106,9 @@ paths:
       operationId: postData
       description: |
         ## Overview
-        Use this endpoint to submit ambulance data to DPS. This endpoint does not validate the submitted payload, it only acknowledges receipt of the payload.
+        Use this endpoint to submit ambulance data to DPS. 
+        ## Request
+        This endpoint does not validate the submitted payload, it only acknowledges receipt of the payload.
         See the [FHIR implementation guide](https://simplifier.net/Ambulance/~guides) for how to structure the payload data.
       responses:
         '200':
@@ -120,12 +120,11 @@ paths:
                 properties:
                   message:
                     type: string
+                    description: The submission ID for the message you sent.                
               examples:
                 Example:
                   value:
                     message: 6eeec54e-3d39-4bc4-a1d9-57615d258fpq
-      tags:
-        - Post ambulance data
       parameters: []
     parameters: []
 components:
