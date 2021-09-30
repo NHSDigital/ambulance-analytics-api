@@ -36,7 +36,7 @@ info:
     Use [Messaging Exchange for Social care and Health (MESH)](https://meshapi.docs.apiary.io/) to receive error notifications from DPS for this API.
 
     ## API status and roadmap
-    This API is in [private beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
+    This API is in [Beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
       * it is available for production use, but only to a small group of ambulance trusts in England
       * we might make breaking changes, but only if we can not avoid it, and we will give an advance notice
 
