@@ -43,6 +43,9 @@
         <Step>
           <Name>VerifyAccessToken</Name>
         </Step>
+        <Step>
+          <Name>FlowCallout.ApplyRateLimiting</Name>
+        </Step>
       </Request>
       <Response/>
     </Flow>
