@@ -1,339 +1,349 @@
 {
-  "info": {
-    "_postman_id": "2b939cd4-1235-48e6-976f-a370116574f3",
-    "name": "Ambulance Analytics",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "Init Test Suite",
-      "item": [
-        {
-          "name": "INIT: Load Crypto Library for RS512",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "postman.setGlobalVariable(\"jsrsasign-js\", responseBody);",
-                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; }",
-                  "pm.test(\"response is Ok\", function(){ pm.response.to.have.status(200); });",
-                  "pm.test(\"response has body\", function(){ pm.response.to.be.withBody; });",
-                  "pm.test(\"response has body\", function(){ pm.response.to.be.withBody; });",
-                  "pm.test(\"global variable contains response\", function(){ pm.expect(postman.getGlobalVariable(\"jsrsasign-js\")).to.equal(responseBody) });",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "https://raw.githubusercontent.com/NHSDigital/ambulance-analytics-api/master/tests/e2e/environments/jsrsasign-all-min.js",
-              "protocol": "https",
-              "host": [
-                "raw",
-                "githubusercontent",
-                "com"
-              ],
-              "path": [
-                "kjur",
-                "jsrsasign",
-                "master",
-                "jsrsasign-all-min.js"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Happy Path Tests",
-      "item": [
-        {
-          "name": "Unattended Access Token Request",
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "exec": [
-                  "var navigator = {}; //fake a navigator object for the lib",
-                  "var window = {}; //fake a window object for the lib",
-                  "eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
-                  "",
-                  "var header = {",
-                  "    \"typ\": \"JWT\",",
-                  "    \"alg\": \"RS512\",",
-                  "    \"kid\": \"test-rs512\"",
-                  "}",
-                  "",
-                  "postman.setEnvironmentVariable(\"JTI_UNIQUE_ID\", \"\"+Math.floor(100000 + Math.random() * 900000));",
-                  "",
-                  "var data = {",
-                  "    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
-                  "    \"sub\": postman.getEnvironmentVariable(\"client_id\"),",
-                  "    \"exp\": Math.floor(Date.now() / 1000) + 300,",
-                  "    \"aud\": pm.variables.replaceIn(pm.request.url.toString()),",
-                  "    \"jti\": postman.getEnvironmentVariable(\"JTI_UNIQUE_ID\")",
-                  "};",
-                  "",
-                  "var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\");",
-                  "var sHeader = JSON.stringify(header);",
-                  "var sPayload = JSON.stringify(data);",
-                  "var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
-                  "postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
-                ],
-                "type": "text/javascript"
-              }
-            },
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
-                  "var data = JSON.parse(responseBody);",
-                  "pm.test(\"response is Ok\", function(){ pm.response.to.have.status(200); });",
-                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
-                  "pm.test(\"response JSON has access_token\", function(){ pm.expect(data).to.have.property('access_token'); });",
-                  "postman.setEnvironmentVariable(\"ACCESS_TOKEN\", data.access_token);"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "client_id",
-                  "value": "{{client_id}}",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "client_assertion_type",
-                  "value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-                  "type": "text"
-                },
-                {
-                  "key": "client_assertion",
-                  "value": "{{jwt_token}}",
-                  "type": "text"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials",
-                  "type": "text"
-                }
-              ]
-            },
-            "url": {
-              "raw": "{{token_url}}",
-              "host": [
-                "{{token_url}}"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Data Submission",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
-                  "var data = JSON.parse(responseBody);",
-                  "pm.test(\"response is Successful\", function(){ pm.response.to.have.status(200); });",
-                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
-                  "pm.test(\"response JSON body has id\", function(){ pm.expect(data).to.have.property('id'); });"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{ACCESS_TOKEN}}",
-                "type": "text"
-              }
-            ],
-            "url": "https://{{base_url}}/{{root_path}}/$process-message"
-          },
-          "response": []
-        },
-        {
-          "name": "_ping",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
-                  "var data = JSON.parse(responseBody);",
-                  "pm.test(\"response is Successful\", function(){ pm.response.to.have.status(200); });",
-                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
-                  "pm.test(\"response is Successful\", function(){ pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\"); });"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "https://{{base_url}}/{{root_path}}/_ping",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "{{root_path}}",
-                "_ping"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Request Validation",
-      "item": [
-        {
-          "name": "Incorrect Request Method DPS Endpoint",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
-                  "var data = JSON.parse(responseBody);",
-                  "pm.test(\"response is Method Not Allowed\", function(){ pm.response.to.have.status(405); });",
-                  "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
-                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('Request method must be POST, not GET')});",
-                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{ACCESS_TOKEN}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "https://{{base_url}}/{{root_path}}/$process-message",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "{{root_path}}",
-                "$process-message"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Incorrect Request Url for DPS Submission",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
-                  "var data = JSON.parse(responseBody);",
-                  "pm.test(\"response is Server Not Found\", function(){ pm.response.to.have.status(404); });",
-                  "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
-                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('Server Not Found')});",
-                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{ACCESS_TOKEN}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "https://{{base_url}}/{{root_path}}/test",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "{{root_path}}",
-                "test"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Incorrect Request Url for DPS Submission (Only base path)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
-                  "var data = JSON.parse(responseBody);",
-                  "pm.test(\"response is Server Not Found\", function(){ pm.response.to.have.status(404); });",
-                  "pm.test(\"response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
-                  "pm.test(\"response JSON body has error message\", function(){ pm.expect(data.error).to.equal('Server Not Found')});",
-                  "pm.test(\"response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{ACCESS_TOKEN}}",
-                "type": "text"
-              }
-            ],
-            "url": {
-              "raw": "https://{{base_url}}/{{root_path}}",
-              "protocol": "https",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "{{root_path}}"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    }
-  ]
+	"info": {
+		"_postman_id": "07da54a9-62cc-4b4a-aca7-e1a75391490f",
+		"name": "Ambulance Analytics",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Init Test Suite",
+			"item": [
+				{
+					"name": "INIT: Load Crypto Library for RS512",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"postman.setGlobalVariable(\"jsrsasign-js\", responseBody);",
+									"if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; }",
+									"pm.test(\"INIT: Load Crypto Library for RS512: response is Ok\", function(){ pm.response.to.have.status(200); });",
+									"pm.test(\"INIT: Load Crypto Library for RS512: response has body\", function(){ pm.response.to.be.withBody; });",
+									"pm.test(\"INIT: Load Crypto Library for RS512: response has body\", function(){ pm.response.to.be.withBody; });",
+									"pm.test(\"INIT: Load Crypto Library for RS512: global variable contains response\", function(){ pm.expect(postman.getGlobalVariable(\"jsrsasign-js\")).to.equal(responseBody) });",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://raw.githubusercontent.com/kjur/jsrsasign/master/jsrsasign-all-min.js",
+							"protocol": "https",
+							"host": [
+								"raw",
+								"githubusercontent",
+								"com"
+							],
+							"path": [
+								"kjur",
+								"jsrsasign",
+								"master",
+								"jsrsasign-all-min.js"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Happy Path Tests",
+			"item": [
+				{
+					"name": "Unattended Access Token Request",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var navigator = {}; //fake a navigator object for the lib",
+									"var window = {}; //fake a window object for the lib",
+									"eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
+									"",
+									"var header = {",
+									"    \"typ\": \"JWT\",",
+									"    \"alg\": \"RS512\",",
+									"    \"kid\": \"test-rs512\"",
+									"}",
+									"",
+									"postman.setEnvironmentVariable(\"JTI_UNIQUE_ID\", \"\"+Math.floor(100000 + Math.random() * 900000));",
+									"",
+									"var data = {",
+									"    \"iss\": postman.getEnvironmentVariable(\"client_id\"),",
+									"    \"sub\": postman.getEnvironmentVariable(\"client_id\"),",
+									"    \"exp\": Math.floor(Date.now() / 1000) + 300,",
+									"    \"aud\": pm.variables.replaceIn(pm.request.url.toString()),",
+									"    \"jti\": postman.getEnvironmentVariable(\"JTI_UNIQUE_ID\")",
+									"};",
+									"",
+									"var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\");",
+									"var sHeader = JSON.stringify(header);",
+									"var sPayload = JSON.stringify(data);",
+									"var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
+									"postman.setEnvironmentVariable(\"jwt_token\", sJWT);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+									"var data = JSON.parse(responseBody);",
+									"pm.test(\"Unattended Access Token Request: response is Ok\", function(){ pm.response.to.have.status(200); });",
+									"pm.test(\"Unattended Access Token Request: response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+									"pm.test(\"Unattended Access Token Request: response JSON has access_token\", function(){ pm.expect(data).to.have.property('access_token'); });",
+									"postman.setEnvironmentVariable(\"ACCESS_TOKEN\", data.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "client_assertion_type",
+									"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+									"type": "text"
+								},
+								{
+									"key": "client_assertion",
+									"value": "{{jwt_token}}",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{token_url}}",
+							"host": [
+								"{{token_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Data Submission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+									"var data = JSON.parse(responseBody);",
+									"pm.test(\"Happy Path Data Submission: response is Successful\", function(){ pm.response.to.have.status(200); });",
+									"pm.test(\"Happy Path Data Submission: response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+									"pm.test(\"Happy Path Data Submission: response JSON body has id\", function(){ pm.expect(data).to.have.property('id'); });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{base_url}}/{{root_path}}/$process-message",
+							"protocol": "https",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{root_path}}",
+								"$process-message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "_ping",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+									"var data = JSON.parse(responseBody);",
+									"pm.test(\"_ping: response is Successful\", function(){ pm.response.to.have.status(200); });",
+									"pm.test(\"_ping: response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+									"pm.test(\"_ping: response is Successful\", function(){ pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\"); });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{base_url}}/{{root_path}}/_ping",
+							"protocol": "https",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{root_path}}",
+								"_ping"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Request Validation",
+			"item": [
+				{
+					"name": "Incorrect Request Method DPS Endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+									"var data = JSON.parse(responseBody);",
+									"pm.test(\"Incorrect Request Method DPS Endpoint: response is Method Not Allowed\", function(){ pm.response.to.have.status(405); });",
+									"pm.test(\"Incorrect Request Method DPS Endpoint: response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+									"pm.test(\"Incorrect Request Method DPS Endpoint: response JSON body has error message\", function(){ pm.expect(data.error).to.equal('Request method must be POST, not GET')});",
+									"pm.test(\"Incorrect Request Method DPS Endpoint: response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{base_url}}/{{root_path}}/$process-message",
+							"protocol": "https",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{root_path}}",
+								"$process-message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Request Url for DPS Submission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+									"var data = JSON.parse(responseBody);",
+									"pm.test(\"Incorrect Request Url for DPS Submission: response is Server Not Found\", function(){ pm.response.to.have.status(404); });",
+									"pm.test(\"Incorrect Request Url for DPS Submission: response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+									"pm.test(\"Incorrect Request Url for DPS Submission: response JSON body has error message\", function(){ pm.expect(data.error).to.equal('Server Not Found')});",
+									"pm.test(\"Incorrect Request Url for DPS Submission: response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{base_url}}/{{root_path}}/test",
+							"protocol": "https",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{root_path}}",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Request Url for DPS Submission (Only base path)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+									"var data = JSON.parse(responseBody);",
+									"pm.test(\"Incorrect Request Url for DPS Submission (Only base path): response is Server Not Found\", function(){ pm.response.to.have.status(404); });",
+									"pm.test(\"Incorrect Request Url for DPS Submission (Only base path): response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+									"pm.test(\"Incorrect Request Url for DPS Submission (Only base path): response JSON body has error message\", function(){ pm.expect(data.error).to.equal('Server Not Found')});",
+									"pm.test(\"Incorrect Request Url for DPS Submission (Only base path): response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{base_url}}/{{root_path}}",
+							"protocol": "https",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{root_path}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }
