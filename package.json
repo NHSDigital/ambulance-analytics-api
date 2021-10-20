@@ -4,7 +4,7 @@
   "description": "OAS (Swagger v3) API Definition for Ambulance Analytics API",
   "scripts": {
     "lint": "node_modules/.bin/speccy lint specification/ambulance-analytics.yaml --skip default-and-example-are-redundant --skip operation-tags --skip openapi-tags",
-    "test": "tests/e2e/environments/local.postman.json --reporters html,cli,htmlextra --reporter-htmlextra-logs --reporter-htmlextra-darkTheme",
+    "test": "node_modules/.bin/newman run tests/e2e/ambulance-analytics-sandbox.json -e tests/e2e/environments/local.postman.json --reporters html,cli,htmlextra --reporter-htmlextra-logs --reporter-htmlextra-darkTheme",
     "publish": "mkdir -p build && node_modules/.bin/speccy resolve specification/ambulance-analytics.yaml -i | poetry run python scripts/yaml2json.py | poetry run python scripts/set_version.py > build/ambulance-analytics.json",
     "serve": "node_modules/.bin/speccy serve build/ambulance-analytics.json",
     "check-licenses": "node_modules/.bin/license-checker --failOn GPL --failOn LGPL"
