@@ -38,7 +38,6 @@ extends:
     enable_status_monitoring: true
     apigee_deployments:
         - environment: internal-dev
-          make_spec_visible: true
           post_deploy:
             - template: templates/tests.yml
               parameters:
@@ -46,12 +45,9 @@ extends:
                 service_name: ${{ variables.service_name }}
                 base_url: 'internal-dev.api.service.nhs.uk'
         - environment: internal-qa
-          make_spec_visible: true
         - environment: internal-qa-sandbox
           proxy_path: sandbox
-          make_spec_visible: true
         - environment: int
-          make_spec_visible: true
           depends_on:
               - internal_qa
               - internal_qa_sandbox
@@ -68,7 +64,6 @@ extends:
               - internal_qa_sandbox
         - environment: prod
           proxy_path: live
-          make_spec_visible: true
           depends_on:
               - int
               - sandbox
