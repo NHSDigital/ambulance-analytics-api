@@ -2,6 +2,3 @@ variables:
   service_name: ambulance-analytics
   service_base_path: ambulance-data-submission
   short_service_name: ambulance-analytics
-  product_display_name: Ambulance Data Submission
-  product_description: " "
-  spec_file: ambulance-analytics.json
