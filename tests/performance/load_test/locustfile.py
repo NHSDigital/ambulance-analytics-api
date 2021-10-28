@@ -3,12 +3,10 @@
 # and posting data to the ambulance analitycs proxy
 import os
 from common.auth.client_credentials import AuthClientCredentials
-from locust import HttpUser, task, between
+from locust import HttpUser, task
 
 
 class AmbulanceAnaliticsClient(HttpUser):
-    # we can assume some time between each task by uncomenting
-    # wait_time = between(1, 5)
 
     def on_start(self):
         # assume each user authenticates with the same app
