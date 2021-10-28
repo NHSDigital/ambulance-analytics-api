@@ -18,16 +18,16 @@ class AmbulanceAnaliticsClient(HttpUser):
             client_id=os.environ["CLIENT_ID"],
             aud=os.environ["AUD"],
             headers={"kid": "test-1"},
-            alg="RS512"
+            alg="RS512",
         )
         apigee_token = auth.get_access_token()
 
         self.target_base_path = os.environ["TARGET_BASE_PATH"]
-        self.headers = {
-            "Authorization": "Bearer " + apigee_token,
-        }
+        self.headers = {"Authorization": "Bearer " + apigee_token}
 
     @task()
     def ambulance_analitycs_api(self):
         # Each user will be performing the following post request...
-        self.client.post(f"{self.target_base_path}/$process-message", headers=self.headers)
+        self.client.post(
+            f"{self.target_base_path}/$process-message", headers=self.headers
+        )

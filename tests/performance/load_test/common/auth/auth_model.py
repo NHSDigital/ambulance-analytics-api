@@ -22,11 +22,13 @@ class Claims(NamedTuple):
             iss=client_id,
             aud=aud,
             jti=str(uuid4()),
-            exp=int(time()) + valid_for_sec
+            exp=int(time()) + valid_for_sec,
         )
 
 
-def create_jwt(signing_key: str, client_id: str, aud: str, headers: dict, alg="RS512") -> str:
+def create_jwt(
+    signing_key: str, client_id: str, aud: str, headers: dict, alg="RS512"
+) -> str:
     claims = Claims.new(client_id, aud).dict()
 
     return jwt.encode(claims, signing_key, headers=headers, algorithm=alg)

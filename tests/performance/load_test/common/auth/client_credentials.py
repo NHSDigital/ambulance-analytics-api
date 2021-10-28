@@ -7,9 +7,15 @@ from .auth_model import create_jwt
 class AuthClientCredentials:
     __client_assertion_type: str = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
 
-    def __init__(self, auth_url: str, private_key_file: str = "", client_id: str = "", aud: str = "",
-                 headers: dict = None,
-                 alg="RS512") -> None:
+    def __init__(
+        self,
+        auth_url: str,
+        private_key_file: str = "",
+        client_id: str = "",
+        aud: str = "",
+        headers: dict = None,
+        alg="RS512",
+    ) -> None:
         self.__auth_url = auth_url
         self.__client_id = client_id
         self.__aud = aud
@@ -21,7 +27,9 @@ class AuthClientCredentials:
                 self.__signing_key = f.read()
 
     def get_access_token(self):
-        _jwt = create_jwt(self.__signing_key, self.__client_id, self.__aud, self.__headers, self.__alg)
+        _jwt = create_jwt(
+            self.__signing_key, self.__client_id, self.__aud, self.__headers, self.__alg
+        )
         data = {
             "client_assertion": _jwt,
             "client_assertion_type": self.__client_assertion_type,
