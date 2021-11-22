@@ -273,7 +273,7 @@
 									"var data = JSON.parse(responseBody);",
 									"pm.test(\"Incorrect Request /_status requires apikey\", function(){ pm.response.to.have.status(401); });",
 									"pm.test(\"Incorrect Request /_status requires apikey: response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
-									"pm.test(\"Incorrect Request /_status requires apikey: response JSON body has error message\", function(){ pm.expect(data.error).to.equal('Request method must be POST, not GET')});",
+									"pm.test(\"Incorrect Request /_status requires apikey: response JSON body has error message\", function(){ pm.expect(data.error).to.equal('missing or invalid apikey')});",
 									"pm.test(\"Incorrect Request /_status requires apikey: response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
 								],
 								"type": "text/javascript"
