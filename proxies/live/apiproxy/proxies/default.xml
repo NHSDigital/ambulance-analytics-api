@@ -71,6 +71,11 @@
     <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))
 </Condition>
   </RouteRule>
+  <DefaultFaultRule>
+    <Step>
+      <Name>AssignMessage.Errors.CatchAllMessage</Name>
+    </Step>
+  </DefaultFaultRule>
   <RouteRule name="dps">
     <TargetEndpoint>dps</TargetEndpoint>
   </RouteRule>
