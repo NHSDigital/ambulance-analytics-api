@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "07da54a9-62cc-4b4a-aca7-e1a75391490f",
+		"_postman_id": "29216c25-087a-4f29-a69b-32e4dd7db969",
 		"name": "Ambulance Analytics",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -257,6 +257,41 @@
 							"path": [
 								"{{root_path}}",
 								"$process-message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Rquest /_status requires api key",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+									"var data = JSON.parse(responseBody);",
+									"pm.test(\"Incorrect Request /_status requires apikey\", function(){ pm.response.to.have.status(401); });",
+									"pm.test(\"Incorrect Request /_status requires apikey: response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+									"pm.test(\"Incorrect Request /_status requires apikey: response JSON body has error message\", function(){ pm.expect(data.error).to.equal('Request method must be POST, not GET')});",
+									"pm.test(\"Incorrect Request /_status requires apikey: response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{base_url}}/{{root_path}}/_status",
+							"protocol": "https",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{root_path}}",
+								"_status"
 							]
 						}
 					},
