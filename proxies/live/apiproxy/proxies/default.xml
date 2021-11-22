@@ -21,7 +21,7 @@
         </Step>
         <Step>
           <Condition>private.apigee.status-endpoint-api-key NotEquals request.header.apikey</Condition>
-          <Name>RaiseFault.401Unauthorized</Name>
+          <Name>RaiseFault.Status401Unauthorized</Name>
         </Step>
         <Step>
           <Name>KeyValueMap.GetVariables</Name>
@@ -71,11 +71,6 @@
     <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))
 </Condition>
   </RouteRule>
-  <DefaultFaultRule>
-    <Step>
-      <Name>AssignMessage.Errors.CatchAllMessage</Name>
-    </Step>
-  </DefaultFaultRule>
   <RouteRule name="dps">
     <TargetEndpoint>dps</TargetEndpoint>
   </RouteRule>

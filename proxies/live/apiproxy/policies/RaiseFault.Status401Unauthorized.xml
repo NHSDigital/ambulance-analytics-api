@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RaiseFault.Status401Unauthorized">
+  <DisplayName>RaiseFault.Status401Unathorized</DisplayName>
+  <Properties/>
+  <FaultResponse>
+    <Set>
+      <StatusCode>401</StatusCode>
+      <ReasonPhrase>missing or invalid apikey</ReasonPhrase>
+      <Payload contentType="application/json">{"error": "missing or invalid apikey"}</Payload>
+    </Set>
+  </FaultResponse>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>
