@@ -143,95 +143,6 @@
 					"response": []
 				},
 				{
-					"name": "Unattended Invliad Access Token Request",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"var navigator = {}; //fake a navigator object for the lib",
-									"var window = {}; //fake a window object for the lib",
-									"eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
-									"",
-									"var header = {",
-									"    \"typ\": \"JWT\",",
-									"    \"alg\": \"RS512\",",
-									"    \"kid\": \"test-rs512\"",
-									"}",
-									"",
-									"postman.setEnvironmentVariable(\"JTI_UNIQUE_ID\", \"\"+Math.floor(100000 + Math.random() * 900000));",
-									"",
-									"var data = {",
-									"    \"iss\": postman.getEnvironmentVariable(\"an_invalid_client_id\"),",
-									"    \"sub\": postman.getEnvironmentVariable(\"an_invalid_client_id\"),",
-									"    \"exp\": Math.floor(Date.now() / 1000) + 300,",
-									"    \"aud\": pm.variables.replaceIn(pm.request.url.toString()),",
-									"    \"jti\": postman.getEnvironmentVariable(\"JTI_UNIQUE_ID\")",
-									"};",
-									"",
-									"var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\");",
-									"var sHeader = JSON.stringify(header);",
-									"var sPayload = JSON.stringify(data);",
-									"var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
-									"postman.setEnvironmentVariable(\"invalid_jwt_token\", sJWT);"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
-									"var data = JSON.parse(responseBody);",
-									"pm.test(\"Unattended Access Token Request: response is Ok\", function(){ pm.response.to.have.status(200); });",
-									"pm.test(\"Unattended Access Token Request: response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
-									"pm.test(\"Unattended Access Token Request: response JSON has access_token\", function(){ pm.expect(data).to.have.property('access_token'); });",
-									"postman.setEnvironmentVariable(\"INVALID_ACCESS_TOKEN\", data.access_token);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "client_id",
-									"value": "{{client_id}}",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "client_assertion_type",
-									"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-									"type": "text"
-								},
-								{
-									"key": "client_assertion",
-									"value": "{{invalid_jwt_token}}",
-									"type": "text"
-								},
-								{
-									"key": "grant_type",
-									"value": "client_credentials",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{token_url}}",
-							"host": [
-								"{{token_url}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Data Submission",
 					"event": [
 						{
@@ -386,7 +297,7 @@
 					"response": []
 				},
 				{
-					"name": "Incorrect Request Missing invalid access token DPS endpoint",
+					"name": "Incorrect Request Invalid access token DPS endpoint",
 					"event": [
 						{
 							"listen": "test",
@@ -394,6 +305,7 @@
 								"exec": [
 									"if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
 									"var data = JSON.parse(responseBody);",
+									"console.log(responseBody);",
 									"pm.test(\"Incorrect Request Method DPS Endpoint: response unauthorized\", function(){ pm.response.to.have.status(401); });",
 									"pm.test(\"Incorrect Request Method DPS Endpoint: response JSON body has error message\", function(){ pm.expect(data.fault.faultstring).to.equal('Invalid access token')});",
 									"pm.test(\"Incorrect Request Method DPS Endpoint: response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
@@ -407,7 +319,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{ACCESS_TOKEN}}",
+								"value": "Bearer kQ0bktVRDBBZzdKIiwiZXhwIjoxOTIxNTk0MDg1LCJhdWQiOiJodHRwczovL2FwaS5zZXJ2aWNlLm5ocy51ay9vYXV0aDIvdG9rZW4iLCJqdGkiOiI0Mzk3NjgifQ.R6pDj--bKklIy0XQQRIlRCkX71lZ99Dkkz3Sc530hDBVhvxRUDjnX3xjoTasV-jwIDvLL2MGKRTBZIJg3R_w143bIV4-7o29YrnyONaxp1DE3faV2kM3lm2iv-sarYFqWkq7NA6RwTDPg2g01CohUQaOJQw5jOZiuqsZjjZnlPI1tg2ppEtg4lL85m2mk81bxsppiAkjnizPFZQusSUulbuZU0uf8CoX7U3ebLWJTnaqYgWnogmcd-Cv5k1H9-14ggBiOxppjqi7K6bRsyNRMeb25uEj6q25dWlHaGRBQAK0DrXHFQa7kgowftvHdIfaKTgHfYWBZtTbDIR9CYXbXIomsScOV37MtUAppWcGze4916x9oGlBJI9qxlArOHFg4dp-dtlMBCzcB77i5H-dQFvwScsktuQ91Qr_bQ6Uv5e0TIN6cKjQOGsrsv81Yc_VmpKFvJ1qoL5VqcLiNobpyQepLW57cNZhQTNev1jMFqmkD0d8WPEHidkyVIxNF65GPZMzamIz4a5-3R7q71IKxRXq6fitua2SKCe8-8wtAmOaFuPdVK99V4BxuO8dBh8mXtHS1MJ0DPgW3UNjiiXuIhxfNX7zUOKoDecrjaDHnKVnt9y01vjob2HdIrZ1sbIqgVE__XNd7RZQDNWMMiC7SCGGa7iAdQZlHfkgi5HB4IM",
 								"type": "text"
 							}
 						],
