@@ -143,6 +143,95 @@
 					"response": []
 				},
 				{
+					"name": "Unattended Invliad Access Token Request",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var navigator = {}; //fake a navigator object for the lib",
+									"var window = {}; //fake a window object for the lib",
+									"eval(postman.getGlobalVariable(\"jsrsasign-js\")); //import jsrsasign lib",
+									"",
+									"var header = {",
+									"    \"typ\": \"JWT\",",
+									"    \"alg\": \"RS512\",",
+									"    \"kid\": \"test-rs512\"",
+									"}",
+									"",
+									"postman.setEnvironmentVariable(\"JTI_UNIQUE_ID\", \"\"+Math.floor(100000 + Math.random() * 900000));",
+									"",
+									"var data = {",
+									"    \"iss\": postman.getEnvironmentVariable(\"an_invalid_client_id\"),",
+									"    \"sub\": postman.getEnvironmentVariable(\"an_invalid_client_id\"),",
+									"    \"exp\": Math.floor(Date.now() / 1000) + 300,",
+									"    \"aud\": pm.variables.replaceIn(pm.request.url.toString()),",
+									"    \"jti\": postman.getEnvironmentVariable(\"JTI_UNIQUE_ID\")",
+									"};",
+									"",
+									"var secret = postman.getEnvironmentVariable(\"RS512_PRIVATE_KEY\");",
+									"var sHeader = JSON.stringify(header);",
+									"var sPayload = JSON.stringify(data);",
+									"var sJWT = KJUR.jws.JWS.sign(\"RS512\", sHeader, sPayload, secret);",
+									"postman.setEnvironmentVariable(\"invalid_jwt_token\", sJWT);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+									"var data = JSON.parse(responseBody);",
+									"pm.test(\"Unattended Access Token Request: response is Ok\", function(){ pm.response.to.have.status(200); });",
+									"pm.test(\"Unattended Access Token Request: response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });",
+									"pm.test(\"Unattended Access Token Request: response JSON has access_token\", function(){ pm.expect(data).to.have.property('access_token'); });",
+									"postman.setEnvironmentVariable(\"INVALID_ACCESS_TOKEN\", data.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "{{client_id}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "client_assertion_type",
+									"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+									"type": "text"
+								},
+								{
+									"key": "client_assertion",
+									"value": "{{invalid_jwt_token}}",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{token_url}}",
+							"host": [
+								"{{token_url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Data Submission",
 					"event": [
 						{
@@ -282,6 +371,46 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"url": {
+							"raw": "https://{{base_url}}/{{root_path}}/$process-message",
+							"protocol": "https",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{root_path}}",
+								"$process-message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Request Missing invalid access token DPS endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
+									"var data = JSON.parse(responseBody);",
+									"pm.test(\"Incorrect Request Method DPS Endpoint: response unauthorized\", function(){ pm.response.to.have.status(401); });",
+									"pm.test(\"Incorrect Request Method DPS Endpoint: response JSON body has error message\", function(){ pm.expect(data.fault.faultstring).to.equal('Invalid access token')});",
+									"pm.test(\"Incorrect Request Method DPS Endpoint: response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "https://{{base_url}}/{{root_path}}/$process-message",
 							"protocol": "https",
