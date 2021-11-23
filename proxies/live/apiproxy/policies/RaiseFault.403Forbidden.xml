@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RaiseFault.403Forbidden">
+  <DisplayName>RaiseFault403.Forbidden</DisplayName>
+  <Properties/>
+  <FaultResponse>
+    <Set>
+      <StatusCode>403</StatusCode>
+      <ReasonPhrase>invalid access token</ReasonPhrase>
+      <Payload contentType="application/json">{"error": "invalid access token"}</Payload>
+    </Set>
+  </FaultResponse>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

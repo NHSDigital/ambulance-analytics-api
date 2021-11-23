@@ -50,7 +50,16 @@
       <Response/>
     </Flow>
   </Flows>
-
+  <DefaultFaultRule>
+    <Step>
+      <Name>RaiseFault.403Forbidden</Name>
+      <Condition>oauthV2.VerifyAccessToken.fault.name = "keymanagement.service.invalid_access_token"</Condition>
+    </Step>
+    <Step>
+      <Name>RaiseFault.401Unauthorized</Name>
+      <Condition>oauthV2.VerifyAccessToken.fault.name = "oauth.v2.InvalidAccessToken"</Condition>
+    </Step>
+  </DefaultFaultRule>
   <HTTPTargetConnection>
     <LoadBalancer>
       <Server name="dps-submission-api"/>

@@ -4,10 +4,9 @@
     <Properties/>
     <FaultResponse>
         <Set>
-            <Headers/>
-            <Payload contentType="text/plain"/>
             <StatusCode>401</StatusCode>
-            <ReasonPhrase>Server Error</ReasonPhrase>
+            <ReasonPhrase>invalid access token</ReasonPhrase>
+            <Payload contentType="application/json">{"error": "invalid/missing access token"}</Payload>
         </Set>
     </FaultResponse>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>

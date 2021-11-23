@@ -272,7 +272,8 @@
 									"if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
 									"var data = JSON.parse(responseBody);",
 									"pm.test(\"Incorrect Request Method DPS Endpoint: response unauthorized\", function(){ pm.response.to.have.status(401); });",
-									"pm.test(\"Incorrect Request Method DPS Endpoint: response JSON body has error message\", function(){ pm.expect(data.fault.faultstring).to.equal('Invalid access token')});",
+									"pm.test(\"Incorrect Request Method DPS Endpoint: response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+									"pm.test(\"Incorrect Request Method DPS Endpoint: response JSON body has error message\", function(){ pm.expect(data.error).to.equal('invalid/missing access token')});",
 									"pm.test(\"Incorrect Request Method DPS Endpoint: response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
 								],
 								"type": "text/javascript"
@@ -305,8 +306,9 @@
 								"exec": [
 									"if (postman.getEnvironmentVariable(\"DEBUG\") == \"true\") { tests[\"[INFO] Request: \" + JSON.stringify(request)] = true; tests[\"[INFO] Response: \" + responseBody] = true; }",
 									"var data = JSON.parse(responseBody);",
-									"pm.test(\"Incorrect Request Method DPS Endpoint: response unauthorized\", function(){ pm.response.to.have.status(401); });",
-									"pm.test(\"Incorrect Request Method DPS Endpoint: response JSON body has error message\", function(){ pm.expect(data.fault.faultstring).to.equal('Invalid Access Token')});",
+									"pm.test(\"Incorrect Request Method DPS Endpoint: response unauthorized\", function(){ pm.response.to.have.status(403); });",
+									"pm.test(\"Incorrect Request  Method DPS Endpoint: response JSON body has error\", function(){ pm.expect(data).to.have.property('error'); });",
+									"pm.test(\"Incorrect Request Method DPS Endpoint: response JSON body has error message\", function(){ pm.expect(data.error).to.equal('invalid access token')});",
 									"pm.test(\"Incorrect Request Method DPS Endpoint: response has JSON body\", function(){ pm.response.to.be.withBody; pm.response.to.be.json; });"
 								],
 								"type": "text/javascript"
