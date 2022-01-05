@@ -46,13 +46,14 @@ info:
 
     ## Service level
     This API is a bronze service, meaning it is available and supported only during business hours (8am to 6pm), Monday to Friday excluding Bank Holidays.
+    
     For more details, see [service levels](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#service-levels).
     
     ## Technology
     This API uses HTTP POST to submit data.
 
     The data payload conforms to the [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#fhir) global standard for health care data exchange.
-    Specifically, it is aligned with [FHIR UK Core](https://digital.nhs.uk/services/fhir-uk-core), which is built on FHIR Release 4. To see the FHIR message payload, see the [Ambulance Data Set FHIR Implementation Guide](https://simplifier.net/Ambulance/~guides)
+    Specifically, it is aligned with [FHIR UK Core](https://digital.nhs.uk/services/fhir-uk-core), which is built on FHIR Release 4. To see the FHIR message payload, see the [Ambulance Data Set FHIR Implementation Guide](https://simplifier.net/Ambulance/~guides).
 
     ## Network access
     This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network).
