@@ -46,6 +46,7 @@ info:
 
     ## Service level
     This API is a bronze service, meaning it is available and supported only during business hours (8am to 6pm), Monday to Friday excluding Bank Holidays.
+    
     For more details, see [service levels](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#service-levels).
     
     ## Technology
