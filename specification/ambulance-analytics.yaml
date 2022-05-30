@@ -37,7 +37,7 @@ info:
 
     ## API status and roadmap
     This API is [stable](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status):
-      * there will be no breaking changes - if we need to make breaking changes we'll publish a new version of this API
+      * there will be no breaking changes, if we need to make breaking changes we'll publish a new version of this API
 
     To see our roadmap, or to suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=ambulance-analytics&deleted=0#controls).
 
