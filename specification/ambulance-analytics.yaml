@@ -36,8 +36,8 @@ info:
     Use [Messaging Exchange for Social care and Health (MESH)](https://meshapi.docs.apiary.io/) to receive error notifications from DPS for this API.
 
     ## API status and roadmap
-    This API is in [stable](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status):
-      * we do not make routine breaking changes, if it cannot be avoided, for example, for security reasons, we will give advance notice
+    This API is [stable](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status):
+      * there will be no breaking changes, if we need to make breaking changes we'll publish a new version of this API
 
     To see our roadmap, or to suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=ambulance-analytics&deleted=0#controls).
 
