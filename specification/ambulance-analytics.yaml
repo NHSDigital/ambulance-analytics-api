@@ -17,7 +17,7 @@ info:
     You cannot:
       - read any of the records stored in DPS
 
-    The API is asynchronous - to receive error notifications, you need to use [MESH](https://digital.nhs.uk/services/message-exchange-for-social-care-and-health-mesh). The following diagram illustrates the end-to-end process:
+    The API is asynchronous - when you submit data, it acknowledges receipt without validating or processing the data first. To receive error notifications, you need to use [MESH](https://digital.nhs.uk/services/message-exchange-for-social-care-and-health-mesh). The following diagram illustrates the end-to-end process:
 
     ![Ambulance Overview](https://github.com/NHSDigital/ambulance-analytics-api/blob/master/specification/diagrams/ADSOverview.svg?raw=true)
 
