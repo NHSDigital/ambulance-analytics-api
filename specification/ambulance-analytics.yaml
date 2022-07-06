@@ -33,7 +33,7 @@ info:
     This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
 
     ## Related APIs
-    Use [Messaging Exchange for Social care and Health (MESH)](https://meshapi.docs.apiary.io/) to receive error notifications from DPS for this API.
+    Use [Messaging Exchange for Social care and Health (MESH)](https://digital.nhs.uk/services/message-exchange-for-social-care-and-health-mesh) to receive error notifications from DPS for this API.
 
     ## API status and roadmap
     This API is [stable](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status):
