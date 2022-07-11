@@ -1,5 +1,7 @@
 -include .env
 
+JWT_RS512_PRIVATE_KEY=$(shell cat $(shell pwd)/jwtRS512.key)
+
 .EXPORT_ALL_VARIABLES:
 
 run:
