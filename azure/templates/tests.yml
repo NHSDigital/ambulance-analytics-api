@@ -11,12 +11,12 @@ steps:
 
     - template: "azure/components/get-aws-secrets-and-ssm-params.yml@common"
       parameters:
-          secret_ids:              
+          secret_ids:
               - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_RS256_PRIVATE_KEY
               - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/CLIENT_ID
               - ptl/azure-devops/${{ parameters.service_name }}/${{ parameters.environment }}/JWT_RS512_PRIVATE_KEY
           config_ids: []
-          secret_file_ids: 
+          secret_file_ids:
               - ptl/app-credentials/jwt_testing/non-prod/JWT_TESTING_PRIVATE_KEY
 
     - bash: |
@@ -38,8 +38,11 @@ steps:
               fi
 
               envsubst < $test_dir/environments/internal-dev.postman.json > $test_dir/environments/prefilled.internal-dev.postman.json
-
-              docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment /etc/newman/environments/prefilled.internal-dev.postman.json --reporters=cli,junit
+              ls $test_dir
+              cat $test_dir/environments/prefilled.internal-dev.postman.json
+              echo docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment /etc/newman/environments/prefilled.internal-dev.postman.json --reporters=cli,junit
+        
+            docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment /etc/newman/environments/prefilled.internal-dev.postman.json --reporters=cli,junit
           fi
       displayName: 'Run Postman tests'
 
