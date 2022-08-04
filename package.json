@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "description": "OAS (Swagger v3) API Definition for Ambulance Analytics API",
   "scripts": {
-    "lint": "node_modules/@openapitools/openapi-generator-cli validate -i specification/ambulance-analytics.yaml",
+    "lint": "openapi-generator-cli validate -i specification/ambulance-analytics.yaml",
     "test": "node_modules/.bin/newman run tests/e2e/ambulance-analytics-sandbox.json -e tests/e2e/environments/local.postman.json --reporters html,cli,htmlextra --reporter-htmlextra-logs --reporter-htmlextra-darkTheme",
-    "publish": "./node_modules/@openapitools/openapi-generator-cli generate -i specification/ambulance-analytics.yaml --generator-key v3.0 -g openapi -o build && rm openapitools.json && mv build/openapi.json build/ambulance-analytics.json",
+    "publish": "./openapi-generator-cli generate -i specification/ambulance-analytics.yaml --generator-key v3.0 -g openapi -o build && rm openapitools.json && mv build/openapi.json build/ambulance-analytics.json",
     "check-licenses": "node_modules/.bin/license-checker --failOn GPL --failOn LGPL"
   },
   "author": "NHS Digital",
