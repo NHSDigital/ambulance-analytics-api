@@ -45,9 +45,9 @@ info:
 
     ## Service level
     This API is a bronze service, meaning it is operational and supported only during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
-    
+
     For more details, see [service levels](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#service-levels).
-    
+
     ## Technology
     This API is [RESTful](https://digital.nhs.uk/developer/guides-and-documentation/our-api-technologies#basic-rest) and uses HTTP POST to submit data.
 
@@ -64,7 +64,7 @@ info:
 
     ## Security and authorisation
     ### Application-restricted access
-    This access mode is [application-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis),
+    This API is [application-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#application-restricted-apis),
     meaning we authenticate the calling application but not the end user.
 
     You can use this access mode as follows:
@@ -74,8 +74,14 @@ info:
     * [Application-restricted RESTful API - signed JWT authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/application-restricted-restful-apis-signed-jwt-authentication)
 
     ## Environments and testing
-    
+
     ### Sandbox testing
+
+    |Environment        | Base URL                                                           |
+    | ----------------- | -------------------------------------------------------------------|
+    | Sandbox           | `https://sandbox.api.service.nhs.uk/ambulance-data-submission/`    |
+    | Integration test  | `https://int.api.service.nhs.uk/ambulance-data-submission/`        |
+
     Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
     - is for early developer testing
     - only covers a limited set of scenarios
@@ -115,7 +121,7 @@ paths:
       operationId: postData
       description: |
         ## Overview
-        Use this endpoint to submit ambulance data to DPS. 
+        Use this endpoint to submit ambulance data to DPS.
         ## Request
         This endpoint does not validate the submitted payload, it only acknowledges receipt of the payload.
         See the [FHIR implementation guide](https://simplifier.net/Ambulance/~guides) for how to structure the payload data.
@@ -129,7 +135,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    description: The submission ID for the message you sent.                
+                    description: The submission ID for the message you sent.
               examples:
                 Example:
                   value:
