@@ -77,7 +77,7 @@ info:
 
     ### Sandbox testing
 
-    | Environment       | Base URL                                                           |
+    |Environment        | Base URL                                                           |
     | ----------------- | -------------------------------------------------------------------|
     | Sandbox           | `https://sandbox.api.service.nhs.uk/ambulance-data-submission/`    |
     | Integration test  | `https://int.api.service.nhs.uk/ambulance-data-submission/`        |
