@@ -124,7 +124,7 @@ paths:
         Use this endpoint to submit ambulance data to DPS.
         ## Request
         This endpoint does not validate the submitted payload, it only acknowledges receipt of the payload.
-        See the [FHIR implementation guide](https://simplifier.net/Ambulance/~guides) for how to structure the payload data.
+        See the [FHIR implementation guide](https://simplifier.net/guide/ambulancedatasetadsfhirbundleimplementationguide?version=current) for how to structure the payload data.
       responses:
         '200':
           description: Data received and sent to DPS.
