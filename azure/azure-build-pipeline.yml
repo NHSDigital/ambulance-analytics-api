@@ -28,11 +28,11 @@ extends:
   parameters:
     service_name: ${{ variables.service_name }}
     short_service_name: ${{ variables.short_service_name }}
-    test_steps:
-        - bash: "make sandbox &"
-          displayName: start sandbox
-          workingDirectory: "${{ variables.service_name }}"
-        - bash: "make test"
-          displayName: run tests
-          workingDirectory: "${{ variables.service_name }}"
-
+#    test_steps:
+#        - bash: "make sandbox &"
+#          displayName: start sandbox
+#          workingDirectory: "${{ variables.service_name }}"
+#        - bash: "make test"
+#          displayName: run tests
+#          workingDirectory: "${{ variables.service_name }}"
+#
