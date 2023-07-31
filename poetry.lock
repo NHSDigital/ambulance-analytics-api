@@ -35,7 +35,7 @@ click = ">=6.5"
 pathspec = ">=0.6,<1"
 regex = "*"
 toml = ">=0.9.4"
-typed-ast = ">=1.4.0"
+typed-ast = ">=1.4.3"
 
 [package.extras]
 d = ["aiohttp (>=3.3.2)", "aiohttp-cors"]
