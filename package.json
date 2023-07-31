@@ -3,18 +3,15 @@
   "version": "0.0.1",
   "description": "OAS (Swagger v3) API Definition for Ambulance Analytics API",
   "scripts": {
-    "lint": "node_modules/.bin/speccy lint specification/ambulance-analytics.yaml --skip default-and-example-are-redundant --skip operation-tags --skip openapi-tags",
+    "lint": "node_modules/.bin/openapi-generator-cli generate -i specification/ambulance-analytics.yaml",
     "test": "node_modules/.bin/newman run tests/e2e/ambulance-analytics-sandbox.json -e tests/e2e/environments/local.postman.json --reporters html,cli,htmlextra --reporter-htmlextra-logs --reporter-htmlextra-darkTheme",
-    "publish": "mkdir -p build && node_modules/.bin/speccy resolve specification/ambulance-analytics.yaml -i | poetry run python scripts/yaml2json.py | poetry run python scripts/set_version.py > build/ambulance-analytics.json",
-    "serve": "node_modules/.bin/speccy serve build/ambulance-analytics.json",
+    "publish": "mkdir -p build && node_modules/.bin/openapi-generator-cli generate -i specification/ambulance-analytics.yaml | poetry run python scripts/yaml2json.py | poetry run python scripts/set_version.py > build/ambulance-analytics.json",
+    "serve": "node_modules/.bin/openapi-generator-cli serve build/ambulance-analytics.json",
     "check-licenses": "node_modules/.bin/license-checker --failOn GPL --failOn LGPL"
   },
   "author": "NHS Digital",
   "license": "MIT",
   "homepage": "https://github.com/NHSDigital/ambulance-analytics-api",
-  "dependencies": {
-    "speccy": "^0.11.0"
-  },
   "devDependencies": {
     "apigeetool": "^0.14.2",
     "license-checker": "^25.0.1",
@@ -22,5 +19,8 @@
     "newman": "^4.6.1",
     "newman-reporter-html": "^1.0.5",
     "newman-reporter-htmlextra": "^1.22.2"
+  },
+  "dependencies": {
+    "@openapitools/openapi-generator-cli": "^2.7.0"
   }
 }
