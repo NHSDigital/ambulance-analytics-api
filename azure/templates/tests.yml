@@ -29,20 +29,20 @@ steps:
               if [ "${{ parameters.environment }}" = "prod" ]; then
                 export TOKEN_URL=https://api.service.nhs.uk/oauth2/token
                 echo $TOKEN_URL
-                print("This is TOKEN_URL in prod if block^^^)
+                echo("This is TOKEN_URL in prod if block^^^)
               else
                 export TOKEN_URL=https://${{ parameters.environment }}.api.service.nhs.uk/oauth2/token
                 echo $TOKEN_URL
-                print("This is TOKEN_URL in prod else block^^^)
+                echo("This is TOKEN_URL in prod else block^^^)
               fi
               if [ "${{ parameters.environment }}" = "int" ]; then
                 export JWT_RS512_PRIVATE_KEY=$(echo "$(JWT_RS512_PRIVATE_KEY)" | base64 -d | sed -z 's/\n/\\n/g')
                 echo $JWT_RS512_PRIVATE_KEY
-                print("This is JWT_RS512_PRIVATE_KEY in int if block^^^)
+                echo("This is JWT_RS512_PRIVATE_KEY in int if block^^^)
               else
                 export JWT_RS512_PRIVATE_KEY="$(tr -d '\n' < $(Pipeline.Workspace)/secrets/$(JWT_TESTING_PRIVATE_KEY))"
                 echo $JWT_RS512_PRIVATE_KEY
-                print("This is JWT_RS512_PRIVATE_KEY in int else block^^^)
+                echo("This is JWT_RS512_PRIVATE_KEY in int else block^^^)
               fi
 
               envsubst < $test_dir/environments/internal-dev.postman.json > $test_dir/environments/prefilled.internal-dev.postman.json
