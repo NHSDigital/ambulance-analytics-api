@@ -39,6 +39,8 @@ steps:
                 export JWT_RS512_PRIVATE_KEY=$(cat "$(Pipeline.Workspace)/secrets/$(JWT_TESTING_PRIVATE_KEY))" | sed -z 's/\n/\\n/g')
               fi
 
+          echo $JWT_RS512_PRIVATE_KEY
+
               envsubst < $test_dir/environments/internal-dev.postman.json > $test_dir/environments/prefilled.internal-dev.postman.json
 
               docker run -v ${test_dir}:/etc/newman postman/newman run ambulance_analytics.json --environment /etc/newman/environments/prefilled.internal-dev.postman.json --reporters=cli,junit
