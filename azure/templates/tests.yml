@@ -34,9 +34,6 @@ steps:
               if [ "${{ parameters.environment }}" = "int" ]; then
                 export JWT_RS512_PRIVATE_KEY=$(echo "$(JWT_RS512_PRIVATE_KEY)" | base64 -d | sed -z 's/\n/\\n/g')
               else
-                echo $(Pipeline.Workspace)
-                echo $SERVICE_NAME
-                echo $SERVICE_ARTIFACT_NAME
                 export JWT_RS512_PRIVATE_KEY=$(sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/\\n/g' $(Pipeline.Workspace)/secrets/$(JWT_TESTING_PRIVATE_KEY))
               fi
 
