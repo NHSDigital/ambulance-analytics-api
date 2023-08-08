@@ -34,9 +34,13 @@ steps:
               if [ "${{ parameters.environment }}" = "int" ]; then
                 export JWT_RS512_PRIVATE_KEY=$(echo "$(JWT_RS512_PRIVATE_KEY)" | base64 -d | sed -z 's/\n/\\n/g')
               else
-                jwt_rs512_private_key=$(sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/\\n/g' $(Pipeline.Workspace)/secrets/$(JWT_TESTING_PRIVATE_KEY))
-                export JWT_RS512_PRIVATE_KEY=$jwt_rs512_private_key
-                echo $JWT_RS512_PRIVATE_KEY
+                #jwt_rs512_private_key=$(sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/\\n/g' $(Pipeline.Workspace)/secrets/$(JWT_TESTING_PRIVATE_KEY))
+                #export JWT_RS512_PRIVATE_KEY=$jwt_rs512_private_key
+                #echo $JWT_RS512_PRIVATE_KEY
+                echo $JWT_TESTING_PRIVATE_KEY
+                echo $(Pipeline.Workspace)/secrets/$(JWT_TESTING_PRIVATE_KEY)
+        
+                export JWT_RS512_PRIVATE_KEY=$(sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/\\n/g' $(Pipeline.Workspace)/secrets/$(JWT_TESTING_PRIVATE_KEY))
               fi
 
               envsubst < $test_dir/environments/internal-dev.postman.json > $test_dir/environments/prefilled.internal-dev.postman.json
