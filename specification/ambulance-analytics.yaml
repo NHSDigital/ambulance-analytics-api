@@ -26,8 +26,8 @@ info:
     2. The Ambulance Data Submission (ADS) API forwards the ambulance data to our Data Processing System (DPS).
     3. If there is an error, DPS sends an error notification to MESH.
     4. The ambulance trust system retrieves the error notification from MESH.
-    5. An ADS User views the ambulance data in our NHS Digital ADS Dashboards.
-    6. The NHS Digital ADS Dashboards get the ambulance data from DPS.
+    5. An ADS User views the ambulance data in our ADS Dashboards.
+    6. The ADS Dashboards get the ambulance data from DPS.
 
     ## Who can use this API
     This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
