@@ -26,8 +26,8 @@ info:
     2. The Ambulance Data Submission (ADS) API forwards the ambulance data to our Data Processing System (DPS).
     3. If there is an error, DPS sends an error notification to MESH.
     4. The ambulance trust system retrieves the error notification from MESH.
-    5. An ADS User views the ambulance data in our NHS Digital ADS Dashboards.
-    6. The NHS Digital ADS Dashboards get the ambulance data from DPS.
+    5. An ADS User views the ambulance data in our ADS Dashboards.
+    6. The ADS Dashboards get the ambulance data from DPS.
 
     ## Who can use this API
     This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. You must do this before you can go live (see ‘Onboarding’ below).
@@ -104,9 +104,9 @@ info:
     When following the SCAL process, note that:
 
     * In step 8: you need to review and complete the ADS API risk log to show that you have understood and mitigated the various risks. You might be asked to provide some evidence to prove that controls have been put in place. You’ll find the risk log embedded within the ADS API tab in the SCAL.
-    * In step 10: when you complete the Service Desk Registration Form, send it to [api.management@nhs.net](mailto:api.management@nhs.net).
-    * In step 11: submit your completed SCAL to [api.management@nhs.net](mailto:api.management@nhs.net).
-    * In step 14: to request production access, contact us at [api.management@nhs.net](mailto:api.management@nhs.net).
+    * In step 10: when you complete the Service Desk Registration Form, send it to [ssd.nationalservicedesk@nhs.net](mailto:ssd.nationalservicedesk@nhs.net).
+    * In step 11: submit your completed SCAL to [ssd.nationalservicedesk@nhs.net](mailto:ssd.nationalservicedesk@nhs.net).
+    * In step 14: to request production access, contact us at [ssd.nationalservicedesk@nhs.net](mailto:ssd.nationalservicedesk@nhs.net).
     
     ## Errors
     We use standard HTTP status codes to show whether an API request succeeded or not. They are usually in the range:
@@ -119,7 +119,7 @@ info:
 
   contact:
     name: API Management Support
-    email: api.management@nhs.net
+    email: ssd.nationalservicedesk@nhs.net
 servers:
   - url: 'https://sandbox.api.service.nhs.uk/ambulance-data-submission'
     description: Sandbox environment.
