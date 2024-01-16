@@ -55,7 +55,7 @@ info:
 
     It includes some country-specific FHIR extensions, which are built against [FHIR UK Core](https://digital.nhs.uk/services/fhir-uk-core), specifically [UK.core.r4.v2/2.0.8](https://simplifier.net/packages/uk.core.r4.v2/2.0.8).
 
-    For details of FHIR message payload, see the [Ambulance Data Set FHIR Implementation Guide](https://simplifier.net/Ambulance/~guides).
+    For details of FHIR message payload, see the [Ambulance Data Set FHIR Implementation Guide](https://simplifier.net/guide/ambulancedatasetadsfhirbundleimplementationguide?version=current).
 
     ## Network access
     This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network).
